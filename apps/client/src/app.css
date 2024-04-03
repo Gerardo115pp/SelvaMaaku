@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        /* Colors */
+            /* Theme color */
+            --theme-color: #183028;
+            --theme-color-hover: #162b24;
+            --theme-color-active: #132620;
+            --theme-color-light: #e8eaea;
+            --theme-color-light-hover: #dce0df;
+            --theme-color-light-active: #b7bfbc;
+            --theme-color-dark: #12241e;
+            --theme-color-dark-hover: #0e1d18;
+            --theme-color-dark-active: #0b1612;
+            --theme-color-darker: #08110e;
+            --theme-hero-background: #354b43;
+
+            /* Light orange */
+            --light-orange: #ffab4c;
+            --light-orange-hover: #e69a44;
+            --light-orange-active: #cc893d;
+            --light-orange-light: #fff7ed;
+            --light-orange-light-hover: #fff2e4;
+            --light-orange-light-active: #ffe5c8;
+            --light-orange-dark: #bf8039;
+            --light-orange-dark-hover: #99672e;
+            --light-orange-dark-active: #734d22;
+            --light-orange-darker: #593c1b;
+            /* Accent Orange */
+            --accent-orange: #ff5c35;
+            --accent-orange-hover: #e65330;
+            --accent-orange-active: #cc4a2a;
+            --accent-orange-light: #ffefeb;
+            --accent-orange-light-hover: #ffe7e1;
+            --accent-orange-light-active: #ffccc0;
+            --accent-orange-dark: #bf4528;
+            --accent-orange-dark-hover: #993720;
+            --accent-orange-dark-active: #732918;
+            --accent-orange-darker: #592013;
+            /* Light Green */
+            --light-green: #d2ddbb;
+            --light-green-hover: #bdc7a8;
+            --light-green-active: #a8b196;
+            --light-green-light: #fbfcf8;
+            --light-green-light-hover: #f8faf5;
+            --light-green-light-active: #f1f4ea;
+            --light-green-dark: #9ea68c;
+            --light-green-dark-hover: #7e8570;
+            --light-green-dark-active: #5e6354;
+            --light-green-darker: #4a4d41;
+        /* Fonts */
+            /* Sizes */
+                --font-size-1: 16px; /* 16px */
+                --font-size-2: calc(var(--font-size-1) * 1.1875); /* 19px */
+                --font-size-3: calc(var(--font-size-1) * 1.3225); /* 21px */
+                --font-size-4: calc(var(--font-size-1) * 1.5); /* 23px */
+        
+                --font-size-p: var(--font-size-2);
+                --font-size-p-small: var(--font-size-1);
+                --font-size-fineprint: calc(var(--font-size-1) * 0.8);
+        
+                --font-size-h1: calc(112px); /* 112px */
+                --font-size-h2: calc(0.67142 * var(--font-size-h1)); /* 64px */
+                --font-size-h3: calc(var(--font-size-h2) * 0.71875); /* 46px */
+                --font-size-h4: calc(var(--font-size-h3) * 0.71875); /* 33px */
+                --font-size-h5: calc(var(--font-size-h4) * 0.71875); /* 24px */
+                --font-size-h6: calc(var(--font-size-h5) * 0.71875); /* 17px */
+
+            /* Families */
+                --font-read: 'Inter';
+                --font-titles: 'Trirong';
+
+            /* Line heights */
+            --line-height-1: 17px;
+            --line-height-2: 20px;
+            --line-height-3: 22px;
+            --line-height-4: 24px;
+            --line-height-5: 28px;
+            --line-height-6: 32px;
+            --line-height-7: 36px;
+            --line-height-8: 42px;
+            --line-height-9: 60px;
+            --line-height-10: 72px;
+            --line-height-11: 96px;
+            /* Letter spacing */
+            --letter-spacing-1: 0em;
+            --letter-spacing-2: -0.006em;
+            --letter-spacing-3: -0.011em;
+            --letter-spacing-4: -0.014em;
+            --letter-spacing-5: -0.017em;
+            --letter-spacing-6: -0.019em;
+            --letter-spacing-7: -0.022em;
+        /* Spacing */
+            --spacing-base:8px;
+            --spacing-scale: 1;
+
+            --spacing-1: calc(var(--spacing-base) * var(--spacing-scale)); /* 8px */
+            --spacing-2: calc(var(--spacing-1) * 2); /* 16px */
+            --spacing-3: calc(var(--spacing-2) * 2); /* 32px */
+            --spacing-4: calc(var(--spacing-3) * 2); /* 64px */
+            --spacing-5: calc(var(--spacing-4) * 2); /* 128px */
+            --spacing-6: calc(var(--spacing-5) * 2); /* 256px */
+            --spacing-7: calc(var(--spacing-6) * 2); /* 512px */
+            --spacing-8: calc(var(--spacing-7) * 2); /* 1024px */
+            --spacing-9: calc(var(--spacing-8) * 2); /* 2048px */
+
+            /* Wordpress: spacing */
+            --wp--preset--spacing--10: var(--spacing-1);
+            --wp--preset--spacing--20: var(--spacing-2);
+            --wp--preset--spacing--30: var(--spacing-3);
+            --wp--preset--spacing--40: var(--spacing-4);
+            --wp--preset--spacing--50: var(--spacing-5);
+            --wp--preset--spacing--60: var(--spacing-6);
+            --wp--preset--spacing--70: var(--spacing-7);
+        /* Z-INDEX */
+            /* Use these -b- suffix for background elements */
+            --z-index-b-1: -1; /* B stands for bottom, not base */
+            --z-index-b-2: -2;
+            --z-index-b-3: -3;
+            --z-index-b-4: -4;
+            --z-index-b-5: -5;
+            --z-index-b-6: -6;
+            --z-index-b-7: -7;
+            --z-index-b-8: -8;
+            --z-index-b-9: -9;
+    
+            /* Regular elements */
+            --z-index-1: 1;
+            --z-index-2: 2;
+            --z-index-3: 3;
+            --z-index-4: 4;
+            --z-index-5: 5;
+            --z-index-6: 6;
+            --z-index-7: 7;
+            --z-index-8: 8;
+            --z-index-9: 9;
+    
+            /* Use these -t- suffix for top elements like modals */
+            --z-index-t-1: 11; /* T stands for top */
+            --z-index-t-2: 12;
+            --z-index-t-3: 13;
+            --z-index-t-4: 14;
+            --z-index-t-5: 15;
+            --z-index-t-6: 16;
+            --z-index-t-7: 17;
+            --z-index-t-8: 18;
+            --z-index-t-9: 19;
+        /* Component Sizes */
+            --navbar-height: 85px;
+
+
+    }
+}
+
+/*=============================================
+=            Normalize            =
+=============================================*/
+
+    *{
+        box-sizing: border-box;
+    }
+
+    body::-webkit-scrollbar{
+        display: none;
+    }
+
+    :root::-webkit-scrollbar{
+        display: none;
+    }
+
+    .grecaptcha-badge{
+        visibility: hidden !important;
+    }
+
+    body{
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    body {
+        --body-bg-color: var(--clear-4);
+        --body-text-color: var(--grey);
+
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-read);
+        font-size: var(--font-size-1);
+        color: var(--body-text-color);
+        background: var(--body-bg-color);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-titles);
+        color: var(--light-orange-light);
+        font-weight: normal;
+        line-height: 1;
+        margin: 0;
+    }
+
+    h1 {
+        font-size: var(--font-size-h1);
+    }
+
+    h2 {
+        font-size: var(--font-size-h2);
+    }
+
+    h3 {
+        font-size: var(--font-size-h3);
+    }
+
+    h4 {
+        font-size: var(--font-size-h4);
+    }
+
+    h5 {
+        font-size: var(--font-size-h5);
+    }
+
+    h6 {
+        font-size: var(--font-size-h6);
+    }
+
+    p {
+        margin: 0;
+        font-size: var(--font-size-p);
+    }
+
+    small {
+        font-size: var(--font-size-p-small);
+    }
+
+    strong {
+        font-weight: 500;
+        color: var(--light-orange-light-active);
+    }
+
+    select {
+        background: transparent;
+        font-family: var(--font-titles);
+    }
+
+    ul, ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--light-orange);
+    }
+
+/*=============================================
+=            Buttons            =
+=============================================*/
+
+    button {
+        font-family: var(--font-titles);
+        font-size: var(--font-size-1);
+        line-height: 1;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: var(--spacing-2) var(--spacing-2);
+        border: none;
+
+        &:has(:nth-child(2)) {
+            display: flex;
+            gap: var(--spacing-1);
+        }
+
+        &.button-1 {
+            background: var(--accent-orange);
+            color: var(--light-orange-light);                        
+        }
+    }
+
+/*=============================================
+=            Debug            =
+=============================================*/
+
+    .debug{
+        border: 1px solid red;
+    }
+
+    .adebug{
+        border: 1px solid rgb(255, 72, 72);
+    }
+
+    .debug > *{
+        border: 1px solid red;
+    }
+
+    .adebug *{
+        border: 1px solid rgb(107, 107, 255);
+    }
+
+    .dtwo{
+        border: 1px solid blue !important;
+    }
+
+    .dthree{
+        border: 1px solid green !important;
+    }
+
+    .dfour{
+        border: 1px solid yellow !important;
+    }
+
+/*=============================================
+=            Mobile            =
+=============================================*/
+
+.hide-on-mobile{
+    display: none !important;
+}
+  
+.hide{
+    display: none !important;
+}
+
+
+

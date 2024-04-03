@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>
+			Selva Maaku
+		</title>
+		<style>
+			@font-face {
+				font-family: 'Inter';
+				src: url('/resources/fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+				font-weight: 100 900;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: 'Trirong';
+				src: url('/resources/fonts/Trirong/Trirong-Regular.ttf');
+				font-weight: 500;
+				font-style: normal;
+			}
+		</style>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
