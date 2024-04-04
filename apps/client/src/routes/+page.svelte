@@ -4,6 +4,7 @@
     import About from "@pages/Home/sections/About.svelte";
     import Banner from "@pages/Home/sections/Banner.svelte";
     import Hero from "@pages/Home/sections/Hero.svelte";
+    import HouseModels from "@pages/Home/sections/HouseModels.svelte";
     import Location from "@pages/Home/sections/Location.svelte";
     import { onMount } from "svelte";
 
@@ -41,6 +42,7 @@
     <About />
     <Location />
     <Banner />
+    <HouseModels />
 </main>
 
 <style>
