@@ -1,6 +1,6 @@
 <script>
     import { browser } from "$app/environment";
-    import { ImageResource } from "@models/MediaResources";
+    import { ImageResource } from "@models/ImageResources";
     import { onMount } from "svelte";
 
     

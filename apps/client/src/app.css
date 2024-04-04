@@ -153,6 +153,7 @@
             --design-width: 1440px;
             --design-content-width: calc(var(--design-width) * 0.844444);
             --wixarica-icons-size: 48px; 
+            --wixarica-icons-large-size: 120px;
 
 
     }
@@ -300,6 +301,10 @@
 
     .wixarica-icons {
         width: var(--wixarica-icons-size);
+    }
+
+    .wixarica-icons-large {
+        width: var(--wixarica-icons-large-size);
     }
 
 /*=====  End of Layout  ======*/
