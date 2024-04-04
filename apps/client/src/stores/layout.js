@@ -112,5 +112,6 @@ export const layout_images = {
     MANGO_ISOTYPE: new ImageResource("logos/mango_isotype.webp", MEDIA_SIZES.MEDIUM.postfix),
     KEITT_HOUSE: new ImageResource("houses/keitt_house.webp", MEDIA_SIZES.LARGE.postfix),
     TOMMY_HOUSE: new ImageResource("houses/tommy_house.webp", MEDIA_SIZES.LARGE.postfix),   
-    DEVELOPMENT_HOUSE_ONE: new ImageResource("houses/development_house_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    TOMMY_HOUSE_TWO: new ImageResource("houses/tommy_house_two.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),   
+    DEVELOPMENT_HOUSE_ONE: new ImageResource("houses/development_house_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),    
 }

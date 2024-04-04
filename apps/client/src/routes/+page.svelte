@@ -3,6 +3,7 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import About from "@pages/Home/sections/About.svelte";
     import Hero from "@pages/Home/sections/Hero.svelte";
+    import Location from "@pages/Home/sections/Location.svelte";
     import { onMount } from "svelte";
 
 
@@ -37,6 +38,7 @@
     </div>
     <Hero />
     <About />
+    <Location />
 </main>
 
 <style>

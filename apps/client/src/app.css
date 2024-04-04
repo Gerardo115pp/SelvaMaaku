@@ -63,7 +63,7 @@
                 --font-size-fineprint: calc(var(--font-size-1) * 0.8);
         
                 --font-size-h1: calc(112px); /* 112px */
-                --font-size-h2: calc(0.67142 * var(--font-size-h1)); /* 64px */
+                --font-size-h2: calc(0.57142 * var(--font-size-h1)); /* 64px */
                 --font-size-h3: calc(var(--font-size-h2) * 0.71875); /* 46px */
                 --font-size-h4: calc(var(--font-size-h3) * 0.71875); /* 33px */
                 --font-size-h5: calc(var(--font-size-h4) * 0.71875); /* 24px */
@@ -151,7 +151,8 @@
         /* Component Sizes */
             --navbar-height: 85px;
             --design-width: 1440px;
-            --design-content-width: calc(var(--design-width) * 0.844444); 
+            --design-content-width: calc(var(--design-width) * 0.844444);
+            --wixarica-icons-size: 48px; 
 
 
     }
@@ -285,6 +286,25 @@
             border: 1px solid var(--light-orange-light);
         }
     }
+
+
+/*=============================================
+=            Layout            =
+=============================================*/
+
+    .design-content-width {
+        max-width: var(--design-content-width);
+        width: 84%;
+        margin: 0 auto;
+    }
+
+    .wixarica-icons {
+        width: var(--wixarica-icons-size);
+    }
+
+/*=====  End of Layout  ======*/
+
+
 
 /*=============================================
 =            Debug            =

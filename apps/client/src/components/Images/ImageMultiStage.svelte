@@ -46,6 +46,7 @@
         /**
          * Blur unloaded image
          * @type {boolean}
+         * @default true
          */
         export let blur_unloaded = true;
     
