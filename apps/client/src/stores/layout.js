@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store";
-import { ImageResource  } from "@models/MediaResources";
+import { ImageResource  } from "@models/ImageResources";
 import { MEDIA_SIZES } from "@libs/Services/media_loaders";
 import { browser } from "$app/environment"
 /**
@@ -107,9 +107,10 @@ export const user_locale = browser ? (window.navigator.language.split("-")[0] ||
 
 
 export const layout_images = {
-    HERO_BACKGROUND: new ImageResource("hero-bg.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
-    WHITE_EAGLE_IMAGE: new ImageResource("about-free-eagle.webp", MEDIA_SIZES.ORIGINAL.postfix),
-    IDYLLICISM_IMAGE: new ImageResource("idyllicism.webp", MEDIA_SIZES.LARGE.postfix),
-    CHURCH_IMAGE: new ImageResource("249b0b3c-b6ab-45ac-8cfb-4364308ced63.webp", MEDIA_SIZES.LARGE.postfix),
-    WHITE_ROSES_IMAGE: new ImageResource("white_roses.webp", MEDIA_SIZES.LARGE.postfix),
+    COMBINATION_MARK: new ImageResource("logos/combination_mark.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    HERO_VIDEO_COVER: new ImageResource("covers/hero-video-cover.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    MANGO_ISOTYPE: new ImageResource("logos/mango_isotype.webp", MEDIA_SIZES.MEDIUM.postfix),
+    KEITT_HOUSE: new ImageResource("houses/keitt_house.webp", MEDIA_SIZES.LARGE.postfix),
+    TOMMY_HOUSE: new ImageResource("houses/tommy_house.webp", MEDIA_SIZES.LARGE.postfix),   
+    DEVELOPMENT_HOUSE_ONE: new ImageResource("houses/development_house_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
 }

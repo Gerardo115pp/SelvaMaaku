@@ -74,25 +74,25 @@
                 --font-titles: 'Trirong';
 
             /* Line heights */
-            --line-height-1: 17px;
-            --line-height-2: 20px;
-            --line-height-3: 22px;
-            --line-height-4: 24px;
-            --line-height-5: 28px;
-            --line-height-6: 32px;
-            --line-height-7: 36px;
-            --line-height-8: 42px;
-            --line-height-9: 60px;
-            --line-height-10: 72px;
-            --line-height-11: 96px;
+                --line-height-1: 17px;
+                --line-height-2: 20px;
+                --line-height-3: 22px;
+                --line-height-4: 24px;
+                --line-height-5: 28px;
+                --line-height-6: 32px;
+                --line-height-7: 36px;
+                --line-height-8: 42px;
+                --line-height-9: 60px;
+                --line-height-10: 72px;
+                --line-height-11: 96px;
             /* Letter spacing */
-            --letter-spacing-1: 0em;
-            --letter-spacing-2: -0.006em;
-            --letter-spacing-3: -0.011em;
-            --letter-spacing-4: -0.014em;
-            --letter-spacing-5: -0.017em;
-            --letter-spacing-6: -0.019em;
-            --letter-spacing-7: -0.022em;
+                --letter-spacing-1: 0em;
+                --letter-spacing-2: -0.006em;
+                --letter-spacing-3: -0.011em;
+                --letter-spacing-4: -0.014em;
+                --letter-spacing-5: -0.017em;
+                --letter-spacing-6: -0.019em;
+                --letter-spacing-7: -0.022em;
         /* Spacing */
             --spacing-base:8px;
             --spacing-scale: 1;
@@ -150,6 +150,8 @@
             --z-index-t-9: 19;
         /* Component Sizes */
             --navbar-height: 85px;
+            --design-width: 1440px;
+            --design-content-width: calc(var(--design-width) * 0.844444); 
 
 
     }
@@ -275,6 +277,12 @@
         &.button-1 {
             background: var(--accent-orange);
             color: var(--light-orange-light);                        
+        }
+
+        &.button-2 {
+            background: transparent;
+            color: var(--light-orange-light);
+            border: 1px solid var(--light-orange-light);
         }
     }
 

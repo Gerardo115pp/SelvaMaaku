@@ -1,2 +1,57 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import { browser } from "$app/environment";
+    import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import About from "@pages/Home/sections/About.svelte";
+    import Hero from "@pages/Home/sections/Hero.svelte";
+    import { onMount } from "svelte";
+
+
+    onMount(() => {
+        setGradientType();
+    });
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        const setGradientType = () => {
+            if (!browser) return;
+            
+            const root_element = document.querySelector('html');
+
+            if (root_element) {
+                root_element.setAttribute('data-gradient-type', 'main-page');
+            }
+        }
+    
+    /*=====  End of Methods  ======*/
+    
+    
+</script>
+
+<main id="smk-home-page">
+    <div class="wixarica-underlay" class:adebug={false}>
+        <WixaricaIcon 
+            opacity={0.1}
+        />
+    </div>
+    <Hero />
+    <About />
+</main>
+
+<style>
+    main#smk-home-page {
+        position: relative;
+
+        & .wixarica-underlay {
+            position: absolute;
+            top: -3%;
+            left: 50%;
+            width: 84%;
+            max-width: var(--design-content-width);
+            z-index: var(--z-index-b-3);
+            transform: translateX(-50%);
+        }
+    }
+    
+</style>
