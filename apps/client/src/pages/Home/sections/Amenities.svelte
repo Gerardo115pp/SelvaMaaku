@@ -2,6 +2,8 @@
     import Arrow from "@components/icons/arrow.svelte";
     import AmenitiesGallery from "../sub-components/amenities_gallery.svelte";
     import { layout_images } from "@stores/layout";
+    import ThemeButton from "@components/buttons/theme_button.svelte";
+    import { text } from "@sveltejs/kit";
 
 </script>
 <section id="smk-amenities-section">
@@ -24,12 +26,7 @@
             <AmenitiesGallery />
         </div>
         <ul id="smk-as-ctas-container">
-            <button class="button-2">
-                <span>  
-                    Explore
-                </span>
-                <Arrow />
-            </button>
+            <ThemeButton text="Explore"/>
         </ul>
     </div>
 </section>

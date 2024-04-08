@@ -1,5 +1,6 @@
 <script>
     import { browser } from "$app/environment";
+    import Footer from "@components/Footer/footer.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import About from "@pages/Home/sections/About.svelte";
     import Amenities from "@pages/Home/sections/Amenities.svelte";
