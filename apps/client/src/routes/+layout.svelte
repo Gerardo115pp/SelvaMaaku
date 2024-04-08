@@ -1,7 +1,7 @@
 <script>
     import "@app/app.css";
     import Navbar from "@components/Navbar/Navbar.svelte";
-    import PageTopGradient from "@components/UI/page_top_gradient.svelte";
+    import PageTopGradient from "@components/Ui_decorations/page_top_gradient.svelte";
 </script>
 
 <div id="app-root">
