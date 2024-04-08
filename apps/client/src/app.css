@@ -280,7 +280,7 @@
         line-height: 1;
         border-radius: 10px;
         font-weight: 600;
-        padding: var(--spacing-2) var(--spacing-2);
+        padding: calc(var(--spacing-2) * 0.75) var(--spacing-2);
         border: none;
 
         &:has(:nth-child(2)) {
