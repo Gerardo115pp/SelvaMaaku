@@ -19,10 +19,12 @@
                 Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
             </p>
             <div class="smk-has-cw-tc-about-cta-wrapper">
-                <button class="smk-has-cw-tc-about-cta button-2">
-                    <span>Development</span>
-                    <ArrowIcon />
-                </button>
+                <a href="/development">
+                    <button class="smk-has-cw-tc-about-cta button-2">
+                        <span>Development</span>
+                        <ArrowIcon />
+                    </button>
+                </a>
             </div>
         </div>
         <div id="smk-has-cw-gallery-column">
