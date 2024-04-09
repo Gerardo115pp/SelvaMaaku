@@ -118,6 +118,7 @@ export const layout_images = {
     TOMMY_HOUSE_THREE: new ImageResource("houses/tommy_house_three.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),   
     TOMMY_HOUSE_FOUR: new ImageResource("houses/tommy_house_four.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),   
     DEVELOPMENT_HOUSE_ONE: new ImageResource("houses/development_house_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix), 
+    HOUSE_MODEL_ONE: new ImageResource("houses/house_model_one.webp", MEDIA_SIZES.MEDIUM.postfix),
     STONE_WALL: new ImageResource("misc/wixarica_wall.webp", MEDIA_SIZES.MEDIUM.postfix),
     RAINY_POOL: new ImageResource("misc/rainy_pool.webp", MEDIA_SIZES.MEDIUM.postfix),
     PARK: new ImageResource("misc/selvamaaku_park.webp", MEDIA_SIZES.MEDIUM.postfix),   

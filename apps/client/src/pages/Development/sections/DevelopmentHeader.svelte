@@ -3,7 +3,7 @@
 </script>
 
 <section id="smk-development-page-header">
-    <header id="smk-dp-header" class="design-content-width">
+    <header id="smk-dp-header" class="design-content-width" role="banner">
         <hgroup id="smk-dp-header-headliners">
             <span id="smk-dp-hh-page-name" class="small-headline">
                 DEVELOPMENT
