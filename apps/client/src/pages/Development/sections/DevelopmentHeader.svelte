@@ -26,7 +26,7 @@
         display: flex;
         padding: var(--spacing-5) 0;
         flex-direction: column;
-        gap: var(--spacing-4);
+        gap: var(--spacing-5);
     }
 
     
