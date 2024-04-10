@@ -31,7 +31,7 @@
             },
             {
                 name: 'Models',
-                href: '/modelos',
+                href: '/house-models',
                 options: []
             },
             {
