@@ -1,6 +1,6 @@
 <script>
     import Arrow from "@components/icons/arrow.svelte";
-import Mexico from "@components/icons/mexico.svelte";
+    import Mexico from "@components/icons/mexico.svelte";
     import SayulitaMap from "@components/icons/sayulita_map.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
 </script>

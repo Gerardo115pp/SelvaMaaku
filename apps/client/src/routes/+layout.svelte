@@ -14,8 +14,8 @@
 
 <style>
     :global(html) {
-        background: var(--theme-color-dark);
-        color: var(--light-orange-light);
+        background: var(--body-bg-color);
+        color: var(--body-text-color);
     }
 
     #app-root {

@@ -1,6 +1,5 @@
 <script>
     import { browser } from "$app/environment";
-    import Footer from "@components/Footer/footer.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import About from "@pages/Home/sections/About.svelte";
     import Amenities from "@pages/Home/sections/Amenities.svelte";
@@ -36,9 +35,9 @@
 </script>
 
 <main id="smk-home-page">
-    <div class="wixarica-underlay" class:adebug={false}>
+    <div class="wixarica-underlay" class:adebug={true}>
         <WixaricaIcon 
-            opacity={0.1}
+            opacity={0.2}
         />
     </div>
     <Hero />

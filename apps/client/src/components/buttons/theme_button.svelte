@@ -18,18 +18,50 @@
          * @default false
          */
         export let is_button_one = false;
+
+        /**
+         * Sets the button class to be button-3 which is a variation of button-2
+         * @type {boolean}
+         * @default false
+         */
+        export let is_button_three = false;
+
+        /**
+         * if set, the button will be wrapped around and <a> tag and have a navigation role
+         * @type {string}
+         */
+        export let href;
     
     /*=====  End of Properties  ======*/
     
     
 </script>
 
-<button 
-    class:button-2={!is_button_one}
-    class:button-1={is_button_one}
->
-    <span>  
-        {text}
-    </span>
-    <Arrow />
-</button>
+{#if href != null}
+    <a href="{href}">
+        <button 
+            type="button"
+            class:button-2={!is_button_one && !is_button_three}
+            class:button-1={is_button_one}
+            class:button-3={is_button_three}
+            role="navigation"
+        >
+            <span>  
+                {text}
+            </span>
+            <Arrow />
+        </button>
+    </a>
+{:else}
+    <button 
+        type="button"
+        class:button-2={!is_button_one && !is_button_three}
+        class:button-1={is_button_one}
+        class:button-3={is_button_three}
+    >
+        <span>  
+            {text}
+        </span>
+        <Arrow />
+    </button>
+{/if}

@@ -124,4 +124,6 @@ export const layout_images = {
     PARK: new ImageResource("misc/selvamaaku_park.webp", MEDIA_SIZES.MEDIUM.postfix),   
     JUNGLE_ONE: new ImageResource("misc/selvamaaku_jungle.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     SAYULITA_MAP: new ImageResource("misc/sayulita_map.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    SAYULITA_TOWN_ONE: new ImageResource("misc/sayulita_town_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    SAYULITA_TOWN_TWO: new ImageResource("misc/sayulita_town_two.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
 }

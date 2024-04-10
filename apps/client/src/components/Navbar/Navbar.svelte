@@ -26,7 +26,7 @@
             },
             {
                 name: 'Location',
-                href: '/ubicacion',
+                href: '/location',
                 options: []
             },
             {
