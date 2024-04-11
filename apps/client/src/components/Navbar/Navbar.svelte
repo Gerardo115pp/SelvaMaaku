@@ -1,5 +1,7 @@
 <script>
     import ArrowIcon from "@components/icons/arrow.svelte";
+    import { page } from "$app/stores";
+    import { onMount } from "svelte";
     
     /*=============================================
     =            Properties            =
@@ -47,6 +49,10 @@
         ]
     
     /*=====  End of Properties  ======*/
+
+    onMount(() => {
+        console.log($page);
+    })
     
     
 </script>
@@ -58,7 +64,8 @@
         </div>
         <menu id="sn-navoptions">
             {#each dropdown_sections as nav_option}
-                <li class="nav-option-wrapper">
+                {@const is_active_link = $page.url.pathname === nav_option.href}
+                <li class="nav-option-wrapper" class:is-active-link={is_active_link}>
                     <a href="{nav_option.href}">
                         {nav_option.name}
                     </a>
@@ -130,6 +137,16 @@
             color: var(--light-orange-light);
             font-family: var(--font-titles);
             white-space: nowrap;
+            transition: all 0.3s ease-in;
+
+            &:hover {
+                color: var(--accent-orange-light-active);
+            }   
+
+        }
+
+        .is-active-link a {
+            color: var(--accent-orange);
         }
     
     /*=====  End of Navoptions  ======*/
