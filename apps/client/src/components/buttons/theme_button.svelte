@@ -31,6 +31,13 @@
          * @type {string}
          */
         export let href;
+
+        /**
+         * Whether or not to use target="_blank" in the <a> tag
+         * @type {boolean}
+         * @default false
+         */
+        export let open_in_new_tab = false;
     
     /*=====  End of Properties  ======*/
     
@@ -38,7 +45,10 @@
 </script>
 
 {#if href != null}
-    <a href="{href}">
+    <a href="{href}"
+        target={open_in_new_tab ? "_blank" : "_self"}
+        rel={open_in_new_tab ? "noopener noreferrer" : ""}
+    >
         <button 
             type="button"
             class:button-2={!is_button_one && !is_button_three}
