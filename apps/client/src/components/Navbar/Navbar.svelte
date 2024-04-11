@@ -36,7 +36,7 @@
             },
             {
                 name: 'Amenities',
-                href: '/amenidades',
+                href: '/amenities',
                 options: []
             },
             {

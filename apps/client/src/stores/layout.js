@@ -132,6 +132,7 @@ export const layout_images = {
     HOUSE_MODEL_ONE: new ImageResource("houses/house_model_one.webp", MEDIA_SIZES.MEDIUM.postfix),
     STONE_WALL: new ImageResource("misc/wixarica_wall.webp", MEDIA_SIZES.MEDIUM.postfix),
     RAINY_POOL: new ImageResource("misc/rainy_pool.webp", MEDIA_SIZES.MEDIUM.postfix),
+    RAINY_POOL_TWO: new ImageResource("misc/rainy_pool_two.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     PARK: new ImageResource("misc/selvamaaku_park.webp", MEDIA_SIZES.MEDIUM.postfix),   
     JUNGLE_ONE: new ImageResource("misc/selvamaaku_jungle.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     SAYULITA_MAP: new ImageResource("misc/sayulita_map.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
