@@ -35,7 +35,7 @@
 </script>
 
 <main id="smk-home-page">
-    <div class="wixarica-underlay" class:adebug={true}>
+    <div class="wixarica-underlay" class:adebug={false}>
         <WixaricaIcon 
             opacity={0.2}
         />
