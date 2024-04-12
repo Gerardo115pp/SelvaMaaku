@@ -272,6 +272,14 @@
         font-weight: 600;
     }
 
+    .smk-link {
+        transition: all 0.3s ease-in;
+
+        &:hover {
+            color: var(--light-orange-light-active) !important;
+        }
+    }
+
 /*=============================================
 =            Buttons            =
 =============================================*/

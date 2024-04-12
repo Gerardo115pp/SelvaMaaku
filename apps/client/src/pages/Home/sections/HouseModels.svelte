@@ -2,8 +2,10 @@
     import Arrow from "@components/icons/arrow.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import ModelsGallery from "../sub-components/models_gallery.svelte";
+    import ThemeButton from "@components/buttons/theme_button.svelte";
 
 </script>
+
 <section id="smk-house-models-section" class:adebug={false}>
     <div id="smk-hms-content-wrapper" class="design-content-width">
         <div id="smk-hms-cw-text-column">
@@ -22,10 +24,10 @@
                 </p>
             </hgroup>
             <ul class="smk-hms-cw-ctas-wrapper">
-                <button class="button-2">
-                    <span>Models</span>
-                    <Arrow />
-                </button>
+                <ThemeButton
+                    href="/house-models"
+                    text="Models"
+                />
             </ul>
         </div>
         <div id="smk-hms-cw-gallery-column">

@@ -28,22 +28,17 @@
             },
             {
                 name: 'Location',
-                href: '/ubicacion',
+                href: '/location',
                 options: []
             },
             {
                 name: 'Models',
-                href: '/modelos',
+                href: '/house-models',
                 options: []
             },
             {
                 name: 'Amenities',
-                href: '/amenidades',
-                options: []
-            },
-            {
-                name: 'Life in Sayulita',
-                href: '/vive-en-sayulita',
+                href: '/amenities',
                 options: []
             }
         ]
@@ -68,14 +63,14 @@
             </p>
         </hgroup>
         <div id="smk-gfs-contact-cta">
-            <ThemeButton text="Contact Us" is_button_one/>
+            <ThemeButton text="Contact Us" href="/contact" is_button_one/>
         </div>
     </div>
     <footer id="smk-global-footer">
         <menu id="footer-navoptions">
             {#each dropdown_sections as nav_option}
                 <li class="smk-footer-nav-option-wrapper">
-                    <a href="{nav_option.href}">
+                    <a href="{nav_option.href}" class="smk-link">
                         {nav_option.name}
                     </a>
                 </li>
@@ -84,17 +79,17 @@
         <div id="footer-policies-wrapper">
             <ul id="smk-policies-list">
                 <li class="smk-pl-policy-item">
-                    <a href="/#">
+                    <a href="/#" class="smk-link">
                         © Selva Máaku
                     </a>
                 </li>
                 <li class="smk-pl-policy-item">
-                    <a href="/#">
+                    <a href="/#" class="smk-link">
                         All rights reserved
                     </a>
                 </li>
                 <li class="smk-pl-policy-item">
-                    <a href="/#">
+                    <a href="/#" class="smk-link">
                         Terms and Conditions
                     </a>
                 </li>

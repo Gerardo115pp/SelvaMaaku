@@ -26,7 +26,10 @@
             <AmenitiesGallery />
         </div>
         <ul id="smk-as-ctas-container">
-            <ThemeButton text="Explore"/>
+            <ThemeButton 
+                text="Explore"
+                href="/amenities"
+            />
         </ul>
     </div>
 </section>

@@ -1,5 +1,6 @@
 <script>
-    import Arrow from "@components/icons/arrow.svelte";
+    import ThemeButton from "@components/buttons/theme_button.svelte";
+import Arrow from "@components/icons/arrow.svelte";
     import Mexico from "@components/icons/mexico.svelte";
     import SayulitaMap from "@components/icons/sayulita_map.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
@@ -32,14 +33,10 @@
                 </p>
             </hgroup>
             <ul class="smk-hls-cw-ctas-wrapper">
-                <button class="button-2">
-                    <span>Location</span>
-                    <Arrow />
-                </button>
-                <button class="button-2">
-                    <span>Life in Sayulita</span>
-                    <Arrow />
-                </button>
+                <ThemeButton 
+                    href="/location"
+                    text="Location"
+                />
             </ul>
         </div>
     </div>

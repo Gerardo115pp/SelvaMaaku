@@ -3,6 +3,7 @@
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import ThemeButton from "@components/buttons/theme_button.svelte";
+    import { layout_images } from "@stores/layout";
     
     /*=============================================
     =            Properties            =
@@ -56,13 +57,13 @@
 <nav id="selvamaaku-navbar" class:adebug={false}>
     <div id="smk-navbar-content">
         <div id="sn-selvamaaku-logo">
-            <img src="/resources/images/logos/selva_maaku_logo.webp" alt="Selva maaku logotipo"/>
+            <img src="{layout_images.SELVAMAAKU_LOGOTYPE.getUrl(0.2)}" alt="Selva maaku logotipo"/>
         </div>
         <menu id="sn-navoptions">
             {#each dropdown_sections as nav_option}
                 {@const is_active_link = $page.url.pathname === nav_option.href}
                 <li class="nav-option-wrapper" class:is-active-link={is_active_link}>
-                    <a href="{nav_option.href}">
+                    <a href="{nav_option.href}" class="smk-link">
                         {nav_option.name}
                     </a>
                 </li>
@@ -135,12 +136,6 @@
             font-family: var(--font-titles);
             font-size: var(--font-size-1);
             white-space: nowrap;
-            transition: all 0.3s ease-in;
-
-            &:hover {
-                color: var(--light-orange-light-active);
-            }   
-
         }
 
         .is-active-link a {
