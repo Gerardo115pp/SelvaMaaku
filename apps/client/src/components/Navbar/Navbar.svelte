@@ -2,6 +2,7 @@
     import ArrowIcon from "@components/icons/arrow.svelte";
     import { page } from "$app/stores";
     import { onMount } from "svelte";
+    import ThemeButton from "@components/buttons/theme_button.svelte";
     
     /*=============================================
     =            Properties            =
@@ -40,11 +41,6 @@
                 name: 'Amenities',
                 href: '/amenities',
                 options: []
-            },
-            {
-                name: 'Life in Sayulita',
-                href: '/vive-en-sayulita',
-                options: []
             }
         ]
     
@@ -77,10 +73,11 @@
                 <option value="en">EN</option>
                 <option value="es">ES</option>
             </select>
-            <button id="contact-cta-btn" class="button-1">
-                <span>Contact us</span>
-                <ArrowIcon />
-            </button>
+            <ThemeButton 
+                text="Contact us"
+                is_button_one
+                href="/contact"
+            />
         </div>
     </div>
 </nav>
@@ -136,17 +133,19 @@
         .nav-option-wrapper a {
             color: var(--light-orange-light);
             font-family: var(--font-titles);
+            font-size: var(--font-size-1);
             white-space: nowrap;
             transition: all 0.3s ease-in;
 
             &:hover {
-                color: var(--accent-orange-light-active);
+                color: var(--light-orange-light-active);
             }   
 
         }
 
         .is-active-link a {
-            color: var(--accent-orange);
+            color: var(--light-orange);
+            pointer-events: none;
         }
     
     /*=====  End of Navoptions  ======*/
@@ -162,10 +161,6 @@
             align-items: center;
             gap: var(--spacing-2);
             margin-left: auto;
-        }
-
-        #sn-cta-section button#contact-cta-btn span {
-            white-space: nowrap;
         }
     
     /*=====  End of cta section  ======*/

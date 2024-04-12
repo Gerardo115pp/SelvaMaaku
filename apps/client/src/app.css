@@ -155,6 +155,7 @@
             --wixarica-icons-size: 48px; 
             --wixarica-icons-medium-size: 80px;
             --wixarica-icons-large-size: 120px;
+            --border-radius: 10px;
             --body-bg-color: var(--theme-color-dark);
             --body-text-color: var(--light-orange-light);
 
@@ -254,6 +255,10 @@
     a {
         text-decoration: none;
         color: var(--light-orange);
+    }
+
+    input, textarea {
+        border-radius: var(--border-radius);
     }
 
 

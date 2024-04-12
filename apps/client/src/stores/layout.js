@@ -108,9 +108,10 @@ export const user_locale = browser ? (window.navigator.language.split("-")[0] ||
 
 export const layout_images = {
     COMBINATION_MARK: new ImageResource("logos/combination_mark.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
-    HERO_VIDEO_COVER: new ImageResource("covers/hero-video-cover.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    SELVAMAAKU_LOGOTYPE: new ImageResource("logos/selva_maaku_logo.webp", MEDIA_SIZES.MEDIUM.postfix),
     MANGO_ISOTYPE: new ImageResource("logos/mango_isotype.webp", MEDIA_SIZES.MEDIUM.postfix),
     MANGO_ISOLOGO: new ImageResource("logos/mango_isologo.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    HERO_VIDEO_COVER: new ImageResource("covers/hero-video-cover.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     KEITT_HOUSE: new ImageResource("houses/keitt_house.webp", MEDIA_SIZES.LARGE.postfix),
     KEITT_HOUSE_TWO: new ImageResource("houses/keitt_house_two.webp", MEDIA_SIZES.LARGE.postfix),
     KEITT_HOUSE_THREE: new ImageResource("houses/keitt_house_three.webp", MEDIA_SIZES.LARGE.postfix),
