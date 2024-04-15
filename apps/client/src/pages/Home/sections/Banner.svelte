@@ -2,6 +2,7 @@
     import ImageMultiStage from "@components/Images/ImageMultiStage.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_images } from "@stores/layout";
+    import viewport from "@components/viewport_actions/useViewportActions";
 </script>
 
 <section id="smk-home-banner-section" class:adebug={false}>

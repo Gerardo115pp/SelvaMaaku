@@ -19,7 +19,7 @@
             --theme-hero-background: #354b43;
 
             /* Light orange */
-            --light-orange: #ffab4c;
+            --light-orange: hsl(32, 100%, 65%);
             --light-orange-hover: #e69a44;
             --light-orange-active: #cc893d;
             --light-orange-light: #fff7ed;

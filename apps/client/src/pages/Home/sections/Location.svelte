@@ -134,7 +134,7 @@
     
 </script>
 
-<section id="smk-home-location-section" class:adebug={false} on:viewportEnter={() => setComponentVisibility(true)} use:viewport>
+<section id="smk-home-location-section" class:adebug={false} on:viewportEnter={() => setComponentVisibility(true)} use:viewport={{height_offset: 0.5}}>
     <div id="smk-hls-content-wrapper" class="design-content-width">
         {#key mexico_map_visible}        
             <div id="smk-hls-cw-mexico-map-wrapper" class="smk-hls-bg-element" style:transition="opacity {location_content_animation_duration * 0.2}ms ease" in:fly={{x: -400, duration: mexico_animation_duration}} use:registerDimmedElement>

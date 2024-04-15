@@ -1,15 +1,27 @@
-let intersectionObserver;
+/**
+ * @type {IntersectionObserver}
+ */
+let intersection_observer;
 
 function ensureIntersectionObserver() {
-    if (intersectionObserver) {
+    if (intersection_observer != null) {
         return;
     }
 
-    intersectionObserver = new IntersectionObserver(entries => {
+    /**
+     * @type {IntersectionObserverInit}
+     */
+    const options = {
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+    };
+
+    intersection_observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             let event_name;
+
+            const entry_height_threshold = entry.target._height_threshold ?? 0;
             // entered the viewport
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRect.height >= entry_height_threshold) {
                 entry.target._isIntersecting = true;
                 event_name = 'viewportEnter';
             } 
@@ -18,22 +30,54 @@ function ensureIntersectionObserver() {
                 entry.target._isIntersecting = false;
                 event_name = 'viewportLeave';
             }
+
             if (event_name) {
                 const event = new CustomEvent(event_name);
                 entry.target.dispatchEvent(event);
             }
         });
-    })
+    }, options)
 }
 
-const viewport = e => {
+/**
+ * Removes the intersection observer
+ */
+export const cleanViewportObserver = () => {
+    if (intersection_observer != null) {
+        intersection_observer.disconnect();
+    }
+
+    intersection_observer = null;
+}
+
+/**
+ * @typedef {Object} ViewportActionParams
+ * @property {number} height_offset - e.g 0.5 on an element with height 100px will trigger the event viewportEnter when the element center collides with the viewport top.
+ */
+
+/**
+ * a svelte action that triggers the 'viewportEnter' event when the node enters the viewport and 'viewportLeave' when it leaves
+ * @param {HTMLElement} node 
+ * @param {ViewportActionParams} params
+ * @returns 
+ */
+const viewport = (node, params) => {
     ensureIntersectionObserver();
-    e._isIntersecting = false;
-    intersectionObserver.observe(e);
+    node._isIntersecting = false;
+
+    const height_offset = params?.height_offset ?? 0;
+
+    const node_rect = node.getBoundingClientRect();
+
+    node._height_threshold = node_rect.height * height_offset;
+
+    intersection_observer.observe(node);
     
     return {
         destroy: () => {
-            intersectionObserver.unobserve(e);
+            if (intersection_observer != null) {
+                intersection_observer.unobserve(node);
+            }
         }
     };
 }

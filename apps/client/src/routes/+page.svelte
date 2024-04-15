@@ -8,12 +8,19 @@
     import HouseModels from "@pages/Home/sections/HouseModels.svelte";
     import Location from "@pages/Home/sections/Location.svelte";
     import QuoteBanner from "@pages/Home/sections/QuoteBanner.svelte";
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
+    import { cleanViewportObserver } from "@components/viewport_actions/useViewportActions";
 
 
     onMount(() => {
         setGradientType();
     });
+
+    onDestroy(() => {
+        if (browser) {
+            cleanViewportObserver();
+        }
+    })
     
     /*=============================================
     =            Methods            =
