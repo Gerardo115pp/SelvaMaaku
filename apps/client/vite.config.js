@@ -3,6 +3,13 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import fs from 'fs';
 
+const fullReloadAlways = {
+	handleHotUpdate({server}) {
+		server.ws.send({type: 'full-reload'});
+		return [];
+	}
+}
+
 export default defineConfig(async  ({ command, mode, isSsrBuild, isPreview }) => {
 	const is_production = command === 'build';
 
@@ -11,7 +18,7 @@ export default defineConfig(async  ({ command, mode, isSsrBuild, isPreview }) =>
 		server: {
 			open: false,
 			host: "0.0.0.0",
-			port: 1366,
+			port: 1366
 		},
 		resolve: {
 			alias: {
@@ -27,7 +34,8 @@ export default defineConfig(async  ({ command, mode, isSsrBuild, isPreview }) =>
 			},
 		},
 		plugins: [
-			sveltekit()
+			sveltekit(),
+			fullReloadAlways
 		],
 		clearScreen: true
 	}

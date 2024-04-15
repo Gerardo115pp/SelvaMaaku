@@ -4,27 +4,64 @@
     import ArrowIcon from "@components/icons/arrow.svelte";
     import { layout_images } from "@stores/layout";
     import ThemeButton from "@components/buttons/theme_button.svelte";
+    import viewport from "@components/viewport_actions/useViewportActions";
+    import { fade, slide } from "svelte/transition";
+    import { expoIn } from "svelte/easing";
+
+    
+    /*=============================================
+    =            Properties            =
+    =============================================*/
+    
+        /** 
+         * Whether the component is visible or not
+         * @type {boolean}
+         */
+        let visible = false;
+    
+    /*=====  End of Properties  ======*/
+
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        const setComponentVisibility = is_visible => {
+            visible = is_visible;
+        }
+    
+    /*=====  End of Methods  ======*/
+    
+    
+    
+    
 
 </script>
 
-<section id="smk-home-about-section" class:adebug={false}>
+<section id="smk-home-about-section" 
+    class:adebug={false} 
+    on:viewportEnter={() => setComponentVisibility(true)}
+    use:viewport
+>
     <div id="smk-has-content-wrapper">
-        <div class="smk-has-cw-text-column">
-            <div class="accent-wixarica-icon-wrapper">
-                <WixaricaIcon with_accent/>
-            </div>
-            <h2 id="smk-has-cw-tc-about-headline">
-                Comfort and sustainability in harmony.
-            </h2>
-            <p id="smk-has-cw-tc-about-text">
-                Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
-            </p>
-            <div class="smk-has-cw-tc-about-cta-wrapper">
-                <ThemeButton 
-                    href="/development"
-                    text="Development"
-                />
-            </div>
+        <div class="smk-has-cw-text-column" >
+            {#if visible}            
+                <div class="accent-wixarica-icon-wrapper" in:fade={{ delay:300, duration:1500}}>
+                    <WixaricaIcon with_accent/>
+                </div>
+                <h2 id="smk-has-cw-tc-about-headline" in:fade={{ delay:500, duration:1500}}>
+                    Comfort and sustainability in harmony.
+                </h2>
+                <p id="smk-has-cw-tc-about-text" in:fade={{ delay:700, duration:1500}}>
+                    Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
+                </p>
+                <div class="smk-has-cw-tc-about-cta-wrapper" in:fade={{ delay: 1000, duration:1500}}>
+                    <ThemeButton 
+                        href="/development"
+                        text="Development"
+                    />
+                </div>
+            {/if}
         </div>
         <div id="smk-has-cw-gallery-column">
             <div class="smk-has-cw-gc-gallery-wrapper">

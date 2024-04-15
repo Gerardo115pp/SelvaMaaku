@@ -16,6 +16,13 @@
     :global(html) {
         background: var(--body-bg-color);
         color: var(--body-text-color);
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion) {
+        :global(html) {
+            scroll-behavior: auto;
+        }
     }
 
     #app-root {
