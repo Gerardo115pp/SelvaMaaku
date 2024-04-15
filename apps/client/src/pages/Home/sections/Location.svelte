@@ -24,7 +24,7 @@
              * Animation total duration in milliseconds
              * @type {number}
              */
-            const section_animation_duration = 6000;
+            const section_animation_duration = 5000;
 
             /**
              * Mexico map animation duration percentage

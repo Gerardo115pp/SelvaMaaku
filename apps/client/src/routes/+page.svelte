@@ -42,11 +42,6 @@
 </script>
 
 <main id="smk-home-page">
-    <div class="wixarica-underlay" class:adebug={false}>
-        <WixaricaIcon 
-            opacity={0.2}
-        />
-    </div>
     <Hero />
     <About />
     <Location />
@@ -55,20 +50,3 @@
     <Amenities />
     <QuoteBanner /> 
 </main>
-
-<style>
-    main#smk-home-page {
-        position: relative;
-
-        & .wixarica-underlay {
-            position: absolute;
-            top: -3%;
-            left: 50%;
-            width: 84%;
-            max-width: var(--design-content-width);
-            z-index: var(--z-index-b-3);
-            transform: translateX(-50%);
-        }
-    }
-    
-</style>
