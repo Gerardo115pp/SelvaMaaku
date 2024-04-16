@@ -28,6 +28,7 @@
 
 <section id="smk-hero-video">
     <VideoPlayer 
+        video_url="/resources/videos/hero_video.webm"
         poster_media={layout_images.HERO_VIDEO_COVER}
         poster_threshold={0.8}
         player_width={video_width}
@@ -38,5 +39,6 @@
 <style>
     section#smk-hero-video {
         width: max-content;
+        box-shadow: -1px 5px 20px 6px rgba(0, 0, 0, 0.2), -1px 5px 13px 1px rgba(0, 0, 0, 0.4);
     }
 </style>

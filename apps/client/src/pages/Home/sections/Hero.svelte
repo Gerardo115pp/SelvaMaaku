@@ -133,6 +133,7 @@
         <HeroVideo
             video_width="71.11cqw"
             video_height="40cqw"
+            
         />
     </div>
 </section>
