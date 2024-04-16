@@ -17,7 +17,7 @@
         </hgroup>
     </header>
     <div id="smk-dp-image-wapper">
-        <img src="{layout_images.HERO_VIDEO_COVER.getUrl(1)}" alt="">
+        <img src="{layout_images.DEVELOPMENT_HOUSE_ONE.getUrl(1)}" alt="">
     </div>
 </section>
 
@@ -26,6 +26,7 @@
         display: flex;
         padding: var(--spacing-5) 0;
         flex-direction: column;
+        container-type: inline-size;
         gap: var(--spacing-5);
     }
 
@@ -63,5 +64,16 @@
     
     /*=====  End of headlines  ======*/
     
+    #smk-dp-image-wapper {
+        width: 100%;
+        height: min(640px, 44.44445cqw);
+    }
+
+    #smk-dp-image-wapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
     
 </style>
