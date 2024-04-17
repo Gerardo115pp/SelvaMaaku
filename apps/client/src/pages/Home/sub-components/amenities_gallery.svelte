@@ -1,12 +1,98 @@
 <script>
+    import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_images } from "@stores/layout";
+    import { elasticIn, elasticOut } from "svelte/easing";
+    import { fly } from "svelte/transition";
+
+    
+    /*=============================================
+    =            Properties            =
+    =============================================*/
+
+        /**
+         * Whether the parent component is visible or not
+         * @type {import("svelte/store").Writable<boolean>}
+         */
+        export let parent_visible;
+
+        /**
+         * Whether the gallery is visible or not
+         * @type {boolean}
+         */
+        let gallery_visible = false;
+
+        /**
+         * Duration of the entry animation in milliseconds
+         * @type {number}
+         */
+        export let entry_animation_duration = 1500;
+
+        const fly_transition_params = {
+            delay: entry_animation_duration * 0.1,
+            duration: entry_animation_duration,
+            y: -600,
+            x: 0,
+            opacity: 0,
+            easing: elasticOut
+        }
+    
+    /*=====  End of Properties  ======*/
+
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        const setGalleryVisibility = is_visible => {
+            gallery_visible = is_visible;
+        }
+    
+    /*=====  End of Methods  ======*/
+    
+    
+        
 </script>
 
-<div id="amenities-gallery-wrapper">
-    <!-- TODO: Add alt text to these images -->
-    <img src="{layout_images.PARK.getUrl(0.3)}" alt="" class="amenities-gallery-image" id="ag-park">
-    <img src="{layout_images.RAINY_POOL.getUrl(0.3)}" alt="" class="amenities-gallery-image" id="ag-rainy-pool">
-    <img src="{layout_images.STONE_WALL.getUrl(0.3)}" alt="" class="amenities-gallery-image" id="ag-stone-wall">
+<div
+    id="amenities-gallery-wrapper"
+    style:--entry-animation-duration="{entry_animation_duration}ms"
+    on:viewportEnter={() => setGalleryVisibility(true)}
+    use:viewport={{ height_offset: 0.4 }}
+>
+    {#if gallery_visible && $parent_visible}
+        <!-- TODO: Add alt text to these images -->
+        <img
+            src={layout_images.PARK.getUrl(0.3)}
+            alt=""
+            class="amenities-gallery-image"
+            id="ag-park"
+            transition:fly={{
+                ...fly_transition_params,
+                y: fly_transition_params.y * -1,
+            }}
+        />
+        <img
+            src={layout_images.RAINY_POOL.getUrl(0.3)}
+            alt=""
+            class="amenities-gallery-image"
+            id="ag-rainy-pool"
+            transition:fly={{
+                ...fly_transition_params,
+                y: fly_transition_params.y * 1.5,
+            }}
+        />
+        <img
+            src={layout_images.STONE_WALL.getUrl(0.3)}
+            alt=""
+            class="amenities-gallery-image"
+            id="ag-stone-wall"
+            transition:fly={{ 
+                ...fly_transition_params, 
+                y: fly_transition_params.y,
+                delay: fly_transition_params.delay * 0.4
+            }}
+        />
+    {/if}
 </div>
 
 <style>
