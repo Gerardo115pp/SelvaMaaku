@@ -1,5 +1,46 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import viewport from "@components/viewport_actions/useViewportActions";
+    import { writable } from "svelte/store";
+    import { fade } from "svelte/transition";
+
+    
+    /*=============================================
+    =            Properties            =
+    =============================================*/
+    
+        /** 
+         * Whether the component is visible or not 
+         * @type {import("svelte/store").Writable<boolean>} 
+         */
+        let component_visible = writable(false);
+    
+        
+        /*----------  Entry animation  ----------*/
+        
+            /** 
+             * Duration of the entry animation in milliseconds 
+             * @type {number} 
+             */
+            const entry_animation_duration = 1500;
+    
+    /*=====  End of Properties  ======*/
+    
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        const setVisibility = is_visible => {
+            if ($component_visible === is_visible) return;
+    
+            component_visible.set(is_visible);
+        }
+    
+    /*=====  End of Methods  ======*/
+    
+    
+    
 </script>
 
 <section id="smk-quote-banner-section">
@@ -7,15 +48,21 @@
         <div id="smk-qbs-accent-icon-wrapper" class="wixarica-icons">
             <WixaricaIcon with_accent/>
         </div>
-        <blockquote id="smk-qbs-quote-information">
-            <h2 id="smk-qbs-qi-quote">
-                Is there a reward greater than life?
-            </h2>
-            <footer>
-                <cite id="smk-qbs-quote-source">
-                    From the book Life of Pi by Yann Martel
-                </cite>
-            </footer>
+        <blockquote id="smk-qbs-quote-information"
+            on:viewportEnter={() => setVisibility(true)}
+            on:viewportLeave={() => setVisibility(false)}
+            use:viewport={{height_offset: 0.2}}
+        >
+            {#if $component_visible}
+                 <h2 id="smk-qbs-qi-quote" transition:fade={{duration: entry_animation_duration, delay: entry_animation_duration * 0.4}}>
+                     Is there a reward greater than life?
+                 </h2>
+                 <footer transition:fade={{duration: entry_animation_duration, delay: entry_animation_duration * 1.3}}>
+                     <cite id="smk-qbs-quote-source">
+                         From the book Life of Pi by Yann Martel
+                     </cite>
+                 </footer>
+            {/if}
         </blockquote>
     </div>
 </section>

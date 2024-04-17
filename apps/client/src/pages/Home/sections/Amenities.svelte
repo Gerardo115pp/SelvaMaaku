@@ -58,7 +58,7 @@
         <hgroup id="smk-as-headline-wrapper"
             on:viewportEnter={() => setVisibility(true)} 
             on:viewportLeave={() => setVisibility(false)}
-            use:viewport={{height_offset: 0.1}}
+            use:viewport={{height_offset: 0.8}}
         >
             <h2 id="smk-as-headline" class="small-headline">
                 AMENITIES
