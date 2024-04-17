@@ -16,11 +16,11 @@
         setGradientType();
     });
 
-    onDestroy(() => {
-        if (browser) {
-            cleanViewportObserver();
-        }
-    })
+    // onDestroy(() => {
+    //     if (browser) {
+    //         cleanViewportObserver();
+    //     }
+    // })
     
     /*=============================================
     =            Methods            =

@@ -1,13 +1,20 @@
 <script>
     import ThemeButton from "@components/buttons/theme_button.svelte";
+    import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_images } from "@stores/layout";
 
     
     /*=============================================
     =            Properties            =
     =============================================*/
+
+        /**
+         * Whether the component is visible or not
+         * @type {boolean}
+         */
+        let component_visible = false;
     
-                /**
+        /**
          * @typedef {Object} NavbarSections
          * @property {string} name
          * @property {string} href
@@ -49,7 +56,12 @@
 
 </script>
 
-<section id="smk-global-footer-section">
+<section id="smk-global-footer-section"
+    on:viewportEnter={() => component_visible = true}
+    on:viewportLeave={() => component_visible = false}
+    use:viewport={{height_offset: 0.8}}
+    class:is-visible={component_visible}
+>
     <div id="smk-gfs-content-wrapper" class="design-content-width">
         <div id="smk-gfs-combination-mark-wrapper">
             <img src="{layout_images.COMBINATION_MARK.getUrl(0.13)}" alt="selvamaaku combination mark">
@@ -117,6 +129,12 @@
             align-items: center;
             gap: calc(var(--spacing-3) + var(--spacing-1)); 
             padding: 0 0 var(--spacing-5) 0;
+            opacity: 0;
+        }
+        
+        #smk-global-footer-section.is-visible #smk-gfs-content-wrapper {
+            transition: opacity 1.5s ease-in-out;
+            opacity: 1;
         }
 
         #smk-gfs-information {
