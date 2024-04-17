@@ -12,7 +12,7 @@ function ensureIntersectionObserver() {
      * @type {IntersectionObserverInit}
      */
     const options = {
-        threshold: [0, 0.25, 0.5, 0.75, 1]
+        threshold: [0, 0.2, 0.5, 0.80, 1]
     };
 
     intersection_observer = new IntersectionObserver(entries => {
@@ -32,7 +32,11 @@ function ensureIntersectionObserver() {
             }
 
             if (event_name) {
-                const event = new CustomEvent(event_name);
+                const event = new CustomEvent(event_name, { detail: {
+                    ratio: entry.intersectionRatio,
+                    intersection_rect: entry.intersectionRect,
+                    client_rect: entry.boundingClientRect,
+                }});
                 entry.target.dispatchEvent(event);
             }
         });
@@ -49,6 +53,13 @@ export const cleanViewportObserver = () => {
 
     intersection_observer = null;
 }
+
+/**
+ * @typedef {Object} ViewportEventDetail
+ * @property {number} ratio - the ratio of the intersection
+ * @property {DOMRectReadOnly} intersection_rect - the intersection rect
+ * @property {DOMRectReadOnly} client_rect - the client rect
+ */
 
 /**
  * @typedef {Object} ViewportActionParams

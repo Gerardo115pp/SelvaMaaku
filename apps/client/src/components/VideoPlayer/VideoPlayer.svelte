@@ -219,6 +219,7 @@
             width: var(--loader-size);
             height: var(--loader-size);
             color: var(--light-orange-light-active);
+            will-change: width,height;
             background:
                 conic-gradient(from  -45deg at top    calc(var(--loader-size) * 0.5) left 50% ,#0000 ,currentColor 1deg 90deg,#0000 91deg),
                 conic-gradient(from   45deg at right  calc(var(--loader-size) * 0.5) top  50% ,#0000 ,currentColor 1deg 90deg,#0000 91deg),
