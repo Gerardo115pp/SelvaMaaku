@@ -87,6 +87,11 @@
 {/if}
 
 <style>
+    a:has(> .smk-theme-button) {
+        display: block;
+        width: max-content;
+    }
+
     .smk-theme-button {
         overflow: hidden;
         position: relative;

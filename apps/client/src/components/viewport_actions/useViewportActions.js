@@ -12,7 +12,7 @@ function ensureIntersectionObserver() {
      * @type {IntersectionObserverInit}
      */
     const options = {
-        threshold: [0, 0.2, 0.5, 0.80, 1]
+        threshold: [0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     };
 
     intersection_observer = new IntersectionObserver(entries => {
