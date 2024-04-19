@@ -2,6 +2,7 @@
     import AmenitiesGallery from "@pages/Home/sub-components/amenities_gallery.svelte";
     import { layout_images } from "@stores/layout";
     import ThemeButton from "@components/buttons/theme_button.svelte";
+    import { writable } from "svelte/store";
 </script>
 
 <section id="smk-ap-amenities-section">
@@ -10,7 +11,9 @@
             <img src="{layout_images.MANGO_ISOLOGO.getUrl(0.3)}" alt="" aria-hidden="true">
         </div>
         <div id="smk-ap-as-gallery-wrapper">
-            <AmenitiesGallery />
+            <AmenitiesGallery 
+                parent_visible={writable(true)}
+            />
         </div>
     </div>
 </section>

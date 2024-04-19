@@ -9,13 +9,18 @@
     
     /*=============================================
     =            Properties            =
-    =============================================*/
+    =============================================*/ 
     
+        /**
+         * Whether to run animations or not
+         */
+        export let animate = true;
+
         /**
          * Whether the component is visible or not
          * @type {import("svelte/store").Writable<boolean>}
          */
-        let component_visible = writable(false);
+        let component_visible = writable(!animate);
 
         
         /*----------  Entry animation  ----------*/
@@ -36,7 +41,7 @@
         const setVisibility = is_visible => {
             if ($component_visible === is_visible) return;
 
-            component_visible.set(is_visible);
+            component_visible.set(is_visible || !animate);
         }
     
     /*=====  End of Methods  ======*/
@@ -49,6 +54,7 @@
 
 <section id="smk-amenities-section"
     class:is-visible={$component_visible}
+    class:no-animation={!animate}
     style:--entry-animation-duration="{entry_animation_duration}ms"
 >
     <div id="smk-as-content-wrapper" class="design-content-width">
@@ -95,7 +101,7 @@
         transition: opacity calc(var(--entry-animation-duration) * 0.3) ease-out;
     }
 
-    #smk-amenities-section.is-visible {
+    #smk-amenities-section.is-visible, #smk-amenities-section.no-animation {
         opacity: 1;
     }
     
@@ -160,6 +166,11 @@
             animation-delay: calc(var(--entry-animation-duration) * 1);
             animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
             animation-fill-mode: forwards;
+        }
+
+        .no-animation .mango-seal-underlay-wrapper {
+            opacity: 1 !important;
+            animation-name: none !important;
         }
 
         @keyframes rollMango {
