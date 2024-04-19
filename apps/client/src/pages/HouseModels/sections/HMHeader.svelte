@@ -35,7 +35,7 @@
                 id: 4,
                 src: layout_images.COCOTEROS_HOUSE_FOUR.getUrl(0.3)
             }
-        ]    
+        ] 
     
     /*=====  End of Properties  ======*/
     
@@ -62,6 +62,7 @@
             autoplay_interval_ms={5000}
             visible_slides={3}
             is_marquee
+            use_mask
         />
     </div>
 </section>

@@ -1,18 +1,12 @@
 <script>
     import { onDestroy, onMount } from "svelte";
     import { browser } from "$app/environment";
+    import { CarouselItem } from "./types";
+    import { writable, get } from "svelte/store";
 
     /*=============================================
     =            Properties            =
     =============================================*/
-
-        /**
-         * @typedef {Object} CarouselItem
-         * @property {number} id
-         * @property {number} width
-         * @property {number} height
-         * @property {string} src
-         */
 
          /**
          * Array of objects that contain the images of the carousel
@@ -25,9 +19,16 @@
 
             /**
              * Index of the current slide
-             * @type {number}
+             * @type {import("svelte/store").Writable<number>}
              */
-            export let current_slide_index = 0;
+            export let current_slide_index = writable(0);
+
+            /**
+             * Whether to loop the carousel
+             * @type {boolean}
+             * @default false
+             */
+            export let loop_slides = false;
 
             /**
              * The amount of slides that will be shown at once. If not set then the CarouselItem.width will be used
@@ -69,18 +70,31 @@
         /*----------  Styling  ----------*/
         
             /**
-             * The heigh of the slides
+             * The height of the slides
              * @type {string}
              * @default "333px"
              */
             export let slide_height = "333px";
+
+            /**
+             * Whether to use a gradient mask to hide the edges of the carousel
+             * @type {boolean}
+            */
+            export let use_mask = false;
+
+            /**
+             * The gap between the slides
+             * @type {string}
+             * @default "var(--spacing-2)"
+            */
+            export let carousel_gap = "var(--spacing-2)";
         
 
     /*=====  End of Properties  ======*/ 
 
     onMount(() => {
-        if (autoplay) {
-            // autoplay_interval = window.setInterval(handleAutoplay, autoplay_interval_ms);
+        if (autoplay && !is_marquee) {
+            autoplay_interval = window.setInterval(handleAutoplay, autoplay_interval_ms);
         }
     });
 
@@ -95,6 +109,23 @@
     =            Methods            =
     =============================================*/
 
+        /**
+         * Handles the change of the slide
+         * @param {number} step The amount of steps to move the slide. Default is 1
+         */
+        const changeSlide = (step=1) => {
+            console.log('current_slide_index:', $current_slide_index);
+            let new_slide_index = $current_slide_index + step;   
+            console.log('new_slide_index:', new_slide_index);
+
+            if (loop_slides) {
+                new_slide_index = new_slide_index % carousel_items.length;
+            }
+
+            current_slide_index.set(Math.max(0, Math.min(new_slide_index, carousel_items.length - 1)));
+            console.log('current_slide_index:', $current_slide_index);
+        }
+
         const handleAutoplay = () => {
             // Check if the autoplay is not enabled. if it is not, clear the interval(if we are in the browser)
             if (!autoplay) {
@@ -105,8 +136,7 @@
                 return;
             }
 
-            // current_slide_index = (current_slide_index + 1) % carousel_items.length; // let's see if Slidy can handle looping on its own
-            current_slide_index++;
+            changeSlide();
         }
     
     /*=====  End of Methods  ======*/
@@ -118,14 +148,26 @@
 {#if carousel_items.length > 0}
     <div class="libery-carousel-component" 
         class:lcc-marquee-carousel={is_marquee}
+        style:--carousel-gap={carousel_gap}
+        style:--slide-width="{100 / visible_slides}cqw"
     >
-        <div class="lcc-carousel-mask" class:dtwo={false}>
-            <ol class="lcc-carousel-slide-stack">
+        {#if $$slots.arrow_left}
+            <div class="carousel-arrow carousel-arrow-left" on:click={() => changeSlide(-1)}>
+                <slot name="arrow_left" />
+            </div>
+        {/if}
+        <div class="lcc-carousel-mask"
+            class:gradient-mask={use_mask}
+             class:dtwo={false}
+        >
+            <ol class="lcc-carousel-slide-stack"
+                style:translate="calc({-1 * $current_slide_index} * calc(var(--slide-width) + var(--carousel-gap)))"
+            >
                 {#each carousel_items as slide, index}
-                    {@const is_slide_active = index === current_slide_index}
+                    {@const is_slide_active = index === $current_slide_index}
                     <li class="lcc-carousel-slide"
                         style:height="{slide_height}"
-                        style:width={visible_slides ? `${100 / visible_slides}cqw` : `${slide.width}px`}    
+                        style:width='var(--slide-width)'
                         class:lcc-carousel-slide--active={is_slide_active}
                         class:dthree={false}
                     >
@@ -146,15 +188,26 @@
                 {/if}
             </ol>
         </div>
+        {#if $$slots.arrow_right}
+            <div class="carousel-arrow carousel-arrow-right" on:click={() => changeSlide()}>
+                <slot name="arrow_right" />
+            </div>
+        {/if}
     </div>
 {/if}
 
 <style>
     .libery-carousel-component {
-        --carousel-gap: var(--spacing-2);
         width: 100%;
         container: inline-size;
         padding: 0 var(--spacing-3);
+    }
+
+    .libery-carousel-component:has(.carousel-arrow) {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: var(--spacing-2);
     }
 
     .lcc-carousel-mask {
@@ -163,6 +216,9 @@
         width: 100%;
         max-width: 100cqw;
         padding: var(--spacing-3) 0;
+    }
+    
+    .lcc-carousel-mask.gradient-mask {
         mask: linear-gradient(90deg, #ffffff01 2%, #ffffff8c 30%, white 90%, transparent 100%);
     }
 
@@ -171,7 +227,7 @@
         overflow: visible;
     }
 
-    @keyframes slide-stack {
+    @keyframes marquee-slide-stack {
         to {
             transform: translateX(calc(-50% - calc(var(--carousel-gap) / 2)));
         }
@@ -186,15 +242,18 @@
         gap: var(--carousel-gap);
         margin: 0;
         padding: 0;
+        transition: translate 0.5s ease-in-out;
     }
 
     .lcc-marquee-carousel ol.lcc-carousel-slide-stack {
-        animation: slide-stack 60s linear infinite;
+        animation: marquee-slide-stack 60s linear infinite;
+        transition: none;
     }
 
     .lcc-carousel-slide {
         flex-shrink: 0;
         box-shadow: 2px 7px 9px 2px rgba(0, 0, 0, 0.15);
+        user-select: none;
 
         & img {
             width: 100%;
