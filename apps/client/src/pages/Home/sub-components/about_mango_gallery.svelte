@@ -115,19 +115,19 @@
                     position: {x: -0.2, y: -0.39},
                     scale: 0.9,
                     opacity: 0.5,
-                    progress_trigger: 0.2
+                    progress_trigger: 0.3
                 },
                 {
                     position: {x: -0.1, y: -0.1},
                     scale: 1,
                     opacity: 1,
-                    progress_trigger: 0.3
+                    progress_trigger: 0.5
                 },
                 {
                     position: {x: 0, y: 0},
                     scale: 1,
                     opacity: 1,
-                    progress_trigger: 0.4
+                    progress_trigger: 0.6
                 }
             ];
 
@@ -286,7 +286,7 @@
         <img
             src={layout_images.TOMMY_HOUSE.getUrl(0.42)}
             alt="house tommy"
-            class="mango-gallery-image"
+            class="mango-gallery-image interactive-media"
             id="smg-tommy-house"
             use:registerAnimatedComponent={tommy_house_animation_frames}
         />
