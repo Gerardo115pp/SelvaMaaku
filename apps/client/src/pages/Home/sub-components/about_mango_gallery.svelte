@@ -14,6 +14,12 @@
          * @type {HTMLElement}
          */
         let gallery_component = null;
+
+        /**
+         * The text to display in the gallery
+         * @type {string}
+         */
+        export let gallery_text = "";
     
         
         /*----------  Animation  ----------*/
@@ -299,8 +305,7 @@
         />
         {#if gallery_scroll_progress > 0.54}
             <p id="smg-gallery-caption" transition:fade={{ duration: 700, delay: 200 }}>
-                The word Máaku means MANGO in the Wixárika language that is
-                spoken by the original towns in the area.
+                {gallery_text}
             </p>
         {/if}
     {/if}
@@ -349,6 +354,21 @@
         grid-column: 13 / -1;
         grid-row: 14 / -1;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 765px) {
+            #smg-gallery-caption {
+                font-size: var(--font-size-fineprint);
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 
 
 </style>

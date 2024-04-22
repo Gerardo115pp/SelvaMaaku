@@ -2,7 +2,7 @@
     import AboutMangoGallery from "../sub-components/about_mango_gallery.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import ArrowIcon from "@components/icons/arrow.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade, slide } from "svelte/transition";
@@ -18,6 +18,13 @@
          * @type {boolean}
          */
         let visible = false;
+
+
+        /**
+         * The text to display in the gallery
+         * @type {string}
+         */
+        let gallery_text = "The word Máaku means MANGO in the Wixárika language that is spoken by the original towns in the area.";
     
     /*=====  End of Properties  ======*/
 
@@ -65,10 +72,12 @@
         </div>
         <div id="smk-has-cw-gallery-column">
             <div class="smk-has-cw-gc-gallery-wrapper">
-                <AboutMangoGallery />
+                <AboutMangoGallery 
+                    {gallery_text}
+                />
             </div>
             <div class="smk-has-cw-gc-mango-underlay">
-                <img src="{layout_images.MANGO_ISOTYPE.getUrl(0.1)}" alt="mango logo" aria-hidden="true">
+                <img src="{layout_images.MANGO_ISOTYPE.getUrl(!($layout_properties.IS_MOBILE) ? 0.1 : 0.6)}" alt="mango logo" aria-hidden="true">
             </div>
         </div>
     </div>
@@ -148,6 +157,36 @@
         }
     
     /*=====  End of Gallery column  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-has-content-wrapper {
+                flex-direction: column;
+                row-gap: var(--spacing-4);
+            }
+
+            .smk-has-cw-text-column{
+                width: 100cqw;
+            }
+
+            h2#smk-has-cw-tc-about-headline {
+                font-size: var(--font-size-h1);
+            }
+
+            #smk-has-cw-gallery-column {
+                --gallery-square-size: 100cqw;
+            }
+
+            .smk-has-cw-gc-mango-underlay img {
+                width: 57.1527cqw;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
     
