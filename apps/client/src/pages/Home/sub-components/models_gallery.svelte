@@ -99,7 +99,7 @@
              * @param {HTMLElement} node
              */
             const registersMouseTrackingParticle = node => {
-                if (!(node instanceof HTMLElement)) return;
+                if (!(node instanceof HTMLElement) || $layout_properties.IS_MOBILE) return;
 
                 mouse_tracking_particles.push(node);
 
@@ -351,6 +351,22 @@
         }
     
     /*=====  End of Tracking particles  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            #smk-models-gallery {
+                position: relative;
+                width: 100cqw;
+                height: 122.59615cqw;
+                container-type: inline-size;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
     

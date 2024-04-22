@@ -151,4 +151,24 @@
         opacity: 1;
         transition: opacity calc(var(--entry-animation-duration) * 0.5) cubic-bezier(1, 0.71, 0.17, 1);
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-hms-content-wrapper {
+                flex-direction: column;
+                row-gap: var(--spacing-4);
+            }
+
+            hgroup#smk-hms-cw-tc-models-information h3 {
+                font-size: var(--font-size-h1);
+            }
+        } 
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
