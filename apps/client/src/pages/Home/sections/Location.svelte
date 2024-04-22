@@ -274,6 +274,19 @@
     /*=====  End of CTA controls  ======*/
     
     
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            h3#smk-hls-cw-sayulita-subheadline {
+                font-size: var(--font-size-h1);
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
     
     
 

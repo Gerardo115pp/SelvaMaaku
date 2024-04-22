@@ -1,7 +1,7 @@
 <script>
     import ImageMultiStage from "@components/Images/ImageMultiStage.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade } from "svelte/transition";
 
@@ -32,6 +32,8 @@
          * @param {boolean} toggle_lock_visibility 
          */
         const setComponentVisibility = (is_visible, toggle_lock_visibility=false) => {
+            // in mobile, we just show the component whenever it enters the viewport and the don't hide it ever again.
+            if (component_visible && $layout_properties.IS_MOBILE) return;
              
             if (!visibility_locked || (toggle_lock_visibility && !visibility_locked)) {
                 component_visible = is_visible;
@@ -153,4 +155,22 @@
         line-height: 72px;
         letter-spacing: -2.2%;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-hbs-io-headline {
+                text-align: center;
+                line-height: 1;
+                letter-spacing: -2.2%;
+                font-size: var(--font-size-h1);
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
