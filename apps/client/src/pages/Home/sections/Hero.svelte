@@ -238,9 +238,17 @@
     =============================================*/
     
         @media only screen and (max-width: 768px) {
+            #smk-hero-section {
+                position: relative;
+                width: 100dvw;
+                overflow-x: hidden;
+            }
+
             #smk-hero-section .wixarica-underlay {
-                width: 222vw;
-                max-width: none;
+                /* width: 222vw; */
+                scale: 2.22;
+                /* max-width: none; */
+                transform-origin: 0 0;
             }
 
             #combination-mark-wrapper img {
