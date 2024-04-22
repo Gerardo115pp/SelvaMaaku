@@ -140,4 +140,19 @@
     /*=====  End of Elements positions  ======*/
     
     
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            #amenities-gallery-wrapper {
+                width: 100cqw;
+                height: 45.49938cqw;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
+    
 </style>

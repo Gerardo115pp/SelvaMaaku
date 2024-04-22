@@ -35,7 +35,7 @@ export default defineConfig(async  ({ command, mode, isSsrBuild, isPreview }) =>
 		},
 		plugins: [
 			sveltekit(),
-			fullReloadAlways
+			// fullReloadAlways
 		],
 		clearScreen: true
 	}

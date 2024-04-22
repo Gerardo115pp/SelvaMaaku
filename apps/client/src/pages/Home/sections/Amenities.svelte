@@ -1,6 +1,6 @@
 <script>
     import AmenitiesGallery from "../sub-components/amenities_gallery.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade } from "svelte/transition";
@@ -59,7 +59,7 @@
 >
     <div id="smk-as-content-wrapper" class="design-content-width">
         <div class="mango-seal-underlay-wrapper">
-            <img src="{layout_images.MANGO_ISOLOGO.getUrl(0.3)}" alt="" aria-hidden="true">
+            <img src="{layout_images.MANGO_ISOLOGO.getUrl(!$layout_properties.IS_MOBILE ? 0.3 : 0.8)}" alt="" aria-hidden="true">
         </div>
         <hgroup id="smk-as-headline-wrapper"
             on:viewportEnter={() => setVisibility(true)} 
@@ -86,6 +86,7 @@
             <ThemeButton 
                 text="Explore"
                 href="/amenities"
+                is_button_three
             />
         </ul>
     </div>
@@ -192,6 +193,31 @@
         }
     
     /*=====  End of Mango underlay  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            #smk-as-subheadline {
+                font-size: var(--font-size-h1);
+            }
+
+            hgroup#smk-as-headline-wrapper {
+                width: 100cqw;
+            }
+
+            .mango-seal-underlay-wrapper {
+                top: 50%;
+            }
+            
+            .mango-seal-underlay-wrapper img {  
+                width: 100cqw;
+            }
+        }
+    
+    /*=====  End of Mobile   ======*/
     
     
     
