@@ -1,7 +1,7 @@
 <script>
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
 
     
     /*=============================================
@@ -59,8 +59,8 @@
 <section id="smk-global-footer-section"
     on:viewportEnter={() => component_visible = true}
     on:viewportLeave={() => component_visible = false}
-    use:viewport={{height_offset: 0.8}}
     class:is-visible={component_visible}
+    use:viewport={{height_offset: 0.8}}
 >
     <div id="smk-gfs-content-wrapper" class="design-content-width">
         <div id="smk-gfs-combination-mark-wrapper">
@@ -79,7 +79,7 @@
         </div>
     </div>
     <footer id="smk-global-footer">
-        <menu id="footer-navoptions">
+        <menu id="footer-navoptions" class:hide-on-mobile={$layout_properties.IS_MOBILE}>
             {#each dropdown_sections as nav_option}
                 <li class="smk-footer-nav-option-wrapper">
                     <a href="{nav_option.href}" class="smk-link">
@@ -186,11 +186,21 @@
             content: "•";
             margin-left: var(--spacing-2);
         }
-                   
-
-
     
     /*=====  End of Footer  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media (max-width: 768px) {
+            footer#smk-global-footer {
+                padding: 0;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
 

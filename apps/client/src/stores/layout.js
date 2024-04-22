@@ -63,6 +63,7 @@ export const defineLayout = () => {
     }
 
     new_layout_properties.IS_MOBILE = isMobile();
+    console.log(`called, and the answer to isMobile is ${new_layout_properties.IS_MOBILE}`);
 
     new_layout_properties.VIEWPORT_WIDTH = window.innerWidth;
     new_layout_properties.VIEWPORT_HEIGHT = window.innerHeight;

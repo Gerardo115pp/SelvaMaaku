@@ -3,7 +3,7 @@
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import ThemeButton from "@components/buttons/theme_button.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     
     /*=============================================
     =            Properties            =
@@ -48,7 +48,7 @@
     /*=====  End of Properties  ======*/
 
     onMount(() => {
-        console.log($page);
+        console.log($layout_properties);
     })
     
     
@@ -59,7 +59,7 @@
         <div id="sn-selvamaaku-logo">
             <img src="{layout_images.SELVAMAAKU_LOGOTYPE.getUrl(0.2)}" alt="Selva maaku logotipo"/>
         </div>
-        <menu id="sn-navoptions">
+        <menu id="sn-navoptions" class:hide-on-mobile={$layout_properties.IS_MOBILE}>
             {#each dropdown_sections as nav_option}
                 {@const is_active_link = $page.url.pathname === nav_option.href}
                 <li class="nav-option-wrapper" class:is-active-link={is_active_link}>
@@ -85,7 +85,7 @@
 
 <style>
     #selvamaaku-navbar {
-        width: 100vw;
+        width: 100dvw;
         height: var(--navbar-height);
         display: grid;
         position: sticky;
@@ -159,6 +159,20 @@
         }
     
     /*=====  End of cta section  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            #sn-selvamaaku-logo {
+                display: none;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
     
     
 

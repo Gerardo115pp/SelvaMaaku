@@ -102,13 +102,14 @@
     </div>
     <header id="smk-hp-header" on:mousemove={updateMousePosition}>
         <div id="combination-mark-wrapper">
-            <img src="{layout_images.COMBINATION_MARK.getUrl(0.13)}" alt="selvamaaku combination mark">
+            <img src="{layout_images.COMBINATION_MARK.getUrl($layout_properties.IS_MOBILE ? 0.5 : 0.13)}" alt="selvamaaku combination mark">
         </div>
         <div id="smk-hero-headline-wrapper">
             <div 
                 class="wixarica-decoration smk-hp-particle-wrapper"
                 style:transform="translate({-mouse_x}%, {-mouse_y}%)"
                 style:transition="transform {mouse_position_lock_duration}ms ease-in-out"
+                class:hide-on-mobile={$layout_properties.IS_MOBILE}
             >
                 <WixaricaIcon opacity={0.4}/>
             </div>
@@ -119,6 +120,7 @@
                 class="wixarica-decoration smk-hp-particle-wrapper"
                 style:transform="translate({-mouse_x}%, {-mouse_y}%)"
                 style:transition="transform {mouse_position_lock_duration}ms ease-in-out"
+                class:hide-on-mobile={$layout_properties.IS_MOBILE}
             >
                 <WixaricaIcon opacity={0.4}/>
             </div>
@@ -131,9 +133,8 @@
     </header>
     <div id="hero-video-wrapper" class:adebug={false} on:mousemove={updateMousePosition}>
         <HeroVideo
-            video_width="71.11cqw"
-            video_height="40cqw"
-            
+            video_width={!$layout_properties.IS_MOBILE ? "71.11cqw" : "91.7948cqw"}
+            video_height={!$layout_properties.IS_MOBILE ? "40cqw" : "72.2223cqw"}
         />
     </div>
 </section>
@@ -230,6 +231,36 @@
         }
     
     /*=====  End of Video Section  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-hero-section .wixarica-underlay {
+                width: 222vw;
+                max-width: none;
+            }
+
+            #combination-mark-wrapper img {
+                width: 51.282dvw;
+            }
+
+            #smk-hero-headline-wrapper {
+                width: 100%;
+            }
+
+            h1#smk-hero-headline {
+                font-size: calc(var(--font-size-h1) * 0.8); 
+            }
+
+            #smk-hero-subheadline-wrapper {
+                width: auto;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
     

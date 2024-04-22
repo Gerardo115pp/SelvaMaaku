@@ -108,13 +108,13 @@
             --spacing-9: calc(var(--spacing-8) * 2); /* 2048px */
 
             /* Wordpress: spacing */
-            --wp--preset--spacing--10: var(--spacing-1);
-            --wp--preset--spacing--20: var(--spacing-2);
-            --wp--preset--spacing--30: var(--spacing-3);
-            --wp--preset--spacing--40: var(--spacing-4);
-            --wp--preset--spacing--50: var(--spacing-5);
-            --wp--preset--spacing--60: var(--spacing-6);
-            --wp--preset--spacing--70: var(--spacing-7);
+                --wp--preset--spacing--10: var(--spacing-1);
+                --wp--preset--spacing--20: var(--spacing-2);
+                --wp--preset--spacing--30: var(--spacing-3);
+                --wp--preset--spacing--40: var(--spacing-4);
+                --wp--preset--spacing--50: var(--spacing-5);
+                --wp--preset--spacing--60: var(--spacing-6);
+                --wp--preset--spacing--70: var(--spacing-7);
         /* Z-INDEX */
             /* Use these -b- suffix for background elements */
             --z-index-b-1: -1; /* B stands for bottom, not base */
@@ -405,12 +405,31 @@
 =            Mobile            =
 =============================================*/
 
-.hide-on-mobile{
+.hide-on-mobile {
     display: none !important;
 }
   
 .hide{
     display: none !important;
+}
+
+@media only screen and (max-width: 1440px) {
+    :root {
+
+        --font-size-h1: calc(33px); /* 112px */
+        --font-size-h2: calc(0.57142 * var(--font-size-h1)); /* 64px */
+        --font-size-h3: calc(var(--font-size-h2) * 0.71875); /* 46px */
+        --font-size-h4: calc(var(--font-size-h3) * 0.71875); /* 33px */
+        --font-size-h5: calc(var(--font-size-h4) * 0.71875); /* 24px */
+        --font-size-h6: calc(var(--font-size-h5) * 0.71875); /* 17px */
+
+        --navbar-height: 85px;
+        --design-width: 100dvw;
+    }
+
+    main {
+        width: 100dvw;
+    }
 }
 
 
