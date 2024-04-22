@@ -4,6 +4,7 @@
     import SayulitaMap from "@components/icons/sayulita_map.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
+    import { layout_properties } from "@stores/layout";
     import { blur, fly } from "svelte/transition";
 
     
@@ -93,6 +94,8 @@
          * Manages the appearance of the animation components
         */
         const manageAnimation = () => {
+            if ($layout_properties.IS_MOBILE) return;
+
             mexico_map_visible = true;
 
             if (component_visible) {
@@ -134,7 +137,7 @@
     
 </script>
 
-<section id="smk-home-location-section" class:adebug={false} on:viewportEnter={() => setComponentVisibility(true)} use:viewport={{height_offset: 0.5}}>
+<section id="smk-home-location-section" class:adebug={false} on:viewportEnter={() => setComponentVisibility(true)} class:is-animated={$layout_properties.IS_MOBILE} use:viewport={{height_offset: 0.5}}>
     <div id="smk-hls-content-wrapper" class="design-content-width">
         {#key mexico_map_visible}        
             <div id="smk-hls-cw-mexico-map-wrapper" class="smk-hls-bg-element" style:transition="opacity {location_content_animation_duration * 0.2}ms ease" in:fly={{x: -400, duration: mexico_animation_duration}} use:registerDimmedElement>
@@ -157,7 +160,7 @@
                 />
             {/if}
         </div>
-        {#if location_content_visible}
+        {#if location_content_visible || ($layout_properties.IS_MOBILE && component_visible)}
              <div id="smk-hls-cw-content" in:blur={{amount: 1.5, duration: location_content_animation_duration}}>
                  <div class="smk-hls-cw-top-icon wixarica-icons">
                      <WixaricaIcon with_accent />
