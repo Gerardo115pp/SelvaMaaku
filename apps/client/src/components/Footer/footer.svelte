@@ -59,7 +59,7 @@
 <section id="smk-global-footer-section"
     on:viewportEnter={() => component_visible = true}
     on:viewportLeave={() => component_visible = false}
-    class:is-visible={component_visible}
+    class:is-visible={component_visible || $layout_properties.IS_MOBILE}
     use:viewport={{height_offset: 0.8}}
 >
     <div id="smk-gfs-content-wrapper" class="design-content-width">

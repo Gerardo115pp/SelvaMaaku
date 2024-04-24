@@ -27,6 +27,7 @@
         display: flex;
         flex-direction: column;
         padding: var(--spacing-5) 0;        
+        container-type: inline-size;
         gap: var(--spacing-5);
     }
 
@@ -71,6 +72,29 @@
             object-position: center;
         }
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 800px) {
+            #smk-aph-content-wrapper {
+                padding: 0 var(--spacing-2);
+            }
+
+            h2#smk-aph-cw-subheadline {
+                font-size: var(--font-size-h1);
+            }
+
+            #smk-apg-teaser-screen {
+                height: 320px;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
     
     
 </style>

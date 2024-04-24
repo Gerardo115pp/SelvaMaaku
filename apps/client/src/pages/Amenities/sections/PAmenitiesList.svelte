@@ -48,6 +48,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        container-type: inline-size;
         padding: var(--spacing-5) 0;
     }
 
@@ -72,4 +73,34 @@
             font-size: var(--font-size-h5);
         }   
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-ap-amenities-list {
+                padding: var(--spacing-5) var(--spacing-2);
+            }
+
+            ul#smk-apal-content-wrapper {
+                flex-direction: column;
+                row-gap: var(--spacing-4);
+                column-gap: 0;
+            }
+
+            li.smk-amenity-item {
+                width: 100%;
+            }
+
+            li.smk-amenity-item h3.smk-ai-title {
+                font-size: calc(var(--font-size-h2) * 1.2);
+                white-space: nowrap;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
