@@ -108,4 +108,27 @@
     blockquote#smk-qbs-quote-information footer cite::before {
         content: "— ";
     }
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            blockquote#smk-qbs-quote-information {
+                gap: var(--spacing-2);  
+            }
+
+            blockquote#smk-qbs-quote-information h2 {
+                font-size: var(--font-size-h2);
+            }
+
+            blockquote#smk-qbs-quote-information footer cite {
+                font-size: var(--font-size-fineprint);
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
