@@ -88,6 +88,13 @@
              * @default "var(--spacing-2)"
             */
             export let carousel_gap = "var(--spacing-2)";
+
+            /**
+             * The padding of the carousel
+             * @type {string}
+             * @default "0 var(--spacing-3)"
+            */
+            export let carousel_padding = "0 var(--spacing-3)";
         
 
     /*=====  End of Properties  ======*/ 
@@ -150,6 +157,7 @@
         class:lcc-marquee-carousel={is_marquee}
         style:--carousel-gap={carousel_gap}
         style:--slide-width="{100 / visible_slides}cqw"
+        style:padding={carousel_padding}
     >
         {#if $$slots.arrow_left}
             <div class="carousel-arrow carousel-arrow-left" on:click={() => changeSlide(-1)}>
@@ -200,7 +208,6 @@
     .libery-carousel-component {
         width: 100%;
         container: inline-size;
-        padding: 0 var(--spacing-3);
     }
 
     .libery-carousel-component:has(.carousel-arrow) {

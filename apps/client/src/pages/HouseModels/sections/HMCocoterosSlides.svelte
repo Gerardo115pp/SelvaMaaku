@@ -1,6 +1,6 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     import Carousel from "@components/carousel/carousel.svelte";
     import { CarouselItem } from "@components/carousel/types";
     
@@ -29,30 +29,40 @@
             <WixaricaIcon with_accent />
         </div>
         <div id="smk-hmpcs-slides-wrapper">
-            <!-- TODO: Make the actual carousel -->
             <h2 id="smk-hmpcs-carousel-title">
                 Cocoteros House Model
             </h2>
-            <!-- 
-            -->
-            <Carousel 
-                carousel_items={carousel_slides} 
-                visible_slides={1}
-                slide_height="600px"
-                carousel_gap="0px"
-                autoplay_interval_ms={4000}
-                loop_slides
-                autoplay
-            >
-                <svg class='smk-hmpcs-carousel-arrow' id="smk-hmpcs-carousel-arrow-left" slot="arrow_left" viewBox="0 0 48 48">
-                    <rect width="48" height="48" rx="24" />
-                    <path d="M31 24H17M17 24L24 31M17 24L24 17"/>
-                </svg>
-                <svg class='smk-hmpcs-carousel-arrow' id="smk-hmpcs-carousel-arrow-right" slot="arrow_right" viewBox="0 0 48 48">
-                    <rect width="48" height="48" rx="24"/>
-                    <path d="M31 24H17M17 24L24 31M17 24L24 17"/>
-                </svg>    
-            </Carousel>
+            {#if !$layout_properties.IS_MOBILE}
+                <Carousel 
+                    carousel_items={carousel_slides} 
+                    visible_slides={1}
+                    slide_height="600px"
+                    carousel_gap="0px"
+                    autoplay_interval_ms={4000}
+                    loop_slides
+                    autoplay
+                >
+                    <svg class='smk-hmpcs-carousel-arrow' id="smk-hmpcs-carousel-arrow-left" slot="arrow_left" viewBox="0 0 48 48">
+                        <rect width="48" height="48" rx="24" />
+                        <path d="M31 24H17M17 24L24 31M17 24L24 17"/>
+                    </svg>
+                    <svg class='smk-hmpcs-carousel-arrow' id="smk-hmpcs-carousel-arrow-right" slot="arrow_right" viewBox="0 0 48 48">
+                        <rect width="48" height="48" rx="24"/>
+                        <path d="M31 24H17M17 24L24 31M17 24L24 17"/>
+                    </svg>    
+                </Carousel>
+            {:else} 
+                <Carousel 
+                    carousel_items={carousel_slides} 
+                    visible_slides={1}
+                    slide_height="600px"
+                    carousel_gap="0px"
+                    autoplay_interval_ms={4000}
+                    carousel_padding="0"
+                    loop_slides
+                    autoplay
+                />
+            {/if}
         </div>
     </div>
 </section>
@@ -60,6 +70,7 @@
 <style>
     #smk-hmp-cocoteros-slides {
         padding: var(--spacing-5) 0;
+        container-type: inline-size;
     }
 
     #smk-hmpcs-content-wrapper {
@@ -102,6 +113,29 @@
     #smk-hmpcs-carousel-arrow-right {
         transform: rotate(180deg);
     }
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+
+        /* @media only screen and (max-width: 768px) {
+            #smk-hmp-cocoteros-slides {
+                padding: 0;
+            }
+        } */
+               
+    
+        @container (width <= 800px) {
+            #smk-hmpcs-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
     
     
 </style>

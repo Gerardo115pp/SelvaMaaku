@@ -1,6 +1,6 @@
 <script>
     import Carousel from "@components/carousel/carousel.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
 
     
     /*=============================================
@@ -59,10 +59,11 @@
     <div id="smk-hmph-carousel-wrapper">
         <Carousel 
             carousel_items={carousel_slides}
+            carousel_padding={$layout_properties.IS_MOBILE ? "0" : "0 var(--spacing-3)"}
             autoplay_interval_ms={5000}
-            visible_slides={3}
+            visible_slides={$layout_properties.IS_MOBILE ? 1 : 3}
             is_marquee
-            use_mask
+            use_mask={!$layout_properties.IS_MOBILE}
         />
     </div>
 </section>
@@ -71,6 +72,7 @@
     #smk-hmp-header {
         display: flex;
         flex-direction: column;
+        container-type: inline-size;
         align-items: center;
         padding: var(--spacing-5) 0;
         gap: var(--spacing-5);
@@ -114,5 +116,38 @@
     #smk-hmph-carousel-wrapper {
         width: 100%;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+
+        @media only screen and (max-width: 768px) {
+            #smk-hmp-header {
+                gap: var(--spacing-4);
+            }
+        }
+    
+        @container (width <= 768px) {
+            #smk-hmph-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 0 var(--spacing-2);
+            }
+
+            h1#smk-hmph-headline {
+                font-size: var(--font-size-h1);
+                line-height: 1.2;
+            }
+
+            p#smk-hmph-subheadline {
+                width: 100%;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 
 </style>

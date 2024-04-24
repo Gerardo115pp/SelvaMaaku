@@ -11,9 +11,10 @@
 
 <style>
     .smk-hmpc-gallery-wrapper {
+        --hmpc-gallery-width: 46.46381cqw;
         position: relative;
-        width: min(565px, 46.46381cqw);
-        height: min(629px, 51.72697cqw);
+        width: min(565px, var(--hmpc-gallery-width));
+        height: min(629px, calc(var(--hmpc-gallery-width) * 1.113274));
         container: inline-size;
     }
 
@@ -43,6 +44,21 @@
         left: 55.22123%;
         z-index: var(--z-index-t-1);
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 800px) {
+            .smk-hmpc-gallery-wrapper {
+                --hmpc-gallery-width: 75cqw;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 
 
 </style>

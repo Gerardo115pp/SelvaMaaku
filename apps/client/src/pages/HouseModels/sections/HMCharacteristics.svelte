@@ -1,6 +1,6 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-import HmCharacteristicsGallery from "../sub-components/HMCharacteristicsGallery.svelte";
+    import HmCharacteristicsGallery from "../sub-components/HMCharacteristicsGallery.svelte";
 </script>
 
 <section id="smk-hmp-characteristics-section">
@@ -170,6 +170,31 @@ import HmCharacteristicsGallery from "../sub-components/HMCharacteristicsGallery
         }
     
     /*=====  End of Text  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-hmpc-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                flex-direction: column;
+                padding: 0 var(--spacing-2);
+                gap: var(--spacing-4);
+            }
+        }
+
+        @container (width <= 800px) {
+            #smk-hmpc-cw-text-column {
+                width: 100%;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
     
     
 </style>
