@@ -46,6 +46,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        container-type:inline-size;
         padding: var(--spacing-5) 0;
         gap: var(--spacing-5);
     }
@@ -116,6 +117,63 @@
             
     
     /*=====  End of Maps  ======*/
+    
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            #smk-lph-content {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+            }
+
+            #smk-lph-location-slogan {
+                font-size: calc(var(--font-size-h1) * 0.99);
+                line-height: 1.2;
+                letter-spacing: -2.2%;
+                font-weight: 400;
+            }
+
+            #smk-lph-underlay-wrapper {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 127.55cqw;
+                z-index: var(--z-index-b-3);
+                transform-origin: center;
+                opacity: 0.3;
+                translate: -50% -50% 0;
+            }
+        
+            #smk-lph-maps-wrapper {
+                width: 100%;
+                padding: var(--spacing-4) 0;
+            }
+            
+            #smk-lph-maps {
+                display: flex;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: var(--spacing-3);
+            }
+
+            .smk-lph-maps-area {
+                display: grid;
+                width: 80cqw;
+                height: auto;
+                place-items: center;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
 

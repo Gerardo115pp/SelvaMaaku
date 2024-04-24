@@ -3,6 +3,7 @@
 import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
 
 </script>
+
 <section id="smk-lp-benefits" class:adebug={false}>
     <div id="smk-lpb-content-wrapper" class="design-content-width">
         <div id="smk-lpb-cw-text-column">
@@ -79,4 +80,41 @@ import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     #smk-lpb-content-wrapper > #smk-lpb-cw-sayulita-map {
         width: 50cqw;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-lp-benefits {
+                padding: var(--spacing-4) var(--spacing-2);
+            }
+
+            #smk-lpb-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                flex-direction: column;
+                gap: var(--spacing-4);
+            }
+
+            #smk-lpb-cw-text-column {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            hgroup#smk-lpb-cw-headlines {
+                width: 100%;
+            }
+
+            #smk-lpb-content-wrapper #smk-lpb-cw-sayulita-map {
+                width: 100cqw;
+                max-width: none;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>

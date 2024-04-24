@@ -128,4 +128,31 @@
         width: 100%;
     }
     
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-lp-town {
+                padding: var(--spacing-4) var(--spacing-2);
+            }
+
+            #smk-lpt-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+            }
+
+            hgroup#smk-lpt-town-headlines {
+                width: 100%;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
+
 </style>
