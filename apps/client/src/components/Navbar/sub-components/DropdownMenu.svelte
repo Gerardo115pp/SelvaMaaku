@@ -1,6 +1,8 @@
 <script>
     import { backOut, elasticIn, elasticInOut, elasticOut } from 'svelte/easing';
     import { slide } from 'svelte/transition';
+    import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import { page } from "$app/stores";
 
     
     /*=============================================
@@ -48,7 +50,13 @@
     >
         {#key $is_open}
             {#each dropdown_sections as ds, h}
+                {@const is_active_link = $page.url.pathname === ds.href}
                 <li class="smk-mdw-link" in:slide|global={{axis: 'y', duration: animation_duration * 0.33, delay: dropdown_appear_point + ((animation_duration * 0.05) * h), easing: backOut}}>
+                    <div class="wixarica-icons">
+                        <WixaricaIcon 
+                            with_accent={is_active_link}
+                        />
+                    </div>
                     <a href="{ds.href}" on:click={() => is_open.set(false)}>
                         {ds.name}
                     </a>
@@ -68,12 +76,12 @@
         background-color: var(--theme-hero-background);
         top: var(--navbar-height);
         left: 0;
-        justify-content: center;
-        align-items: center;
-        gap: var(--spacing-2);
+        align-items: flex-start;
+        gap: var(--spacing-3);
         z-index: var(--z-index-t-5);
         animation-name: fade-in;
         animation-fill-mode: forwards;
+        padding: var(--spacing-5) var(--spacing-2);
     }
 
     @keyframes fade-in {
@@ -83,6 +91,12 @@
         to {
             opacity: 0.95;
         }
+    }
+
+    menu#smk-mobile-dropmenu-wrapper li.smk-mdw-link {
+        display: flex;
+        gap: var(--spacing-1);
+        align-items: center;
     }
 
     menu#smk-mobile-dropmenu-wrapper li a {
