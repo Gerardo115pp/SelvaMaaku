@@ -4,6 +4,8 @@
     import { onMount } from "svelte";
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import { layout_images, layout_properties } from "@stores/layout";
+    import { writable } from "svelte/store";
+    import DropdownMenu from "./sub-components/DropdownMenu.svelte";
     
     /*=============================================
     =            Properties            =
@@ -44,18 +46,54 @@
                 options: []
             }
         ]
+
+        /**
+         * Whether the dropdown menu is opened or not
+         * @type {import('svelte/store').Writable<boolean>}
+         */
+        let is_dropdown_open = writable(false);
+
+        /**
+         * the scroll amount of the document
+         * @type {number}
+         */
+        let scroll_amount = 0;
+        
     
     /*=====  End of Properties  ======*/
 
     onMount(() => {
-        console.log($layout_properties);
+        // is_dropdown_open.set(true);
     })
+
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        const toggleDropdown = () => {
+            is_dropdown_open.set(!$is_dropdown_open);
+        }
+    
+    /*=====  End of Methods  ======*/
+    
     
     
 </script>
 
-<nav id="selvamaaku-navbar" class:adebug={false}>
+
+<svelte:window bind:scrollY={scroll_amount} />
+<nav id="selvamaaku-navbar" class:scrolled={scroll_amount >= 200} class:adebug={false} class:has-dropdown-menu={$is_dropdown_open}>
     <div id="smk-navbar-content">
+        <div id="mobile-burger-btn">
+            <button class:menu-opened={$is_dropdown_open} on:click={toggleDropdown}>
+                <svg viewBox="0 0 24 25">
+                    <path d="M3 6.5H21"/>
+                    <path d="M3 12.5H21"/>
+                    <path d="M3 18.5H21"/>
+                </svg>                
+            </button>
+        </div>
         <div id="sn-selvamaaku-logo">
             <img src="{layout_images.SELVAMAAKU_LOGOTYPE.getUrl(0.2)}" alt="Selva maaku logotipo"/>
         </div>
@@ -82,17 +120,50 @@
         </div>
     </div>
 </nav>
+<DropdownMenu
+    is_open={is_dropdown_open}
+    dropdown_sections={dropdown_sections}
+/>
 
 <style>
     #selvamaaku-navbar {
+        --navbar-background: var(--theme-hero-background);
+
         width: 100dvw;
         height: var(--navbar-height);
         display: grid;
-        position: sticky;
+        position: fixed;
         place-items: center;
         container-type: inline-size;
         padding: 0 5.5%;
         z-index: var(--z-index-t-5);
+        transition: background-color 0.3s ease;
+    }
+
+    #selvamaaku-navbar.scrolled {
+        background-color: var(--navbar-background);
+    }
+
+    #selvamaaku-navbar.scrolled:hover {
+        background-color: var(--navbar-background);
+    }
+
+    @supports (color: rgb( from white r g b)) {
+        #selvamaaku-navbar {
+            --base-bg-color: var(--theme-hero-background);
+            --navbar-background: hsl(from var(--base-bg-color) h s calc(l * 0.5) / 0.3);
+        }
+
+        #selvamaaku-navbar.has-dropdown-menu {
+            background-color: var(--base-bg-color) !important;
+        }
+
+        
+        @media(pointer: fine) {            
+            #selvamaaku-navbar.scrolled:not(.has-dropdown-menu):hover {
+                background-color: hsl(from var(--base-bg-color) h s l / 0.8);   
+            }
+        }
     }
 
     #smk-navbar-content {
@@ -101,6 +172,60 @@
         align-items: center;
         gap: var(--spacing-3);
     }
+
+    
+    /*=============================================
+    =            burger menu            =
+    =============================================*/
+    
+        #mobile-burger-btn {
+            display: none;
+        }
+
+        @container (width <= 1080px) {
+            #mobile-burger-btn {
+                display: block;
+            }
+
+            #mobile-burger-btn svg {
+                width: 31px;
+            }
+
+            #mobile-burger-btn svg path {
+                stroke: var(--accent-orange-light);
+                stroke-width: 2px;
+                stroke-linecap: round;
+                transform-box: fill-box;
+                transition: rotate 0.4s linear, opacity 0.2s ease-in, translate 0.2s ease;
+            }
+
+            #mobile-burger-btn button {
+                outline: none;
+            }
+
+            #mobile-burger-btn button.menu-opened {
+                --burger-line-rotation: 41deg;
+            }
+
+            #mobile-burger-btn button.menu-opened path:first-child {
+                transform-origin: left center;
+                rotate: var(--burger-line-rotation);
+            }
+
+            #mobile-burger-btn button.menu-opened path:nth-child(2) {
+                translate: 0 5px 0;
+                opacity: 0;
+            }
+
+            #mobile-burger-btn button.menu-opened path:last-child {
+                transform-origin: left center;
+                rotate: calc(-1 * var(--burger-line-rotation));
+            }
+        }
+    
+    /*=====  End of burger menu  ======*/
+    
+    
 
     
     /*=============================================
