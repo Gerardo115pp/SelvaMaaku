@@ -1,10 +1,12 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
 </script>
 
 <section id="smk-development-page-features-section">
-    <header id="smk-development-page-features-header" class="design-content-width">
+    <header id="smk-development-page-features-header"
+        class:design-content-width={!$layout_properties.IS_MOBILE}
+    >
         <div class="wixarica-icons">
             <WixaricaIcon with_accent/>
         </div>
@@ -73,10 +75,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        container-type: inline-size;
         padding: var(--spacing-5) 0;
         row-gap: var(--spacing-5);
     }
-
     
     /*=============================================
     =            headlines            =
@@ -172,6 +174,62 @@
         }
     
     /*=====  End of features  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 768px) {
+            header#smk-development-page-features-header {
+                width: 100%;
+                padding: 0 var(--spacing-2);
+            }
+
+            h2#smk-development-page-features-headline {
+                font-size: calc(var(--font-size-h1) * 0.82); 
+                line-height: 1.2;
+            }
+
+            ul#smk-dp-features-container {
+                height: auto;
+                grid-template: none / 1fr;
+                grid-auto-rows: 250px;
+            }
+    
+
+            #smk-dp-feature-item-1 {
+                grid-area: auto / auto / auto / auto;
+                justify-content: flex-end;
+            }
+
+            #smk-dp-feature-item-2 {
+                grid-area: auto / auto / auto / auto;
+                justify-content: flex-end;
+            }
+
+            #smk-dp-feature-item-3 {
+                grid-area: auto / auto / auto / auto;
+            }
+
+            #smk-dp-feature-item-4 {
+                grid-area: auto / auto / auto / auto;
+            }
+
+            li.smk-dp-features-image-wrapper {
+                grid-area: 3 / auto / span 2 / auto;
+            }
+
+            li.smk-dp-features-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
     

@@ -1,11 +1,13 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
     import LifeGallery from "../sub-components/LifeGallery.svelte";
 </script>
 
 <section id="smk-development-page-life-sayulita-section">
-    <div id="smk-dplss-content-wrapper" class="design-content-width">
+    <div id="smk-dplss-content-wrapper" 
+        class:design-content-width={!$layout_properties.IS_MOBILE}
+    >
         <div id="smk-dplss-cw-text-column">
             <div class="wixarica-icons">
                 <WixaricaIcon with_accent/>
@@ -94,6 +96,42 @@
         object-position: left bottom;
         pointer-events: none;
     }
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @media only screen and (max-width: 768px) {
+            #smk-development-page-life-sayulita-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: var(--spacing-5) 0 0 0;
+            }
+
+            #smk-dplss-content-wrapper {
+                width: 100%;
+                grid-template-columns: 1fr;
+                padding: 0 var(--spacing-2);
+                row-gap: var(--spacing-4);
+            }
+
+            #smk-dplss-cw-text-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-2);
+            }
+
+            h2#smk-dplss-cw-headline {
+                font-size: var(--font-size-h1);
+            }
+
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
     
 
 </style>

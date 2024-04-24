@@ -75,5 +75,39 @@
         object-fit: cover;
         object-position: center;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+
+        @media only screen and (max-width: 768px) {
+            #smk-development-page-header {
+                padding: var(--spacing-4) 0;
+                gap: var(--spacing-4    );
+            }
+        }
+    
+        @container (width <= 768px) {
+            header#smk-dp-header {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 0 var(--spacing-2);
+            }
+
+            hgroup#smk-dp-header-headliners p#smk-dp-hh-page-subheadline {
+                width: 100%;
+            }
+
+            h1#smk-dp-hh-page-headline {
+                font-size: var(--font-size-h1);
+                line-height: 1.2;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
     
 </style>
