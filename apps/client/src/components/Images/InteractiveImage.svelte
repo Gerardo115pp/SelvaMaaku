@@ -156,6 +156,13 @@
         animation-iteration-count: 2;
     }
 
+    .liiw-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
     @media(pointer:fine) {
         .liiw-image-overlay:hover {
             opacity: var(--max-overlay-opacity);

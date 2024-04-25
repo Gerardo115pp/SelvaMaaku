@@ -1,6 +1,8 @@
 <script>
-    import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import InteractiveImage from "@components/Images/InteractiveImage.svelte";
+import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_properties, layout_images } from "@stores/layout";
+    import { setRenderMedia } from "@stores/media_display";
     import { elasticOut } from "svelte/easing";
     import { fly } from "svelte/transition";
 
@@ -180,9 +182,7 @@
             <WixaricaIcon opacity={0.5} is_flat_color />
         </div>
         <!-- TODO: Add an alt text to the images -->
-        <img id="smk-mg-keitt-house"
-            src={layout_images.KEITT_HOUSE.getUrl(0.4)}
-            alt=""
+        <div id="smk-mg-keitt-house" 
             class="smk-mg-gallery-image tracking-particle"
             style="transform: translate({-(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%);"
             in:fly={{
@@ -190,18 +190,35 @@
                 delay: fly_left_transition.delay * 2,
             }}
             use:registersMouseTrackingParticle
-        />
-        <img id="smk-mg-keitt-house-two"
-            src={layout_images.KEITT_HOUSE_TWO.getUrl(0.3)}
-            alt=""
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE.getUrl(1))}
+                image_resource={layout_images.KEITT_HOUSE}
+                desktop_viewport_percentage={0.4}
+                mobile_viewport_percentage={0.8}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
+        <div id="smk-mg-keitt-house-two"
             class="smk-mg-gallery-image tracking-particle"
-            style="transform: translate({(mouse_x * 0.6)}%, {-(mouse_y * 0.8)}%);"
-            in:fly={fly_left_transition}
+            style="transform: translate({(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%);"
+            in:fly={{
+                ...fly_right_transition,
+                delay: fly_right_transition.delay * 2.5,
+            }}
             use:registersMouseTrackingParticle
-        />
-        <img id="smk-mg-tommy-house-three"
-            src={layout_images.TOMMY_HOUSE_THREE.getUrl(0.3)}
-            alt=""
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE_TWO.getUrl(1))}
+                image_resource={layout_images.KEITT_HOUSE_TWO}
+                desktop_viewport_percentage={0.4}
+                mobile_viewport_percentage={0.8}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
+        <div id="smk-mg-tommy-house-three"
             class="smk-mg-gallery-image tracking-particle"
             style="transform: translate({-(mouse_x * 0.4)}%, {-(mouse_y * 1)}%);"
             in:fly={{
@@ -209,10 +226,17 @@
                 delay: fly_left_transition.delay * 1.3,
             }}
             use:registersMouseTrackingParticle
-        />
-        <img id="smk-mg-tommy-house-four"
-            src={layout_images.TOMMY_HOUSE_FOUR.getUrl(0.4)}
-            alt=""
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_THREE.getUrl(1))}
+                image_resource={layout_images.TOMMY_HOUSE_THREE}
+                desktop_viewport_percentage={0.3}
+                mobile_viewport_percentage={0.6}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
+        <div id="smk-mg-tommy-house-four"
             class="smk-mg-gallery-image tracking-particle"
             style="transform: translate({(mouse_x * 0.3)}%, {(mouse_y * 0.3)}%);"
             in:fly={{
@@ -220,7 +244,16 @@
                 delay: fly_right_transition.delay * 1.7,
             }}
             use:registersMouseTrackingParticle
-        />
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_FOUR.getUrl(1))}
+                image_resource={layout_images.TOMMY_HOUSE_FOUR}
+                desktop_viewport_percentage={0.4}
+                mobile_viewport_percentage={0.8}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
         <span id="smk-mg-keitt-label"
             class="gallery-label tracking-particle"
             style="transform: translate({-(mouse_x * 0.5)}%, {-(mouse_y * 0.05)}%);"

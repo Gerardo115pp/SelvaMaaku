@@ -1,6 +1,8 @@
 <script>
-    import viewport from "@components/viewport_actions/useViewportActions";
+    import InteractiveImage from "@components/Images/InteractiveImage.svelte";
+import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_images } from "@stores/layout";
+    import { setRenderMedia } from "@stores/media_display";
     import { elasticIn, elasticOut } from "svelte/easing";
     import { fly } from "svelte/transition";
 
@@ -61,37 +63,55 @@
 >
     {#if gallery_visible && $parent_visible}
         <!-- TODO: Add alt text to these images -->
-        <img
-            src={layout_images.PARK.getUrl(0.3)}
-            alt=""
+        <div id="ag-park" 
             class="amenities-gallery-image"
-            id="ag-park"
             transition:fly={{
                 ...fly_transition_params,
                 y: fly_transition_params.y * -1,
             }}
-        />
-        <img
-            src={layout_images.RAINY_POOL.getUrl(0.3)}
-            alt=""
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.PARK.getUrl(1))}
+                image_resource={layout_images.PARK}
+                desktop_viewport_percentage={0.3}
+                mobile_viewport_percentage={0.3}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
+        <div id="ag-rainy-pool" 
             class="amenities-gallery-image"
-            id="ag-rainy-pool"
             transition:fly={{
                 ...fly_transition_params,
                 y: fly_transition_params.y * 1.5,
             }}
-        />
-        <img
-            src={layout_images.STONE_WALL.getUrl(0.3)}
-            alt=""
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.RAINY_POOL.getUrl(1))}
+                image_resource={layout_images.RAINY_POOL}
+                desktop_viewport_percentage={0.3}
+                mobile_viewport_percentage={0.3}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
+        <div id="ag-stone-wall" 
             class="amenities-gallery-image"
-            id="ag-stone-wall"
             transition:fly={{ 
                 ...fly_transition_params, 
                 y: fly_transition_params.y,
                 delay: fly_transition_params.delay * 0.4
             }}
-        />
+        >
+            <InteractiveImage 
+                on:image-clicked={() => setRenderMedia(layout_images.STONE_WALL.getUrl(1))}
+                image_resource={layout_images.STONE_WALL}
+                desktop_viewport_percentage={0.3}
+                mobile_viewport_percentage={0.3}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+            />
+        </div>
     {/if}
 </div>
 
@@ -118,7 +138,7 @@
             top: 16.26%;
             width: 24.90752%;
             height: 83.46883%;
-            z-index: var(--z-index-b-1);
+            z-index: var(--z-index-t-2);
         }
 
         #ag-rainy-pool {
@@ -126,7 +146,7 @@
             left: 20.22%;
             width: 59.92601%;
             height: 86.17886%;
-            z-index: var(--z-index-b-2);
+            z-index: var(--z-index-t-1);
         }
 
         #ag-stone-wall {
@@ -134,7 +154,7 @@
             top: 16.26%;
             width: 22.81134%;
             height: 53.38753%;
-            z-index: var(--z-index-b-1);
+            z-index: var(--z-index-t-2);
         }
     
     /*=====  End of Elements positions  ======*/
