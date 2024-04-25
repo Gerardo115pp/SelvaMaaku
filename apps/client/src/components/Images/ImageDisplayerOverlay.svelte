@@ -102,6 +102,11 @@
                 y: (media_rect.y - (close_btn_size * 0.5)) - media_display_padding_top
             }
        }
+
+       const handleCloseBtnClick = () => {
+           resetRenderMedia();
+           is_loaded = false;
+       }
     
     /*=====  End of Methods  ======*/
     
@@ -117,7 +122,7 @@
         <div id="smr-content-wrapper" class:dtwo={false}>
             {#if close_button_position != null}
                 <button class="button-2" 
-                    on:click={resetRenderMedia}
+                    on:click={handleCloseBtnClick}
                     style:--close-btn-size={close_btn_size + "px"}
                     style:top={close_button_position.y + "px"}
                     style:left={close_button_position.x + "px"}
