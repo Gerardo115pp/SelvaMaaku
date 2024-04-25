@@ -157,7 +157,7 @@
         max-width: var(--design-content-width);
         z-index: var(--z-index-b-3);
         transform: translateX(-50%);
-        overflow: visible;
+        overflow: hidden;
     }
 
     #smk-hero-section .wixarica-underlay .smk-hp-particle-wrapper {
@@ -241,7 +241,7 @@
             #smk-hero-section {
                 position: relative;
                 width: 100dvw;
-                overflow-x: hidden;
+                overflow: visible;
             }
 
             #smk-hero-section .wixarica-underlay {
