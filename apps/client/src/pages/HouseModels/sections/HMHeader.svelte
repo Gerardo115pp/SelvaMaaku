@@ -21,19 +21,19 @@
         const carousel_slides = [
             {
                 id: 1,
-                src: layout_images.COCOTEROS_HOUSE.getUrl(0.3)
+                src: layout_images.COCOTEROS_HOUSE.getUrl($layout_properties.IS_MOBILE ? 1.3 : 0.3)
             },
             {
                 id: 2,
-                src: layout_images.COCOTEROS_HOUSE_TWO.getUrl(0.3)
+                src: layout_images.COCOTEROS_HOUSE_TWO.getUrl($layout_properties.IS_MOBILE ? 1.3 : 0.3)
             },
             {
                 id: 3,
-                src: layout_images.COCOTEROS_HOUSE_THREE.getUrl(0.3)
+                src: layout_images.COCOTEROS_HOUSE_THREE.getUrl($layout_properties.IS_MOBILE ? 1.3 : 0.3)
             },
             {
                 id: 4,
-                src: layout_images.COCOTEROS_HOUSE_FOUR.getUrl(0.3)
+                src: layout_images.COCOTEROS_HOUSE_FOUR.getUrl($layout_properties.IS_MOBILE ? 1.3 : 0.3)
             }
         ] 
     
@@ -60,10 +60,10 @@
         <Carousel 
             carousel_items={carousel_slides}
             carousel_padding={$layout_properties.IS_MOBILE ? "0" : "0 var(--spacing-3)"}
-            autoplay_interval_ms={5000}
             visible_slides={$layout_properties.IS_MOBILE ? 1 : 3}
-            is_marquee
             use_mask={!$layout_properties.IS_MOBILE}
+            autoplay_interval_ms={5000}
+            is_marquee
         />
     </div>
 </section>
@@ -128,7 +128,11 @@
             }
         }
     
-        @container (width <= 768px) {
+        @container (width <= 1200px) {
+
+        }
+
+        @container (width <= 1200px) {
             #smk-hmph-content-wrapper {
                 width: 100%;
                 max-width: none;

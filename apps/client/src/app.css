@@ -417,7 +417,7 @@
     display: none !important;
 }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 1200px) {
     :root {
 
         --font-size-h1: calc(33px); /* 112px */

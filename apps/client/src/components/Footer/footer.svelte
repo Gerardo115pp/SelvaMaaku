@@ -79,7 +79,7 @@
         </div>
     </div>
     <footer id="smk-global-footer">
-        <menu id="footer-navoptions" class:hide-on-mobile={$layout_properties.IS_MOBILE}>
+        <menu id="footer-navoptions">
             {#each dropdown_sections as nav_option}
                 <li class="smk-footer-nav-option-wrapper">
                     <a href="{nav_option.href}" class="smk-link">
@@ -195,14 +195,24 @@
     =            Mobile            =
     =============================================*/
 
-        @media only screen and (max-width: 880px) {
+        @media only screen and (max-width: 1150px) {
             section#smk-global-footer-section {
                 row-gap: var(--spacing-4);
                 padding: var(--spacing-5) 0 var(--spacing-4) 0;
             }
         }
+
+        @container (width < 1200px) and (width > 1150px)  {
+            #footer-policies-wrapper ul {
+                gap: var(--spacing-1);
+            }
+            
+            #footer-policies-wrapper ul li:not(:last-child)::after {
+                margin-left: var(--spacing-1);
+            }
+        }
     
-        @container (width <= 768px) {
+        @container (width <= 1150px) {
             #smk-global-footer-section #smk-gfs-content-wrapper {
                 margin: 0;
                 max-width: none;
@@ -211,7 +221,10 @@
             }
 
             #smk-gfs-content-wrapper #smk-gfs-combination-mark-wrapper {
+                display: flex;
                 width: 51.0204cqw;
+                justify-content: center;
+                align-items: center;
             }
 
             #smk-gfs-information h2 {
@@ -220,6 +233,11 @@
 
             footer#smk-global-footer {
                 padding: 0;
+                justify-content: center;
+            }
+
+            menu#footer-navoptions {
+                display: none;
             }
 
             #footer-policies-wrapper ul {

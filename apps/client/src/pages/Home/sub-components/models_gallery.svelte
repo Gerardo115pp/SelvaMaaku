@@ -1,6 +1,6 @@
 <script>
     import InteractiveImage from "@components/Images/InteractiveImage.svelte";
-import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_properties, layout_images } from "@stores/layout";
     import { setRenderMedia } from "@stores/media_display";
     import { elasticOut } from "svelte/easing";
@@ -195,7 +195,7 @@ import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
                 on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE.getUrl(1))}
                 image_resource={layout_images.KEITT_HOUSE}
                 desktop_viewport_percentage={0.4}
-                mobile_viewport_percentage={0.8}
+                mobile_viewport_percentage={1}
                 overlay_color="var(--theme-color)"
                 max_overlay_opacity={0.5}
             />

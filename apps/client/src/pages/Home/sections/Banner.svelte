@@ -61,6 +61,7 @@
         <div id="smk-hbs-background-image-wrapper" transition:fade={{duration: 1200}}>
             <ImageMultiStage 
                 image_resource={layout_images.TOMMY_HOUSE_TWO}
+                image_percentage={2}
                 blur_unloaded
             />
         </div>

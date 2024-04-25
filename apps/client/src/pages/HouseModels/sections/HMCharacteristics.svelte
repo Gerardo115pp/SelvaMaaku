@@ -176,7 +176,7 @@
     =            Mobile            =
     =============================================*/
     
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 880px) {
             #smk-hmpc-content-wrapper {
                 width: 100%;
                 max-width: none;

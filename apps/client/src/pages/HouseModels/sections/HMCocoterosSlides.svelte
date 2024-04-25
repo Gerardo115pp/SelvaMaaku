@@ -13,9 +13,9 @@
          * @type {CarouselItem[]}
          */
         const carousel_slides = [
-            new CarouselItem({id: 1, src: layout_images.COCOTEROS_HOUSE.getUrl(0.7)}),
-            new CarouselItem({id: 2, src: layout_images.COCOTEROS_HOUSE_TWO.getUrl(0.7)}),
-            new CarouselItem({id: 3, src: layout_images.COCOTEROS_HOUSE_THREE.getUrl(0.7)}),
+            new CarouselItem({id: 1, src: layout_images.COCOTEROS_HOUSE.getUrl($layout_properties.IS_MOBILE ? 1.5 : 0.7)}),
+            new CarouselItem({id: 2, src: layout_images.COCOTEROS_HOUSE_TWO.getUrl($layout_properties.IS_MOBILE ? 1.5 : 0.7)}),
+            new CarouselItem({id: 3, src: layout_images.COCOTEROS_HOUSE_THREE.getUrl($layout_properties.IS_MOBILE ? 1.5 : 0.7)}),
         ]
     
     /*=====  End of Properties  ======*/

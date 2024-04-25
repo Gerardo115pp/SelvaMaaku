@@ -1,8 +1,7 @@
 <script>
     import HmCharacteristics from "@pages/HouseModels/sections/HMCharacteristics.svelte";
     import HmCocoterosSlides from "@pages/HouseModels/sections/HMCocoterosSlides.svelte";
-import HmHeader from "@pages/HouseModels/sections/HMHeader.svelte";
-
+    import HmHeader from "@pages/HouseModels/sections/HMHeader.svelte";
 
 </script>
 

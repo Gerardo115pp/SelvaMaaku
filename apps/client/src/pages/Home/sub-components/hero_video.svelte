@@ -1,6 +1,6 @@
 <script>
     import VideoPlayer from "@components/VideoPlayer/VideoPlayer.svelte";
-    import { layout_images } from "@stores/layout";
+    import { layout_images, layout_properties } from "@stores/layout";
 
     
     /*=============================================
@@ -30,7 +30,7 @@
     <VideoPlayer 
         video_url="/resources/videos/hero_video.webm"
         poster_media={layout_images.HERO_VIDEO_COVER}
-        poster_threshold={0.8}
+        poster_threshold={$layout_properties.IS_MOBILE ? 1 : 0.8}
         player_width={video_width}
         player_height={video_height}
     />

@@ -289,6 +289,16 @@
     /*=============================================
     =            Mobile            =
     =============================================*/
+
+        /* 
+            Container queries consider width of the content box, not the padding box
+            See: https://drafts.csswg.org/css-contain-3/#container-rule
+        */
+        @container (width < 1091px) and (width > 680px) {
+            menu#sn-navoptions {
+                display: none;
+            }
+        }
     
         @container (width <= 768px) {
             #sn-selvamaaku-logo {
