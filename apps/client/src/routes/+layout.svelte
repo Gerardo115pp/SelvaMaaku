@@ -3,6 +3,7 @@
     import Footer from "@components/Footer/footer.svelte";
     import Navbar from "@components/Navbar/Navbar.svelte";
     import PageTopGradient from "@components/Ui_decorations/page_top_gradient.svelte";
+    import ImageDisplayerOverlay from "@components/Images/ImageDisplayerOverlay.svelte";
     import { hasChangedLayout, defineLayout } from "@stores/layout";
     import { browser } from "$app/environment";
     import { onMount } from "svelte";
@@ -37,6 +38,7 @@
     on:resize|passive={handleLayoutResize}
 />
 <div id="app-root" class:adebug={false}>
+    <ImageDisplayerOverlay />
     <PageTopGradient />
     <Navbar />
     <slot></slot>

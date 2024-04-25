@@ -1,8 +1,11 @@
 <script>
     import { layout_images } from "@stores/layout";
     import viewport from "@components/viewport_actions/useViewportActions";
+    import InteractiveImage from "@components/Images/InteractiveImage.svelte";
     import { fade } from "svelte/transition";
     import { browser } from "$app/environment";
+    import { setRenderMedia } from "@stores/media_display";
+    import { onDestroy } from "svelte";
 
     
     /*=============================================
@@ -154,7 +157,12 @@
     
     /*=====  End of Properties  ======*/
 
-    
+    onDestroy(() => {
+        if (browser) {
+            setGalleryVisibility(false);
+        }
+    })
+
     /*=============================================
     =            Methods            =
     =============================================*/
@@ -203,9 +211,10 @@
             if (!browser) return;
 
             const gallery_dom_rect = gallery_component.getBoundingClientRect();
+            // console.debug("Gallery dom rect: ", gallery_dom_rect);
 
             // the distance from the origin of the document to the first pixel of the gallery
-            const gallery_top = gallery_component.getBoundingClientRect().top + window.scrollY;
+            const gallery_top = gallery_dom_rect.top + window.scrollY;
 
             // the scrolling point where the scroll progress becomes 100%
             const max_scroll_distance = gallery_top + gallery_dom_rect.height;
@@ -269,9 +278,6 @@
     
     /*=====  End of Methods  ======*/
     
-    
-    
-    
 </script>
 
 <div
@@ -282,27 +288,42 @@
     use:viewport
 >
     {#if gallery_visible}
-        <img
-            src={layout_images.KEITT_HOUSE.getUrl(0.42)}
-            alt="house keitt"
-            class="mango-gallery-image"
-            id="smg-keitt-house"
-            use:registerAnimatedComponent={keitt_house_animation_frames}
-        />
-        <img
-            src={layout_images.TOMMY_HOUSE.getUrl(0.42)}
-            alt="house tommy"
-            class="mango-gallery-image interactive-media"
-            id="smg-tommy-house"
-            use:registerAnimatedComponent={tommy_house_animation_frames}
-        />
-        <img
-            src={layout_images.DEVELOPMENT_HOUSE_ONE.getUrl(0.42)}
-            alt="house in development"
-            class="mango-gallery-image"
-            id="smg-development-house-one"
-            use:registerAnimatedComponent={development_house_one_animation_frames}
-        />
+        <div id="smg-keitt-house" class="mango-gallery-image" use:registerAnimatedComponent={keitt_house_animation_frames}>
+            <InteractiveImage
+                on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE.getUrl(1))}
+                image_resource={layout_images.KEITT_HOUSE}
+                desktop_viewport_percentage={0.42}
+                tablet_viewport_percentage={0.42}
+                mobile_viewport_percentage={0.42}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+                alt_text="house keitt"
+            />
+        </div>
+        <div class="mango-gallery-image" id="smg-tommy-house" use:registerAnimatedComponent={tommy_house_animation_frames}>
+            <InteractiveImage
+                on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE.getUrl(1))}
+                image_resource={layout_images.TOMMY_HOUSE}
+                desktop_viewport_percentage={0.42}
+                tablet_viewport_percentage={0.42}
+                mobile_viewport_percentage={0.42}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+                alt_text="house tommy"
+            />
+        </div>
+        <div class="mango-gallery-image" id="smg-development-house-one" use:registerAnimatedComponent={development_house_one_animation_frames}>
+            <InteractiveImage
+                on:image-clicked={() => setRenderMedia(layout_images.DEVELOPMENT_HOUSE_ONE.getUrl(1))}
+                image_resource={layout_images.DEVELOPMENT_HOUSE_ONE}
+                desktop_viewport_percentage={0.42}
+                tablet_viewport_percentage={0.42}
+                mobile_viewport_percentage={0.42}
+                overlay_color="var(--theme-color)"
+                max_overlay_opacity={0.5}
+                alt_text="house in development"
+            />
+        </div>
         {#if gallery_scroll_progress > 0.54}
             <p id="smg-gallery-caption" transition:fade={{ duration: 700, delay: 200 }}>
                 {gallery_text}
@@ -325,7 +346,7 @@
         z-index: var(--z-index-1);
     }
 
-    .mango-gallery-image {
+    :global(.mango-gallery-image img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
