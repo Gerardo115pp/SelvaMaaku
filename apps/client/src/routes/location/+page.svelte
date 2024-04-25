@@ -9,3 +9,9 @@ import LocationHeader from "@pages/Location/sections/LocationHeader.svelte";
     <LocationBenefits />
     <LocationTown />
 </main>
+
+<style>
+    main#smk-location-page {
+        container-type: inline-size;
+    }
+</style>

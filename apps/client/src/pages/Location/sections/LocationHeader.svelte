@@ -123,8 +123,14 @@
     /*=============================================
     =            Mobile            =
     =============================================*/
+
+        @container (width >= 620px) and (width <= 880px) {
+            #smk-lp-header {
+                gap: var(--spacing-6);
+            }        
+        }
     
-        @container (width <= 768px) {
+        @container (width <= 880px) {
             #smk-lph-content {
                 width: 100%;
                 max-width: none;
