@@ -1,6 +1,6 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
-    import { layout_images } from "@stores/layout"
+    import { layout_images, layout_properties } from "@stores/layout"
     import ContactForm from "../sub-components/contact_form.svelte";
 </script>
 
@@ -11,7 +11,7 @@
         />
     </div>
     <div id="smk-cph-content-wrapper" class="design-content-width" class:adebug={false}>
-        <div class="wixarica-icons-large">
+        <div class="wixarica-icons-large" class:hide-on-mobile={$layout_properties.IS_MOBILE}>
             <WixaricaIcon />
         </div>
         <header id="smk-cph-header" role="banner">
@@ -27,7 +27,7 @@
                 </p>
             </hgroup>
         </header>
-        <div class="wixarica-icons wixarica-icons-large">
+        <div class="wixarica-icons wixarica-icons-large" class:hide-on-mobile={$layout_properties.IS_MOBILE}>
             <WixaricaIcon />
         </div>
     </div>
@@ -65,6 +65,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        container-type: inline-size;
         padding: var(--spacing-5) 0;
         row-gap: var(--spacing-5);
     }
@@ -173,6 +174,63 @@
 
     
     /*=====  End of Contact section  ======*/
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+        @media only screen and (max-width:768px) {
+            #smk-cp-header-section {
+                padding: var(--spacing-5) var(--spacing-2);
+                row-gap: var(--spacing-4);
+            }
+        }
+
+        @container (width <= 768px) {
+            #smk-cph-content-wrapper {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+            }
+
+            #smk-cph-wixarica-underlay {
+                bottom: auto;
+                top: 10dvh;
+                left: 50%;
+                width: 181.632cqw;
+                transform: translateX(-50%);
+            }
+
+            #smk-cph-header .smk-selvamaaku-logo-wrapper {
+                width: 61.73469cqw;
+            }
+
+            #smk-cph-header hgroup#smk-cp-header-headlines h1#smk-cp-headline {
+                font-size: calc(var(--font-size-h1) * 0.99);
+            }
+
+            #smk-cp-contact-information-column {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                flex-direction: column;
+                row-gap: var(--spacing-4);
+            }
+
+            #contact-section-info {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                flex-direction: column-reverse;
+                row-gap: var(--spacing-5);
+            }
+
+            #smk-cp-contact-form-column {
+                width: 100%;
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
     
     
     

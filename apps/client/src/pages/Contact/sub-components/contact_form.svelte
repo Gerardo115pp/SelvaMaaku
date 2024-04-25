@@ -100,4 +100,19 @@
     .smk-cform-field textarea {
         resize: none;
     }
+
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 800px) {
+            .smk-cform-field span {
+                font-size: var(--font-size-h3);
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
