@@ -141,6 +141,7 @@
     style:width={player_width}
     style:height={player_height}
     class:is-playing={$is_playing}
+    class:video-size-fixed={!(player_height === 'auto' || player_width === 'auto')}
     class:is-loaded={is_loaded}
     class:is-loading={!is_loaded && video_url !== '' && $is_playing}
     bind:this={video_player}
@@ -172,7 +173,6 @@
     {:else if is_loaded}
         <video 
             bind:this={video_element}
-            class:video-size-fixed={!(player_height === 'auto' || player_width === 'auto')}
             src="{video_url}"
             autoplay
             loop
@@ -192,7 +192,7 @@
         pointer-events: none;
     }
 
-    .video-player-component video.video-size-fixed {
+    .video-player-component.video-size-fixed video {
         width: 100cqw;
         height: 100cqh;
         object-fit: cover;
@@ -214,7 +214,7 @@
             display: grid;
             grid-template: 
                 "vps vps vps" auto
-                "vpc vpc vpc" 10%
+                "vpc vpc vpc" 7%
             ;
             justify-items: center;
             align-items: center;
@@ -282,4 +282,22 @@
         user-select: none;
         pointer-events: none;
     }
+    
+    
+    /*=============================================
+    =            Mobile            =
+    =============================================*/
+    
+        @container (width <= 750px) {
+            .video-player-controls-overlay {
+                grid-template: 
+                    "vps vps vps" auto
+                    "vpc vpc vpc" 10%
+                ;            
+            }
+        }
+    
+    /*=====  End of Mobile  ======*/
+    
+    
 </style>
