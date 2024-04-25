@@ -390,7 +390,7 @@
     =            Mobile            =
     =============================================*/
     
-        @container (width <= 768px) {
+        @container (width <= 950px) {
             #smk-models-gallery {
                 position: relative;
                 width: 100cqw;

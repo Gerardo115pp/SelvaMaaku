@@ -162,7 +162,7 @@
     =            Mobile            =
     =============================================*/
     
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 888px) {
             #smk-hbs-io-headline {
                 text-align: center;
                 line-height: 1;

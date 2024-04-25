@@ -209,12 +209,30 @@
             }
 
             .mango-seal-underlay-wrapper {
-                top: 50%;
+                top: 30%;
+                right: -7cqw;
+            }
+
+            .mango-seal-underlay-wrapper img {  
+                width: 70cqw;
             }
             
-            .mango-seal-underlay-wrapper img {  
-                width: 100cqw;
+        }
+
+        @container (width <= 500px) {
+            #smk-amenities-section .mango-seal-underlay-wrapper {
+                top: 40%;
             }
+                
+            #smk-amenities-section .mango-seal-underlay-wrapper img {  
+                width: 90cqw;
+            }
+        }
+
+        @container (width < 400px) {
+            #smk-amenities-section .mango-seal-underlay-wrapper {
+                top: 54%;
+            }            
         }
     
     /*=====  End of Mobile   ======*/

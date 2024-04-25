@@ -156,15 +156,32 @@
     /*=============================================
     =            Mobile            =
     =============================================*/
+
+        @media (768px < width <= 1350px) {
+            #smk-house-models-section #smk-hms-content-wrapper {
+                row-gap: var(--spacing-5);
+            }
+
+            #smk-hms-cw-gallery-column {
+                container-type: inline-size;
+                width: min(500px, 100%);
+            }
+        }
     
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 950px) {
             #smk-hms-content-wrapper {
                 flex-direction: column;
                 row-gap: var(--spacing-4);
+                align-items: center;
             }
 
             hgroup#smk-hms-cw-tc-models-information h3 {
                 font-size: var(--font-size-h1);
+            }
+
+            #smk-hms-cw-gallery-column {
+                container-type: inline-size;
+                width: min(400px, 100%);
             }
         } 
     
