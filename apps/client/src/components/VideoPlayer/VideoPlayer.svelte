@@ -170,7 +170,13 @@
             <img src="{poster_media.getUrl(poster_threshold)}" alt="{alt_text}">
         </div>
     {:else if is_loaded}
-        <video bind:this={video_element} src="{video_url}" autoplay loop>
+        <video 
+            bind:this={video_element}
+            class:video-size-fixed={!(player_height === 'auto' || player_width === 'auto')}
+            src="{video_url}"
+            autoplay
+            loop
+        >
             <track kind="captions"/>
         </video>
     {/if}
@@ -186,6 +192,14 @@
         pointer-events: none;
     }
 
+    .video-player-component video.video-size-fixed {
+        width: 100cqw;
+        height: 100cqh;
+        object-fit: cover;
+        object-position: center;
+    }
+
+
     
     /*=============================================
     =            Controls overlay            =
@@ -200,7 +214,7 @@
             display: grid;
             grid-template: 
                 "vps vps vps" auto
-                "vpc vpc vpc" 7%
+                "vpc vpc vpc" 10%
             ;
             justify-items: center;
             align-items: center;
