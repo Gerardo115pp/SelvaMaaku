@@ -162,6 +162,11 @@
         letter-spacing: -2.2%;
     }
 
+    @supports not (color: rgb(from white r g b)) {
+        #smk-hbs-information-overlay {
+            background-color: #12241e6c;
+        }
+    }
     
     /*=============================================
     =            Mobile            =

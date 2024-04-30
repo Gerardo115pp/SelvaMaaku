@@ -159,8 +159,8 @@
             <div class="video-player-controls">
                 <VideoController 
                     bind:video_element
-                    controller_background_color="hsl(from var(--theme-color-darker) h s l / 0.95)"
-                    theme_color="hsl(from var(--theme-color) h calc(s * 1.1) 30%)"
+                    controller_background_color={CSS.supports('color', 'rgb(from white r g b)') ? "hsl(from var(--theme-color-darker) h s l / 0.95)" : '#0d1c17d9'}
+                    theme_color={CSS.supports('color', 'rgb(from white r g b)') ? "hsl(from var(--theme-color) h calc(s * 1.1) 30%)" : '#013e1c'}
                     {is_playing}
                 />
             </div>

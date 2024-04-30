@@ -286,6 +286,16 @@
             stroke-width: 1px;
             stroke-linecap: round;
         }
+
+        @supports not (color: rgb(from white r g b)) {
+            path.lvc-pbt-tb-empty-track {
+                stroke: color-mix(in srgb, var(--player-theme-color), rgba(0, 0, 0, 0.39) 95%);
+            }
+
+            path.lvc-pbt-tb-progress-track {
+                stroke: color-mix(in srgb, var(--player-theme-color), rgba(255, 255, 255, 1) 15%);
+            }
+        }
     
     /*=====  End of Progress bar  ======*/
     
@@ -321,6 +331,13 @@
 
         svg.libery-vpc-mute-button {
             scale: 1 0.7 1;
+        }
+
+        @supports not (color: rgb(from white r g b)) {
+            path.outline-path, path.outline-path.thin {
+                stroke-width: 1.5px;
+                stroke: color-mix(in srgb, var(--player-theme-color), rgb(255, 255, 255) 20%);
+            }
         }
 
     

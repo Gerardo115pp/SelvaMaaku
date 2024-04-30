@@ -113,4 +113,21 @@
             fill: hsl(from var(--theme-color) h calc(s * 1.2) 40% / 1);
         }
     }
+
+    @supports not (color: rgb(from white r g b)) {
+        
+
+        .play-state-controller-btn circle {
+            fill: #b7bfbc42;
+        }
+
+        .play-state-controller-btn path {
+            fill: color-mix(in srgb, var(--theme-color), rgba(255, 255, 255, 0.39) 10%);
+            opacity: 0.8;
+        }
+
+        .play-state-controller-btn:has(circle:hover) path {
+            fill: color-mix(in srgb, var(--theme-color), green 10%);
+        }
+    }
 </style>
