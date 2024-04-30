@@ -3,7 +3,7 @@
     import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
-<form action="" id="smk-contact-form">    
+<form action="/contact?/submit" id="smk-contact-form" method="POST">
     <label class="smk-cform-field">
         <span>
             {$site_language !== supported_languages.SPANISH ? "Name" : "Nombre"}
@@ -11,7 +11,9 @@
         <div class="smk-cform-field-input-wrapper">
             <input 
                 type="text"
+                name="name"
                 placeholder={$site_language !== supported_languages.SPANISH ? "Your name" : "Tu nombre"}
+                required
             >
         </div>
     </label>
@@ -25,8 +27,10 @@
                 <path d="M18.3337 2.99992C18.3337 2.08325 17.5837 1.33325 16.667 1.33325H3.33366C2.41699 1.33325 1.66699 2.08325 1.66699 2.99992M18.3337 2.99992V12.9999C18.3337 13.9166 17.5837 14.6666 16.667 14.6666H3.33366C2.41699 14.6666 1.66699 13.9166 1.66699 12.9999V2.99992M18.3337 2.99992L10.0003 8.83325L1.66699 2.99992" stroke="black" stroke-opacity="0.48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>            
             <input 
-                type="email" 
+                type="email"
+                name="email"
                 placeholder={$site_language !== supported_languages.SPANISH ? "Your email" : "Tu correo electrónico"}
+                required
             >
         </div>
     </label>
@@ -41,7 +45,9 @@
             </svg>
             <input 
                 type="tel" 
+                name="phone"
                 placeholder={$site_language !== supported_languages.SPANISH ? "Please include you'r country code" : "Por favor incluye tu código de país"}
+                required
             >
         </div>
     </label>
@@ -51,11 +57,12 @@
             {$site_language !== supported_languages.SPANISH ? "Message" : "Mensaje"}
         </span>
         <div class="smk-cform-field-input-wrapper">
-            <textarea></textarea>
+            <textarea name="message"></textarea>
         </div>
     </label>
     <ThemeButton 
         text={$site_language !== supported_languages.SPANISH ? "Send" : "Enviar"}
+        button_type="submit"
         is_button_one
     />
 </form>
@@ -104,6 +111,8 @@
         padding: 0;
         border: 0;
         background: transparent;
+        color: var(--theme-color);
+        outline: none;
     }
 
     .smk-cform-field textarea {

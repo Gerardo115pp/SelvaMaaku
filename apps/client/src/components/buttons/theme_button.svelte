@@ -45,6 +45,13 @@
          * @default true
          */
         export let animate_active_curtain = true;
+
+        /**
+         * The button type
+         * @type {string}
+         * @default "button"
+         */
+        export let button_type = "button";
     
     /*=====  End of Properties  ======*/
     
@@ -74,7 +81,7 @@
     </a>
 {:else}
     <button 
-        type="button"
+        type={button_type}
         class:button-2={!is_button_one && !is_button_three}
         class:button-1={is_button_one}
         class:button-3={is_button_three}
