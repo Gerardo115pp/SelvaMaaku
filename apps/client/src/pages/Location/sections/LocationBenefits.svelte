@@ -1,6 +1,7 @@
 <script>
     import SayulitaColorMap from "@components/icons/sayulita_color_map.svelte";
 import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
+    import { site_language, supported_languages } from "@stores/site_content";
 
 </script>
 
@@ -12,10 +13,18 @@ import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
             </div>
             <hgroup id="smk-lpb-cw-headlines">
                 <h2 id="smk-lpb-cw-headline">
-                    Five minutes from downtown
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Five minutes from downtown
+                    {:else}
+                        A cinco minutos del centro
+                    {/if}
                 </h2>
                 <div id="smk-lpb-cw-information">
-                    Selva Maakú is located just five minutes from downtown Sayulita. It offers a peaceful retreat near the town’s vibrant beaches, shops, and restaurants, combining tranquility with easy access to local amenities and culture.
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Selva Maakú is located just five minutes from downtown Sayulita. It offers a peaceful retreat near the town’s vibrant beaches, shops, and restaurants, combining tranquility with easy access to local amenities and culture.
+                    {:else}
+                        Selva Maakú se encuentra a solo cinco minutos del centro de Sayulita. Ofrece un refugio tranquilo cerca de las vibrantes playas, tiendas y restaurantes del pueblo, combinando la tranquilidad con un fácil acceso a las comodidades y la cultura locales.
+                    {/if}
                 </div>
             </hgroup>
         </div>

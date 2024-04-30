@@ -4,6 +4,7 @@
     import { layout_images, layout_properties } from "@stores/layout";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade } from "svelte/transition";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -71,7 +72,11 @@
                     <WixaricaIcon />
                 </div>
                 <h2 id="smk-hbs-io-headline" on:viewportLeave={() => setComponentVisibility(false, true)}  use:viewport>
-                    A low density Urban Residential Environment
+                    {#if $site_language !== supported_languages.SPANISH}
+                        A low density Urban Residential Environment
+                    {:else}
+                        Un entorno residencial urbano de baja densidad
+                    {/if}
                 </h2>
             </div>
         </div>

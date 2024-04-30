@@ -2,6 +2,7 @@
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import TownGallery from "../sub-components/town_gallery.svelte";
+    import { site_language, supported_languages } from "@stores/site_content";
 
 </script>
 <section id="smk-lp-town">
@@ -20,14 +21,22 @@
             </div>
             <hgroup id="smk-lpt-town-headlines">
                 <h2 id="smk-lpt-town-headline">
-                    A vibrant town 
+                    {#if $site_language !== supported_languages.SPANISH}
+                        A vibrant town 
+                    {:else}
+                        Un pueblo vibrante
+                    {/if}
                 </h2>
                 <p id="smk-lpt-town-information">
-                    Living in Sayulita provides a relaxed beach lifestyle infused with rich cultural charm. It's a place where surfing, outdoor activities, and vibrant street life blend seamlessly, offering a perfect balance of adventure and tranquility in a beautiful coastal setting.
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Living in Sayulita provides a relaxed beach lifestyle infused with rich cultural charm. It's a place where surfing, outdoor activities, and vibrant street life blend seamlessly, offering a perfect balance of adventure and tranquility in a beautiful coastal setting.
+                    {:else}
+                        Vive en Sayulita ofrece un estilo de vida relajado en la playa, infundido con un rico encanto cultural. Es un lugar donde el surf, las actividades al aire libre y la vibrante vida callejera se mezclan perfectamente, ofreciendo un equilibrio perfecto entre aventura y tranquilidad en un hermoso entorno costero.
+                    {/if}
                 </p>
             </hgroup>
             <ul id="smk-lpt-town-ctas-container">
-                <li class="smk-lpt-town-cta">
+                <li class="smk-lpt-town-cta" style:display="none">
                     <ThemeButton text="Life in Sayulita" href="/life-in-sayulita" is_button_three/>
                 </li>
             </ul>

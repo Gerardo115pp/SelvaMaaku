@@ -1,6 +1,7 @@
 <script>
     import Carousel from "@components/carousel/carousel.svelte";
     import { layout_images, layout_properties } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -46,13 +47,25 @@
     <div id="smk-hmph-content-wrapper" class="design-content-width">
         <hgroup id="smk-hmph-headlines">
             <span class="small-headline">
-                MODELS
+                {#if $site_language !== supported_languages.SPANISH}
+                    MODELS
+                {:else}
+                    MODELOS
+                {/if}
             </span>
             <h1 id="smk-hmph-headline">
-                Your house in the jungle
+                {#if $site_language !== supported_languages.SPANISH}
+                    Your house in the jungle
+                {:else}
+                    Tu casa en la selva
+                {/if}
             </h1>
             <p id="smk-hmph-subheadline">
-                This unique place where the sun shines bright every day, you will be able to contemplate incredible views of the jungle. The natural light and the shine of the minerals embedded in the stone materials of the area are the inspiration for the design of the 14 houses that make up this exclusive development.
+                {#if $site_language !== supported_languages.SPANISH}
+                    This unique place where the sun shines bright every day, you will be able to contemplate incredible views of the jungle. The natural light and the shine of the minerals embedded in the stone materials of the area are the inspiration for the design of the 14 houses that make up this exclusive development.
+                {:else}
+                    Este lugar único donde el sol brilla con fuerza todos los días, podrás contemplar increíbles vistas de la selva. La luz natural y el brillo de los minerales incrustados en los materiales pétreos de la zona son la inspiración para el diseño de las 14 casas que conforman este exclusivo desarrollo.
+                {/if}
             </p>
         </hgroup>
     </div>

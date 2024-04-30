@@ -1,18 +1,31 @@
 <script>
     import { layout_images } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <section id="smk-ap-header">
     <header id="smk-aph-content-wrapper" role="banner">
         <hgroup id="smk-aph-cw-headlines">
             <h1 id="smk-aph-cw-headline" class="small-headline">
-                AMENITIES
+                {#if $site_language !== supported_languages.SPANISH}
+                    AMENITIES
+                {:else}
+                    AMENIDADES
+                {/if}
             </h1>
             <h2 id="smk-aph-cw-subheadline">
-                Where nature meets luxury
+                {#if $site_language !== supported_languages.SPANISH}
+                    Where nature meets luxury
+                {:else}
+                    Donde la naturaleza<br/> se combina con el lujo
+                {/if}
             </h2>
             <p id="smk-aph-cw-description">
-                Our community has been meticulously designed to cater to a diverse range of lifestyles and interests, ensuring that every day is filled with opportunities for relaxation, recreation, and socialization.
+                {#if $site_language !== supported_languages.SPANISH}
+                    Our community has been meticulously designed to cater to a diverse range of lifestyles and interests, ensuring that every day is filled with opportunities for relaxation, recreation, and socialization.
+                {:else}
+                    Nuestra comunidad ha sido meticulosamente diseñada para satisfacer una amplia gama de estilos de vida e intereses, asegurando que cada día esté lleno de oportunidades para la relajación, la recreación y la socialización.
+                {/if}
             </p>
         </hgroup>
     </header>

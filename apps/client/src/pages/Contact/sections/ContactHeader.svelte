@@ -2,6 +2,7 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_images, layout_properties } from "@stores/layout"
     import ContactForm from "../sub-components/contact_form.svelte";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <section id="smk-cp-header-section">
@@ -20,10 +21,18 @@
             </div>
             <hgroup id="smk-cp-header-headlines">
                 <h1 id="smk-cp-headline">
-                    We are ready to assist you
+                    {#if $site_language !== supported_languages.SPANISH}
+                        We are ready to assist you
+                    {:else}
+                        Estamos listos para ayudarte
+                    {/if}
                 </h1>
                 <p id="smk-cp-subheadline">
-                    Fill out this form and we will be right back at you.
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Fill out this form and we will be right back at you.
+                    {:else}
+                        Llena este formulario y nos pondremos en contacto contigo.
+                    {/if}
                 </p>
             </hgroup>
         </header>
@@ -39,15 +48,21 @@
                 </div>
                 <article id="smk-cp-contact-info" role="contentinfo">                    
                     <dl>
-                        <dt><strong>Address:</strong></dt>
+                        <dt><strong>
+                            {$site_language !== supported_languages.SPANISH ? "Address:" : "Dirección:"}
+                        </strong></dt>
                         <dd>Km 4.5 Carretera Sayulita – Punta de Mita Sayulita, Nayarit, México.</dd>
                     </dl>
                     <dl>
-                        <dt><strong>Sales and info:</strong></dt>
+                        <dt><strong>
+                            {$site_language !== supported_languages.SPANISH ? "Sales and info:" : "Ventas e información:"}
+                        </strong></dt>
                         <span>Phone +52 322 383 4788</span>
                     </dl>
                     <dl>
-                        <dt><strong>Resident attention:</strong></dt>
+                        <dt><strong>
+                            {$site_language !== supported_languages.SPANISH ? "Resident attention:" : "Atención a residentes:"}
+                        </strong></dt>
                         <span>Phone +52 322 383 4788</span>
                     </dl>
                 </article>

@@ -5,6 +5,7 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_properties } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
     import { blur, fly } from "svelte/transition";
 
     
@@ -170,16 +171,24 @@
                          SAYULITA
                      </h2>
                      <h3 id="smk-hls-cw-sayulita-subheadline">
-                         The spectacular Hidden Gem of the Riviera Nayarit
+                        {#if $site_language !== supported_languages.SPANISH}
+                             The spectacular Hidden Gem of the Riviera Nayarit
+                        {:else}
+                            La espectacular joya escondida de la Riviera Nayarit
+                        {/if}
                      </h3>
                      <p id="smk-hls-cw-sayulita-text">
-                         Sayulita, Mexico, is a vibrant and picturesque small town located on the Pacific coast in the state of Nayarit. Known for its stunning beaches, relaxed atmosphere, and rich cultural heritage.
+                        {#if $site_language !== supported_languages.SPANISH}
+                            Sayulita, Mexico, is a vibrant and picturesque small town located on the Pacific coast in the state of Nayarit. Known for its stunning beaches, relaxed atmosphere, and rich cultural heritage.
+                        {:else}
+                            Sayulita, México, es un vibrante y pintoresco pueblo ubicado en la costa del Pacífico en el estado de Nayarit. Conocido por sus impresionantes playas, ambiente relajado y rica herencia cultural.
+                        {/if}
                      </p>
                  </hgroup>
                  <ul class="smk-hls-cw-ctas-wrapper">
                      <ThemeButton 
                          href="/location"
-                         text="Location"
+                         text={$site_language !== supported_languages.SPANISH ? "Location" : "Ubicación"}
                      />
                  </ul>
              </div>

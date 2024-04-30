@@ -1,18 +1,31 @@
 <script>
     import { layout_images } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <section id="smk-development-page-header">
     <header id="smk-dp-header" class="design-content-width" role="banner">
         <hgroup id="smk-dp-header-headliners">
             <span id="smk-dp-hh-page-name" class="small-headline">
-                DEVELOPMENT
+                {#if $site_language !== supported_languages.SPANISH}
+                    DEVELOPMENT
+                {:else}
+                    DESARROLLO
+                {/if}
             </span>
             <h1 id="smk-dp-hh-page-headline">
-                Comfort and sustainability in harmony
+                {#if $site_language !== supported_languages.SPANISH}
+                    Comfort and sustainability in harmony
+                {:else}
+                    Comodidad y sostenibilidad en armonía
+                {/if}
             </h1>
             <p id="smk-dp-hh-page-subheadline">
-                Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
+                {#if $site_language !== supported_languages.SPANISH}
+                    Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
+                {:else}
+                    Selva Máaku es un desarrollo de 2.2 hectáreas que se encuentra a 800 metros de las afueras de Sayulita en la Riviera Nayarit en México. Está a 1.6 kilómetros del Océano Pacífico y en medio de una selva tropical.
+                {/if}
             </p>
         </hgroup>
     </header>

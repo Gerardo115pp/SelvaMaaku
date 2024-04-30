@@ -1,6 +1,7 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_images, layout_properties } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <section id="smk-development-page-features-section">
@@ -12,10 +13,18 @@
         </div>
         <hgroup id="smk-dp-header-headliners">
             <h2 id="smk-development-page-features-headline">
-                A low density Urban Residential Environment
+                {#if $site_language !== supported_languages.SPANISH}
+                    A low density Urban Residential Environment
+                {:else}
+                    Un entorno residencial urbano de baja densidad
+                {/if}
             </h2>
             <p id="smk-development-page-features-subheadline">
-                The architectural project contemplates only 14 houses, that along with the already existing 12 provide generous spaces for ideal gardens to cultivate green areas and reforest this space with Tommy Atkins and Keiit Mango varieties, besides Papelillo Rojo, Prickly Pear, Neem, Eardrop Tree, amongst other native species in the area.
+                {#if $site_language !== supported_languages.SPANISH}
+                    The architectural project contemplates only 14 houses, that along with the already existing 12 provide generous spaces for ideal gardens to cultivate green areas and reforest this space with Tommy Atkins and Keiit Mango varieties, besides Papelillo Rojo, Prickly Pear, Neem, Eardrop Tree, amongst other native species in the area.
+                {:else}
+                    El proyecto arquitectónico contempla únicamente 14 casas, que junto con las 12 ya existentes brindan espacios generosos para jardines ideales para cultivar áreas verdes y reforestar este espacio con variedades de Mango Tommy Atkins y Keiit, además de Papelillo Rojo, Nopal, Neem, Oreja de Burro, entre otras especies nativas de la zona.
+                {/if}
             </p>
         </hgroup>
     </header>

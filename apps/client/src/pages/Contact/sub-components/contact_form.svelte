@@ -1,20 +1,24 @@
 <script>
     import ThemeButton from "@components/buttons/theme_button.svelte";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <form action="" id="smk-contact-form">    
     <label class="smk-cform-field">
-        <span>Name</span>
+        <span>
+            {$site_language !== supported_languages.SPANISH ? "Name" : "Nombre"}
+        </span>
         <div class="smk-cform-field-input-wrapper">
             <input 
                 type="text"
-                placeholder="Your name"
+                placeholder={$site_language !== supported_languages.SPANISH ? "Your name" : "Tu nombre"}
             >
         </div>
     </label>
     <label class="smk-cform-field">
         <span>
-            Email
+            <!-- Email -->
+            {$site_language !== supported_languages.SPANISH ? "Email" : "Correo electrónico"}
         </span>
         <div class="smk-cform-field-input-wrapper">
             <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,13 +26,14 @@
             </svg>            
             <input 
                 type="email" 
-                placeholder="Your email"
+                placeholder={$site_language !== supported_languages.SPANISH ? "Your email" : "Tu correo electrónico"}
             >
         </div>
     </label>
     <label class="smk-cform-field">
         <span>
-            Phone(width country code)
+            <!-- Phone(width country code) -->
+            {$site_language !== supported_languages.SPANISH ? "Phone(width country code)" : "Teléfono(con código de país)"}
         </span>
         <div class="smk-cform-field-input-wrapper">
             <svg viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,19 +41,23 @@
             </svg>
             <input 
                 type="tel" 
-                placeholder="Please include you'r country code"
+                placeholder={$site_language !== supported_languages.SPANISH ? "Please include you'r country code" : "Por favor incluye tu código de país"}
             >
         </div>
     </label>
     <label class="smk-cform-field">
         <span>
-            Message
+            <!-- Message -->
+            {$site_language !== supported_languages.SPANISH ? "Message" : "Mensaje"}
         </span>
         <div class="smk-cform-field-input-wrapper">
             <textarea></textarea>
         </div>
     </label>
-    <ThemeButton text="Send" is_button_one/>
+    <ThemeButton 
+        text={$site_language !== supported_languages.SPANISH ? "Send" : "Enviar"}
+        is_button_one
+    />
 </form>
 
 <style>

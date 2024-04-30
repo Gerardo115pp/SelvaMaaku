@@ -5,6 +5,7 @@
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade } from "svelte/transition";
     import { writable } from "svelte/store";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -67,13 +68,25 @@
             use:viewport={{height_offset: 0.8}}
         >
             <h2 id="smk-as-headline" class="small-headline">
-                AMENITIES
+                {#if $site_language !== supported_languages.SPANISH}
+                    AMENITIES
+                {:else}
+                    AMENIDADES
+                {/if}
             </h2>
             <h3 id="smk-as-subheadline">
-                Where nature meets luxury
+                {#if $site_language !== supported_languages.SPANISH}
+                    Where nature meets luxury
+                {:else}
+                    Donde la naturaleza se combina con el lujo
+                {/if}
             </h3>
             <p id="smk-as-description">
-                Our community has been meticulously designed to cater to a diverse range of lifestyles and interests, ensuring that every day is filled with opportunities for relaxation, recreation, and socialization.
+                {#if $site_language !== supported_languages.SPANISH}
+                     Our community has been meticulously designed to cater to a diverse range of lifestyles and interests, ensuring that every day is filled with opportunities for relaxation, recreation, and socialization.
+                {:else}
+                    Nuestra comunidad ha sido meticulosamente diseñada para satisfacer una amplia gama de estilos de vida e intereses, asegurando que cada día esté lleno de oportunidades para la relajación, la recreación y la socialización.
+                {/if}
             </p>
         </hgroup>           
         <div id="smk-as-gallery-wrapper">
@@ -84,7 +97,7 @@
         </div>
         <ul id="smk-as-ctas-container">
             <ThemeButton 
-                text="Explore"
+                text={$site_language !== supported_languages.SPANISH ? "Explore" : "Explorar"}
                 href="/amenities"
                 is_button_three
             />

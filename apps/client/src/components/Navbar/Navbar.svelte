@@ -6,6 +6,7 @@
     import { layout_images, layout_properties } from "@stores/layout";
     import { writable } from "svelte/store";
     import DropdownMenu from "./sub-components/DropdownMenu.svelte";
+    import { setSiteLanguage, site_language, supported_languages } from "@stores/site_content";
     
     /*=============================================
     =            Properties            =
@@ -14,6 +15,7 @@
         /**
          * @typedef {Object} NavbarSections
          * @property {string} name
+         * @property {string} es_name
          * @property {string} href
          * @property {NavbarSections[]} options 
         */
@@ -22,30 +24,36 @@
         let dropdown_sections = [
             {
                 name: 'Home',
+                es_name: 'Inicio',
                 href: '/',
                 options: []
             },
             {
                 name: 'Development',
+                es_name: 'Desarrollo',
                 href: '/development',
                 options: []
             },
             {
                 name: 'Location',
+                es_name: 'Ubicación',
                 href: '/location',
                 options: []
             },
             {
                 name: 'Models',
+                es_name: 'Modelos',
                 href: '/house-models',
                 options: []
             },
             {
                 name: 'Amenities',
+                es_name: 'Amenidades',
                 href: '/amenities',
                 options: []
             }
         ]
+
 
         /**
          * Whether the dropdown menu is opened or not
@@ -74,6 +82,18 @@
         const toggleDropdown = () => {
             is_dropdown_open.set(!$is_dropdown_open);
         }
+
+
+        /**
+         * Handles the language change
+         * @param {Event} event
+         */
+        const handleLanguageChange = event => {
+            const new_language = event.target.value;
+
+            setSiteLanguage(new_language);
+        }
+        
     
     /*=====  End of Methods  ======*/
     
@@ -102,18 +122,21 @@
                 {@const is_active_link = $page.url.pathname === nav_option.href}
                 <li class="nav-option-wrapper" class:is-active-link={is_active_link}>
                     <a href="{nav_option.href}" class="smk-link">
-                        {nav_option.name}
+                        {$site_language !== supported_languages.SPANISH ? nav_option.name : nav_option.es_name}
                     </a>
                 </li>
             {/each}
         </menu>
         <div id="sn-cta-section">
-            <select name="language-controller" id="language-controller">
-                <option value="en">EN</option>
-                <option value="es">ES</option>
+            <select name="language-controller" id="language-controller" on:change={handleLanguageChange}>
+                {#each Object.values(supported_languages) as locale}
+                    <option value={locale} selected={locale === $site_language}>
+                        {locale.toUpperCase()}
+                    </option>
+                {/each}
             </select>
             <ThemeButton 
-                text="Contact us"
+                text={$site_language !== supported_languages.SPANISH ? "Contact us" : "Contactanos"}
                 is_button_one
                 href="/contact"
             />
@@ -243,9 +266,6 @@
     
     /*=====  End of Logo  ======*/
     
-    
-
-    
     /*=============================================
     =            Navoptions            =
     =============================================*/
@@ -281,6 +301,31 @@
             align-items: center;
             gap: var(--spacing-2);
             margin-left: auto;
+        }
+
+        select#language-controller {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-family: var(--font-titles);
+            font-size: var(--font-size-1);
+
+            & option {
+                background: var(--theme-hero-background);
+                color: white;
+                border: none;
+                padding: var(--spacing-1);
+            }
+
+            & option:checked {
+                background: var(--light-orange);
+                color: var(--theme-hero-background);
+            }
+
+            & option:hover, & option:focus {
+                background: var(--accent-orange);
+            }
         }
     
     /*=====  End of cta section  ======*/

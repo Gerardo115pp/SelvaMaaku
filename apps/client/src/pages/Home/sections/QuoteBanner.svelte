@@ -1,6 +1,7 @@
 <script>
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
+    import { site_language, supported_languages } from "@stores/site_content";
     import { writable } from "svelte/store";
     import { fade } from "svelte/transition";
 
@@ -55,11 +56,19 @@
         >
             {#if $component_visible}
                  <h2 id="smk-qbs-qi-quote" transition:fade={{duration: entry_animation_duration, delay: entry_animation_duration * 0.4}}>
-                     Is there a reward greater than life?
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Is there a reward greater than life?
+                    {:else}
+                        ¿Hay alguna recompensa mayor que la vida?
+                    {/if}
                  </h2>
                  <footer transition:fade={{duration: entry_animation_duration, delay: entry_animation_duration * 1.3}}>
                      <cite id="smk-qbs-quote-source">
-                         From the book Life of Pi by Yann Martel
+                        {#if $site_language !== supported_languages.SPANISH}
+                            From the book Life of Pi by Yann Martel
+                        {:else}
+                            Del libro Vida de Pi de Yann Martel
+                        {/if}
                      </cite>
                  </footer>
             {/if}

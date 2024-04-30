@@ -5,8 +5,26 @@
     import PageTopGradient from "@components/Ui_decorations/page_top_gradient.svelte";
     import ImageDisplayerOverlay from "@components/Images/ImageDisplayerOverlay.svelte";
     import { hasChangedLayout, defineLayout } from "@stores/layout";
+    import { setSiteLanguage } from "@stores/site_content";
     import { browser } from "$app/environment";
     import { onMount } from "svelte";
+
+    
+    /*=============================================
+    =            Properties            =
+    =============================================*/
+    
+        /** @type {import('./$types').LayoutData} */
+        export let data;
+
+        /** @type {string} */
+        let site_detected_language = data.language ?? "en";
+
+        setSiteLanguage(site_detected_language);
+    
+    /*=====  End of Properties  ======*/
+    
+    
 
     onMount(() => {
         defineLayout();

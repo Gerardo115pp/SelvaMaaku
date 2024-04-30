@@ -2,6 +2,7 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import Mexico from "@components/icons/mexico.svelte";
     import SayulitaMap from "@components/icons/sayulita_map.svelte";
+    import { site_language, supported_languages } from "@stores/site_content";
 </script>
 
 <section id="smk-lp-header">
@@ -16,10 +17,18 @@
                 SAYULITA
             </h1>
             <h2 id="smk-lph-location-slogan">
-                The spectacular Hidden Gem of the Riviera Nayarit
+                {#if $site_language !== supported_languages.SPANISH}
+                    The spectacular Hidden Gem of the Riviera Nayarit
+                {:else}
+                    La espectacular joya escondida de la Riviera Nayarit
+                {/if}
             </h2>
             <p id="smk-lph-location-description">
-                Sayulita, Mexico, is a vibrant and picturesque small town located on the Pacific coast in the state of Nayarit. Known for its stunning beaches, relaxed atmosphere, and rich cultural heritage.
+                {#if $site_language !== supported_languages.SPANISH}
+                    Sayulita, Mexico, is a vibrant and picturesque small town located on the Pacific coast in the state of Nayarit. Known for its stunning beaches, relaxed atmosphere, and rich cultural heritage.
+                {:else}
+                    Sayulita, México, es un vibrante y pintoresco pueblo ubicado en la costa del Pacífico en el estado de Nayarit. Conocido por sus impresionantes playas, ambiente relajado y rica herencia cultural.
+                {/if}
             </p>
             <div id="smk-lph-underlay-wrapper">
                 <WixaricaIcon is_flat_color opacity={0.3}/> 

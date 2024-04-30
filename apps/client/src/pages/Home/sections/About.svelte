@@ -7,6 +7,7 @@
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade, slide } from "svelte/transition";
     import { expoIn } from "svelte/easing";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -24,7 +25,8 @@
          * The text to display in the gallery
          * @type {string}
          */
-        let gallery_text = "The word Máaku means MANGO in the Wixárika language that is spoken by the original towns in the area.";
+        let gallery_text = $site_language !== supported_languages.SPANISH ? "The word Máaku means MANGO in the Wixárika language that is spoken by the original towns in the area." : 
+            "La palabra Máaku significa MANGO en la lengua Wixárika que es hablada por los pueblos originarios de la zona."; 
     
     /*=====  End of Properties  ======*/
 
@@ -57,15 +59,23 @@
                     <WixaricaIcon with_accent/>
                 </div>
                 <h2 id="smk-has-cw-tc-about-headline" in:fade={{ delay:500, duration:1500}}>
-                    Comfort and sustainability in harmony.
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Comfort and sustainability in harmony.
+                    {:else}
+                        Comodidad y sostenibilidad en armonía.
+                    {/if}
                 </h2>
                 <p id="smk-has-cw-tc-about-text" in:fade={{ delay:700, duration:1500}}>
-                    Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
+                    {#if $site_language !== supported_languages.SPANISH}
+                        Selva Máaku is a 5.4 acres development that is located half a mile from the outskirts of Sayulita on the Nayarit Riviera in Mexico. It is one mile away from the Pacific Ocean and in the midst of a tropical jungle.
+                    {:else}
+                        Selva Máaku es un desarrollo de 2.2 hectáreas que se encuentra a 800 metros de las afueras de Sayulita en la Riviera Nayarit en México. Está a 1.6 kilómetros del Océano Pacífico y en medio de una selva tropical.
+                    {/if}
                 </p>
                 <div class="smk-has-cw-tc-about-cta-wrapper" in:fade={{ delay: 1000, duration:1500}}>
                     <ThemeButton 
                         href="/development"
-                        text="Development"
+                        text={$site_language !== supported_languages.SPANISH ? "Development" : "Desarrollo"}
                     />
                 </div>
             {/if}

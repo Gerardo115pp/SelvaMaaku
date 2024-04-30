@@ -1,5 +1,6 @@
 <script>
     import { layout_images, layout_properties } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import HeroVideo from "../sub-components/hero_video.svelte";
 
@@ -22,7 +23,6 @@
              * @type {number}
              */
             const mouse_tracking_factor = 10;            
-
 
             /**
              * Whether the mouse position variable is locked
@@ -114,7 +114,11 @@
                 <WixaricaIcon opacity={0.4}/>
             </div>
             <h1 id="smk-hero-headline">
-                Living where Jungle Bliss<br/>Meets Coastal Luxury
+                {#if $site_language === supported_languages.SPANISH}
+                     Vive donde la Selva se<br/>Encuentra con el Lujo Costero
+                {:else}
+                     Living where Jungle Bliss<br/>Meets Coastal Luxury
+                {/if}
             </h1>
             <div 
                 class="wixarica-decoration smk-hp-particle-wrapper"
@@ -127,7 +131,11 @@
         </div>
         <div id="smk-hero-subheadline-wrapper">
             <p id="smk-hero-subheadline">
-                Live in the most exclusive house development in the jungle outside Sayulita, Mexico.
+                {#if $site_language !== supported_languages.SPANISH}
+                    Live in the most exclusive house development in the jungle outside Sayulita, Mexico.
+                {:else}
+                    Vive en el desarrollo de casas más exclusivo en la jungla a las afueras de Sayulita, México.
+                {/if}
             </p>
         </div>
     </header>
@@ -245,11 +253,25 @@
             }
 
             #smk-hero-section .wixarica-underlay {
-                /* width: 222vw; */
-                scale: 2.22;
-                /* max-width: none; */
                 transform-origin: 0 0;
+                max-width: 100vw;
+                width: 100vw;
+                left: 0;
+                overflow: hidden;
+                transform: none;
             }
+
+            #smk-hero-section .smk-hp-particle-wrapper {
+                --mobile-wixarica-size: 200vw;
+    
+                width: var(--mobile-wixarica-size);
+                translate: calc(var(--mobile-wixarica-size) * -0.25) 0 0;
+                transform-origin: left center;
+                transform-box: fill-box;
+            }
+
+            /* :global(#smk-hero-section .wixarica-underlay svg) {
+            } */
 
             #combination-mark-wrapper img {
                 width: 51.282dvw;

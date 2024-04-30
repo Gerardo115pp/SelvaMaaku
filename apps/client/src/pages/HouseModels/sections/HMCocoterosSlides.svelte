@@ -3,6 +3,7 @@
     import { layout_images, layout_properties } from "@stores/layout";
     import Carousel from "@components/carousel/carousel.svelte";
     import { CarouselItem } from "@components/carousel/types";
+    import { site_language, supported_languages } from "@stores/site_content";
     
     
     /*=============================================
@@ -30,7 +31,11 @@
         </div>
         <div id="smk-hmpcs-slides-wrapper">
             <h2 id="smk-hmpcs-carousel-title">
-                Cocoteros House Model
+                {#if $site_language !== supported_languages.SPANISH}
+                    Cocoteros House Model
+                {:else}
+                    Casa Cocoteros
+                {/if}
             </h2>
             {#if !$layout_properties.IS_MOBILE}
                 <Carousel 

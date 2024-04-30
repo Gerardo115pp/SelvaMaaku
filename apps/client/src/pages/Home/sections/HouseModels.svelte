@@ -5,6 +5,7 @@
     import viewport from "@components/viewport_actions/useViewportActions";
     import { fade, slide } from "svelte/transition";
     import { elasticOut, sineOut } from "svelte/easing";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -69,16 +70,24 @@
                         MODELS
                     </h2>
                     <h3 id="smk-hms-cw-tc-models-subheadline" transition:fade={{delay: entry_animation_duration / 3, easing: easing_function, duration: entry_animation_duration * 0.7}}>
-                        Your house<br/>in the jungle
+                        {#if $site_language !== supported_languages.SPANISH}
+                            Your house<br/>in the jungle
+                        {:else}
+                            Tu casa<br/>en la selva
+                        {/if}
                     </h3>
                     <p id="smk-hms-cw-tc-models-text" transition:fade={{delay: entry_animation_duration / 2, duration: entry_animation_duration * 0.7}}>
-                        This unique place where the sun shines bright every day, you will be able to contemplate incredible views of the jungle. The natural light and the shine of the minerals embedded in the stone materials of the area are the inspiration for the design of the 14 houses that make up this exclusive development.
+                        {#if $site_language !== supported_languages.SPANISH}
+                            This unique place where the sun shines bright every day, you will be able to contemplate incredible views of the jungle. The natural light and the shine of the minerals embedded in the stone materials of the area are the inspiration for the design of the 14 houses that make up this exclusive development.
+                        {:else}
+                            Este lugar único donde el sol brilla con fuerza todos los días, podrás contemplar increíbles vistas de la selva. La luz natural y el brillo de los minerales incrustados en los materiales de piedra de la zona son la inspiración para el diseño de las 14 casas que conforman este exclusivo desarrollo.
+                        {/if}
                     </p>
                 </hgroup>
                 <ul class="smk-hms-cw-ctas-wrapper" transition:fade={{axis: 'x', delay: entry_animation_duration, easing: easing_function, duration: entry_animation_duration * 0.7}}>
                     <ThemeButton
                         href="/house-models"
-                        text="Models"
+                        text={$site_language !== supported_languages.SPANISH ? "View models" : "Ver modelos"}
                     />
                 </ul>
             {/if}

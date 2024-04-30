@@ -2,6 +2,7 @@
     import ThemeButton from "@components/buttons/theme_button.svelte";
     import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_images, layout_properties } from "@stores/layout";
+    import { site_language, supported_languages } from "@stores/site_content";
 
     
     /*=============================================
@@ -68,14 +69,26 @@
         </div>
         <hgroup id="smk-gfs-information">
             <h2 id="smk-gfs-headline">
-                We are ready to assist you
+                {#if $site_language !== supported_languages.SPANISH}
+                    We are ready to assist you
+                {:else}
+                    Estamos listos para atenderte
+                {/if}
             </h2>
             <p id="smk-gfs-subheadline">
-                Let’s start talking about living in the paradise you will soon call home
+                {#if $site_language !== supported_languages.SPANISH}
+                    Let’s start talking about living in the paradise you will soon call home
+                {:else}
+                    Hablemos sobre vivir en el paraíso que pronto llamarás hogar
+                {/if}
             </p>
         </hgroup>
         <div id="smk-gfs-contact-cta">
-            <ThemeButton text="Contact Us" href="/contact" is_button_one/>
+            <ThemeButton 
+                href="/contact" 
+                text={$site_language !== supported_languages.SPANISH ? "Contact us" : "Contactanos"} 
+                is_button_one
+            />
         </div>
     </div>
     <footer id="smk-global-footer">
