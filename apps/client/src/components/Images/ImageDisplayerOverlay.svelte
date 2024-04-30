@@ -72,12 +72,10 @@
 
             media_element.onload = async () => {
                 is_loaded = true;
-                // await tick();
+                await tick();
                 const display = media_display.querySelector('img');
                 display.src = media_url;
-                await tick();
                 display.onload = calcCloseBtnPosition;
-                // calcCloseBtnPosition();
             }
 
             media_element.src = media_url;
