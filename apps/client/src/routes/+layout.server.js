@@ -1,11 +1,31 @@
-
-/** @type {import('./$types').PageServerLoad} */
-export const load = ({ params, request }) => {
-    const accept_language = request.headers.get('accept-language');
+/** @type {import('./$types').LayoutServerLoad} */
+export const load = (request_event) => {
+    const accept_language = request_event.request?.headers?.get('accept-language') ?? "en"; 
 
     return  {
         language: processLocaleIdentifier(accept_language),
+        is_virtual_mobile: determineIsMobile(request_event.request.headers),
     }
+}
+
+/**
+ * @param {Headers} headers
+ */
+const determineIsMobile = headers => {
+    let is_mobile = false;
+
+    let user_agent = headers.get('user-agent') ?? '';
+    user_agent = user_agent.toLowerCase();
+
+    is_mobile = user_agent.includes('mobile');
+
+    const sec_ch_ua_mobile = headers.get('sec-ch-ua-mobile') ?? '';
+
+    if (sec_ch_ua_mobile) {
+        is_mobile = sec_ch_ua_mobile === '?1';
+    }
+
+    return is_mobile;
 }
 
 const processLocaleIdentifier = identifier => {

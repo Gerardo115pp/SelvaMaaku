@@ -13,6 +13,31 @@ import { browser } from "$app/environment"
  */
 const layout_change_threshold = 0.05;
 
+/**
+ * Whether the server should assume the user is on a mobile device
+ * @type {boolean}
+ * @default false
+ */
+let is_virtual_mobile = false;
+
+/**
+ * The most common viewport sizes by device type
+ */
+const VIEWPORT_SIZES = {
+    MOBILE: {
+        WIDTH: 375,
+        HEIGHT: 667,
+    },
+    TABLET: {
+        WIDTH: 768,
+        HEIGHT: 1024
+    },
+    DESKTOP: {
+        WIDTH: 1920,
+        HEIGHT: 1080
+    }
+}
+
 let LAYOUT_PROPERTIES = {
     IS_MOBILE: false,
     MOBILE_BREAKPOINT: 768,
@@ -96,6 +121,17 @@ export function isMobile() {
 
     
     return is_mobile;
+}
+
+export function setVirtualMobile(is_mobile) {
+    is_virtual_mobile = is_mobile;
+
+
+    LAYOUT_PROPERTIES.IS_MOBILE = is_mobile;
+    LAYOUT_PROPERTIES.VIEWPORT_WIDTH = LAYOUT_PROPERTIES.IS_MOBILE ? VIEWPORT_SIZES.MOBILE.WIDTH : VIEWPORT_SIZES.DESKTOP.WIDTH;
+    LAYOUT_PROPERTIES.VIEWPORT_HEIGHT = LAYOUT_PROPERTIES.IS_MOBILE ? VIEWPORT_SIZES.MOBILE.HEIGHT : VIEWPORT_SIZES.DESKTOP.HEIGHT;
+
+    layout_properties.set(LAYOUT_PROPERTIES);
 }
 
 export const user_locale = browser ? (window.navigator.language.split("-")[0] || "en") : "en";

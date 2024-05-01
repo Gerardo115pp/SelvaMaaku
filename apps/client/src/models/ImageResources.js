@@ -1,4 +1,6 @@
 import { MEDIA_SIZES, getImageResourceUrl } from "@libs/Services/media_loaders";
+import { layout_properties } from "@stores/layout";
+import { get } from "svelte/store";
 
 export class ImageResource {
     /** 
@@ -69,8 +71,7 @@ export class ImageResource {
      * @returns {string} the appropriate postfix for the given width percentage
      */
     getPostfix(width_percentage) {
-        // TODO: Figure out how we can detect if a request is sent from a mobile or desktop device, and then define the default width accordingly
-        const default_width = 400;
+        const default_width = 400; // The website is much more performant when it first loads images at a for a viewport width of 400px. We will keep this hardcoded value as a fallback even though we are able to distinguish between a request made by a mobile and a desktop device.
         const viewport_width = globalThis.innerWidth ?? default_width; // in the browser window is the global execution context(aka 'this') by default. In Node.js, it is the global object, which does not have an innerWidth so viewport_width will default to default_width;
         const need_size = viewport_width * width_percentage;
         let appropriate_size = MEDIA_SIZES.ORIGINAL.postfix;

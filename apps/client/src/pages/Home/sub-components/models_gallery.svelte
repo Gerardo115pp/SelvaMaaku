@@ -161,7 +161,7 @@
          <!-- content here -->
         <div id="smk-mg-wixarica-top"
             class="wixarica-gallery-icon tracking-particle"
-            style:transform="translate({mouse_x * 2.3}%, {(mouse_y * 1.5)}%);"
+            style:transform="translate({mouse_x * 2.3}%, {(mouse_y * 1.5)}%)"
             in:fly={{
                 ...fly_right_transition,
                 delay: fly_right_transition.delay * 1.45,
@@ -172,7 +172,7 @@
         </div>
         <div id="smk-mg-wixarica-bottom"
             class="wixarica-gallery-icon tracking-particle"
-            style:transform="translate({mouse_x * 2.3}%, {-(mouse_y * 1.5)}%);"
+            style:transform="translate({mouse_x * 2.3}%, {-(mouse_y * 1.5)}%)"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 1.5,
@@ -184,7 +184,7 @@
         <!-- TODO: Add an alt text to the images -->
         <div id="smk-mg-keitt-house" 
             class="smk-mg-gallery-image tracking-particle"
-            style:transform="translate({-(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%);"
+            style:transform="translate({-(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%)"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 2,
@@ -192,7 +192,7 @@
             use:registersMouseTrackingParticle
         >
             <InteractiveImage 
-                on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE.getUrl(1))}
+                on:image-clicked={() => setRenderMedia(layout_images.COCOTEROS_HOUSE_SIX.getUrl(1))}
                 image_resource={layout_images.COCOTEROS_HOUSE_SIX}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={1}
@@ -210,7 +210,7 @@
             use:registersMouseTrackingParticle
         >
             <InteractiveImage 
-                on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE_TWO.getUrl(1))}
+                on:image-clicked={() => setRenderMedia(layout_images.COCOTEROS_HOUSE_THREE.getUrl(1))}
                 image_resource={layout_images.COCOTEROS_HOUSE_THREE}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={0.8}
@@ -220,7 +220,7 @@
         </div>
         <div id="smk-mg-tommy-house-three"
             class="smk-mg-gallery-image tracking-particle"
-            style:transform="translate({-(mouse_x * 0.4)}%, {-(mouse_y * 1)}%);"
+            style:transform="translate({-(mouse_x * 0.4)}%, {-(mouse_y * 1)}%)"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 1.3,
@@ -228,7 +228,7 @@
             use:registersMouseTrackingParticle
         >
             <InteractiveImage 
-                on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_THREE.getUrl(1))}
+                on:image-clicked={() => setRenderMedia(layout_images.COCOTEROS_HOUSE_SEVEN.getUrl(1))}
                 image_resource={layout_images.COCOTEROS_HOUSE_SEVEN}
                 desktop_viewport_percentage={0.3}
                 mobile_viewport_percentage={0.6}
@@ -238,7 +238,7 @@
         </div>
         <div id="smk-mg-tommy-house-four"
             class="smk-mg-gallery-image tracking-particle"
-            style:transform="translate({(mouse_x * 0.3)}%, {(mouse_y * 0.3)}%);"
+            style:transform="translate({(mouse_x * 0.3)}%, {(mouse_y * 0.3)}%)"
             in:fly={{
                 ...fly_right_transition,
                 delay: fly_right_transition.delay * 1.7,
@@ -246,7 +246,7 @@
             use:registersMouseTrackingParticle
         >
             <InteractiveImage 
-                on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_FOUR.getUrl(1))}
+                on:image-clicked={() => setRenderMedia(layout_images.COCOTEROS_HOUSE_TWO.getUrl(1))}
                 image_resource={layout_images.COCOTEROS_HOUSE_TWO}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={0.8}

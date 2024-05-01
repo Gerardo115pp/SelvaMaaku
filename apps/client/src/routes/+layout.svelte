@@ -4,7 +4,7 @@
     import Navbar from "@components/Navbar/Navbar.svelte";
     import PageTopGradient from "@components/Ui_decorations/page_top_gradient.svelte";
     import ImageDisplayerOverlay from "@components/Images/ImageDisplayerOverlay.svelte";
-    import { hasChangedLayout, defineLayout } from "@stores/layout";
+    import { hasChangedLayout, defineLayout, setVirtualMobile } from "@stores/layout";
     import { setSiteLanguage } from "@stores/site_content";
     import { browser } from "$app/environment";
     import { onMount } from "svelte";
@@ -21,6 +21,7 @@
         let site_detected_language = data.language ?? "en";
 
         setSiteLanguage(site_detected_language);
+        setVirtualMobile(data.is_virtual_mobile);
     
     /*=====  End of Properties  ======*/
     
