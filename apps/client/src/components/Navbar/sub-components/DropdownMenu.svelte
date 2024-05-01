@@ -3,6 +3,7 @@
     import { slide } from 'svelte/transition';
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { page } from "$app/stores";
+    import { site_language, supported_languages } from '@stores/site_content';
 
     
     /*=============================================
@@ -13,9 +14,11 @@
         /**
          * @typedef {Object} NavbarSections
          * @property {string} name
+         * @property {string} es_name
          * @property {string} href
          * @property {NavbarSections[]} options 
         */
+
     
         /**
          * The state of the dropdown menu(aka open or closed)
@@ -58,7 +61,7 @@
                         />
                     </div>
                     <a href="{ds.href}" on:click={() => is_open.set(false)}>
-                        {ds.name}
+                        {$site_language !== supported_languages.SPANISH ? ds.name : ds.es_name}
                     </a>
                 </li>
             {/each}
