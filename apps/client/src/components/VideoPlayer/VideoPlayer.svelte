@@ -186,6 +186,7 @@
     .video-player-component {
         position: relative;
         container-type: size;
+        background-color: var(--theme-color-darker);
     }
 
     .video-player-component video {
