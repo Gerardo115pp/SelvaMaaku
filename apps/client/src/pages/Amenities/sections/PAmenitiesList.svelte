@@ -133,6 +133,12 @@
                 white-space: nowrap;
             }
         }
+
+        @media only screen and (max-width: 480px) {
+            li.smk-amenity-item h3.smk-ai-title {
+                white-space: pre-wrap !important;
+            }
+        }
     
     /*=====  End of Mobile  ======*/
     
