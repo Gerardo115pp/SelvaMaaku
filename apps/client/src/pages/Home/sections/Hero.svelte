@@ -289,6 +289,12 @@
                 width: auto;
             }
         }
+
+        @media only screen and (max-width: 430px) and (min-width: 380px) {
+            #smk-hero-subheadline-wrapper {
+                padding: var(--spacing-1);
+            }
+        }
     
     /*=====  End of Mobile  ======*/
     

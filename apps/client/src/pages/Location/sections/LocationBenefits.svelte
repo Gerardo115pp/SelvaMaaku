@@ -97,7 +97,7 @@ import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     
         @media only screen and (max-width: 768px) {
             #smk-lp-benefits {
-                padding: var(--spacing-4) var(--spacing-2);
+                padding: var(--spacing-4) 0;
             }
 
             #smk-lpb-content-wrapper {
@@ -111,6 +111,7 @@ import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
             #smk-lpb-cw-text-column {
                 max-width: 100%;
                 width: 100%;
+                padding: 0 var(--spacing-2);
             }
 
             hgroup#smk-lpb-cw-headlines {
