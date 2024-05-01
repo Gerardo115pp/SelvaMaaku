@@ -3,7 +3,7 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_properties, layout_images } from "@stores/layout";
     import { setRenderMedia } from "@stores/media_display";
-    import { elasticOut } from "svelte/easing";
+    import { elasticOut, cubicOut } from "svelte/easing";
     import { fly } from "svelte/transition";
 
     
@@ -26,13 +26,13 @@
             * The duration of the entry animation in milliseconds
             * @type {number}
             */
-            export let entry_animation_duration = 1500;
+            export let entry_animation_duration = 400;
 
             const fly_right_transition = {
                 delay: 200,
-                duration: entry_animation_duration * 0.95,
-                easing: elasticOut,
-                x: 500,
+                duration: entry_animation_duration,
+                easing: cubicOut,
+                x: 50,
                 y: 120,
                 opacity: 0,
             }
@@ -161,7 +161,7 @@
          <!-- content here -->
         <div id="smk-mg-wixarica-top"
             class="wixarica-gallery-icon tracking-particle"
-            style="transform: translate({mouse_x * 2.3}%, {(mouse_y * 1.5)}%);"
+            style:transform="translate({mouse_x * 2.3}%, {(mouse_y * 1.5)}%);"
             in:fly={{
                 ...fly_right_transition,
                 delay: fly_right_transition.delay * 1.45,
@@ -172,7 +172,7 @@
         </div>
         <div id="smk-mg-wixarica-bottom"
             class="wixarica-gallery-icon tracking-particle"
-            style="transform: translate({mouse_x * 2.3}%, {-(mouse_y * 1.5)}%);"
+            style:transform="translate({mouse_x * 2.3}%, {-(mouse_y * 1.5)}%);"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 1.5,
@@ -184,7 +184,7 @@
         <!-- TODO: Add an alt text to the images -->
         <div id="smk-mg-keitt-house" 
             class="smk-mg-gallery-image tracking-particle"
-            style="transform: translate({-(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%);"
+            style:transform="translate({-(mouse_x * 0.1)}%, {-(mouse_y * 0.1)}%);"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 2,
@@ -193,7 +193,7 @@
         >
             <InteractiveImage 
                 on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE.getUrl(1))}
-                image_resource={layout_images.KEITT_HOUSE}
+                image_resource={layout_images.COCOTEROS_HOUSE_SIX}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={1}
                 overlay_color="var(--theme-color)"
@@ -211,7 +211,7 @@
         >
             <InteractiveImage 
                 on:image-clicked={() => setRenderMedia(layout_images.KEITT_HOUSE_TWO.getUrl(1))}
-                image_resource={layout_images.KEITT_HOUSE_TWO}
+                image_resource={layout_images.COCOTEROS_HOUSE_THREE}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={0.8}
                 overlay_color="var(--theme-color)"
@@ -220,7 +220,7 @@
         </div>
         <div id="smk-mg-tommy-house-three"
             class="smk-mg-gallery-image tracking-particle"
-            style="transform: translate({-(mouse_x * 0.4)}%, {-(mouse_y * 1)}%);"
+            style:transform="translate({-(mouse_x * 0.4)}%, {-(mouse_y * 1)}%);"
             in:fly={{
                 ...fly_left_transition,
                 delay: fly_left_transition.delay * 1.3,
@@ -229,7 +229,7 @@
         >
             <InteractiveImage 
                 on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_THREE.getUrl(1))}
-                image_resource={layout_images.TOMMY_HOUSE_THREE}
+                image_resource={layout_images.COCOTEROS_HOUSE_SEVEN}
                 desktop_viewport_percentage={0.3}
                 mobile_viewport_percentage={0.6}
                 overlay_color="var(--theme-color)"
@@ -238,7 +238,7 @@
         </div>
         <div id="smk-mg-tommy-house-four"
             class="smk-mg-gallery-image tracking-particle"
-            style="transform: translate({(mouse_x * 0.3)}%, {(mouse_y * 0.3)}%);"
+            style:transform="translate({(mouse_x * 0.3)}%, {(mouse_y * 0.3)}%);"
             in:fly={{
                 ...fly_right_transition,
                 delay: fly_right_transition.delay * 1.7,
@@ -247,7 +247,7 @@
         >
             <InteractiveImage 
                 on:image-clicked={() => setRenderMedia(layout_images.TOMMY_HOUSE_FOUR.getUrl(1))}
-                image_resource={layout_images.TOMMY_HOUSE_FOUR}
+                image_resource={layout_images.COCOTEROS_HOUSE_TWO}
                 desktop_viewport_percentage={0.4}
                 mobile_viewport_percentage={0.8}
                 overlay_color="var(--theme-color)"
@@ -257,6 +257,7 @@
         <span id="smk-mg-keitt-label"
             class="gallery-label tracking-particle"
             style="transform: translate({-(mouse_x * 0.5)}%, {-(mouse_y * 0.05)}%);"
+            style:display="none"
             in:fly={fly_right_transition}
             use:registersMouseTrackingParticle
         >
@@ -264,7 +265,8 @@
         </span>
         <span id="smk-mg-tommy-label"
             class="gallery-label tracking-particle"
-            style="transform: translate({(mouse_x * 0.5)}%, {-(mouse_y * 0.05)}%);"
+            style:transform="translate({(mouse_x * 0.5)}%, {-(mouse_y * 0.05)}%);"
+            style:display="none"
             in:fly={fly_left_transition}
             use:registersMouseTrackingParticle
         >

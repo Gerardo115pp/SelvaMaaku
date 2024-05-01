@@ -3,7 +3,7 @@
 import viewport from "@components/viewport_actions/useViewportActions";
     import { layout_images } from "@stores/layout";
     import { setRenderMedia } from "@stores/media_display";
-    import { elasticIn, elasticOut } from "svelte/easing";
+    import { cubicInOut, cubicOut, elasticIn, elasticOut } from "svelte/easing";
     import { fly } from "svelte/transition";
 
     
@@ -27,15 +27,15 @@ import viewport from "@components/viewport_actions/useViewportActions";
          * Duration of the entry animation in milliseconds
          * @type {number}
          */
-        export let entry_animation_duration = 1500;
+        export let entry_animation_duration = 800;
 
         const fly_transition_params = {
             delay: entry_animation_duration * 0.1,
             duration: entry_animation_duration,
-            y: -600,
+            y: -200,
             x: 0,
             opacity: 0,
-            easing: elasticOut
+            easing: cubicInOut,
         }
     
     /*=====  End of Properties  ======*/

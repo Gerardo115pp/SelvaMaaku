@@ -130,6 +130,8 @@ export const layout_images = {
     COCOTEROS_HOUSE_THREE: new ImageResource("houses/house_cocoteros_three.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     COCOTEROS_HOUSE_FOUR: new ImageResource("houses/house_cocoteros_four.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     COCOTEROS_HOUSE_FIVE: new ImageResource("houses/house_cocoteros_five.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
+    COCOTEROS_HOUSE_SIX: new ImageResource("houses/house_cocoteros_six.webp", MEDIA_SIZES.LARGE.postfix),
+    COCOTEROS_HOUSE_SEVEN: new ImageResource("houses/house_cocoteros_seven.webp", MEDIA_SIZES.EXTRA_LARGE.postfix),
     DEVELOPMENT_HOUSE_ONE: new ImageResource("houses/development_house_one.webp", MEDIA_SIZES.EXTRA_LARGE.postfix), 
     HOUSE_MODEL_ONE: new ImageResource("houses/house_model_one.webp", MEDIA_SIZES.MEDIUM.postfix),
     STONE_WALL: new ImageResource("misc/wixarica_wall.webp", MEDIA_SIZES.MEDIUM.postfix),
