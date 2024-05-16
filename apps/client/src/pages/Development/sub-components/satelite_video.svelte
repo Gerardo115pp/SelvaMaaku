@@ -14,6 +14,12 @@
         let video_duration_ms = 0;
 
         /**
+         * Whether the video has finished playing while in the viewport. when the element leaves the viewport, this value is reset
+         * @type {boolean}
+         */
+        let video_finished = false;
+
+        /**
          * Whether the section containing the video is visible on the user's viewport
          * @type {boolean}
          */
@@ -32,6 +38,15 @@
     =            Methods            =
     =============================================*/
 
+
+        const handleViewportLeave = () => {
+            video_finished = false;
+            shutDownVideo();
+
+            if (video_shutdown_cancelation != null) {
+                clearTimeout(video_shutdown_cancelation);
+            }
+        }
 
         /**
          * Loads the video
@@ -61,6 +76,8 @@
          * Toggles the video play state of the video
         */
         const playVideo = async () => {
+            if (video_finished) return;
+
             section_visible = true;
 
             if (!video_loaded) {
@@ -76,6 +93,7 @@
             video_shutdown_cancelation = setTimeout(() => {
                 shutDownVideo();
                 video_shutdown_cancelation = undefined;
+                video_finished = true;
             }, video_duration_ms * 0.90);
         }
 
@@ -97,7 +115,7 @@
     id="smk-dplss-saylita-map-wrapper"
     class:video-loading={!video_loaded && section_visible} 
     on:viewportEnter={playVideo}
-    on:viewportLeave={shutDownVideo}
+    on:viewportLeave={handleViewportLeave}
     use:viewport={{height_offset: $layout_properties.IS_MOBILE ? 0.9 : 0.5}}
 >
     {#if video_loaded && section_visible}
