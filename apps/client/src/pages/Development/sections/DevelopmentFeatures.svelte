@@ -2,6 +2,53 @@
     import WixaricaIcon from "@components/icons/wixarica_icon.svelte";
     import { layout_images, layout_properties } from "@stores/layout";
     import { site_language, supported_languages } from "@stores/site_content";
+
+    
+    /*=============================================
+    =            Properties            =
+    =============================================*/
+    
+        /**
+         * Development properties
+         * @typedef {Object} DevelopmentProperties
+         * @property {string} en_name - The name of the development
+         * @property {string} es_name - The name of the development in Spanish
+         * @property {string} en_description - The description of the development in English
+         * @property {string} es_description - The description of the development in Spanish
+         */
+
+        let development_properties = [
+            {
+                en_name: "Homes Available",
+                es_name: "Casas Disponibles",
+                en_description: "Homes available for pre-sale in the Selva Maaku community.",
+                es_description: "Casas disponibles en preventa en la comunidad de Selva Maaku."
+            },
+            {
+                en_name: "Cuztumizer",
+                es_name: "Cuztumizer",
+                en_description: "Customize your dream home with our Cuztumizer feature.",
+                es_description: "Personaliza tu casa de ensueño con nuestra función Cuztumizer."
+            },
+            {
+                en_name: "Location",
+                es_name: "Ubicación",
+                en_description: "Conveniently located 700 meters from downtown and just 1 mile from Sayulita Beach.",
+                es_description: "Convenientemente ubicado a 700 metros del centro y a solo 1 milla de la playa de Sayulita."
+            },
+            {
+                en_name: "Lifestyle",
+                es_name: "Estilo de Vida",
+                en_description: "Live the Selva Máaku lifestyle where every feels like a vacación.",
+                es_description: "Vive el estilo de vida de Selva Máaku donde todo se siente como unas vacaciones."
+            }
+
+        ];
+    
+    /*=====  End of Properties  ======*/
+    
+    
+
 </script>
 
 <section id="smk-development-page-features-section">
@@ -30,50 +77,29 @@
     </header>
     <div id="smk-development-features-wrapper" class="design-content-width">
         <ul id="smk-dp-features-container" class:adebug={false}>
-            <li class="smk-dp-feature-item" id="smk-dp-feature-item-1">
-                <div class="wixarica-icons">
-                    <WixaricaIcon is_flat_color opacity={0.5}/>
-                </div>
-                <hgroup>
-                    <h3 class="smk-fi-feature-name">Feature name</h3>
-                    <p class="smk-fi-feature-description">
-                        This is a feature description that needs to be filled with information.
-                    </p>
-                </hgroup>
-            </li>
-            <li class="smk-dp-feature-item" id="smk-dp-feature-item-2">
-                <div class="wixarica-icons">
-                    <WixaricaIcon is_flat_color opacity={0.5}/>
-                </div>
-                <hgroup>
-                    <h3 class="smk-fi-feature-name">Feature name</h3>
-                    <p class="smk-fi-feature-description">
-                        This is a feature description that needs to be filled with information.
-                    </p>
-                </hgroup>
-            </li>
-            <li class="smk-dp-feature-item" id="smk-dp-feature-item-3">
-                <div class="wixarica-icons">
-                    <WixaricaIcon is_flat_color opacity={0.5}/>
-                </div>
-                <hgroup>
-                    <h3 class="smk-fi-feature-name">Feature name</h3>
-                    <p class="smk-fi-feature-description">
-                        This is a feature description that needs to be filled with information.
-                    </p>
-                </hgroup>
-            </li>
-            <li class="smk-dp-feature-item" id="smk-dp-feature-item-4">
-                <div class="wixarica-icons">
-                    <WixaricaIcon is_flat_color opacity={0.5}/>
-                </div>
-                <hgroup>
-                    <h3 class="smk-fi-feature-name">Feature name</h3>
-                    <p class="smk-fi-feature-description">
-                        This is a feature description that needs to be filled with information.
-                    </p>
-                </hgroup>
-            </li>
+            {#each development_properties as dp, h}
+                <li class="smk-dp-feature-item" id="smk-dp-feature-item-{h+1}">
+                    <div class="wixarica-icons">
+                        <WixaricaIcon is_flat_color opacity={0.5}/>
+                    </div>
+                    <hgroup>
+                        <h3 class="smk-fi-feature-name">
+                            {#if $site_language !== supported_languages.SPANISH}
+                                {dp.en_name}
+                            {:else}
+                                {dp.es_name}
+                            {/if}
+                        </h3>
+                        <p class="smk-fi-feature-description">
+                            {#if $site_language !== supported_languages.SPANISH}
+                                {dp.en_description}
+                            {:else}
+                                {dp.es_description}
+                            {/if}
+                        </p>
+                    </hgroup>
+                </li>
+            {/each}
             <li class="smk-dp-features-image-wrapper"><img src="{layout_images.HOUSE_MODEL_ONE.getUrl(0.3)}" alt="selvamaaku house model"></li>
         </ul>
     </div>

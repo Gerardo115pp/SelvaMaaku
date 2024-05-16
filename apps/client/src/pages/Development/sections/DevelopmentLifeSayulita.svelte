@@ -3,6 +3,7 @@
     import { layout_images, layout_properties } from "@stores/layout";
     import LifeGallery from "../sub-components/LifeGallery.svelte";
     import { site_language, supported_languages } from "@stores/site_content";
+    import SateliteVideo from "../sub-components/satelite_video.svelte";
 </script>
 
 <section id="smk-development-page-life-sayulita-section">
@@ -43,7 +44,7 @@
             <LifeGallery />
         </div>
     </div>
-    <div id="smk-dplss-saylita-map-wrapper"><img src="{layout_images.SAYULITA_MAP.getUrl(1)}" alt="sayulita map"></div>
+    <SateliteVideo />
 </section>
 
 <style>
@@ -96,19 +97,6 @@
         }
     
     /*=====  End of two columns content  ======*/
-
-    #smk-dplss-saylita-map-wrapper {
-        width: 100%;
-    }
-
-    #smk-dplss-saylita-map-wrapper img {
-        width: 100%;
-        /* TODO: Ask the client if he rathers want the ocean to disappear on larger screens to keep the aspect ratio of the design */
-        max-height: 740px;
-        object-fit: cover;
-        object-position: left bottom;
-        pointer-events: none;
-    }
     
     
     /*=============================================
