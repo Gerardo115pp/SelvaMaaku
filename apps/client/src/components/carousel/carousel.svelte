@@ -3,6 +3,8 @@
     import { browser } from "$app/environment";
     import { CarouselItem } from "./types";
     import { writable, get } from "svelte/store";
+    import { swipe } from "svelte-gestures"
+    import { layout_properties } from "@stores/layout";
 
     /*=============================================
     =            Properties            =
@@ -13,7 +15,7 @@
          * @type {CarouselItem[]}
          */
         export let carousel_items = [];
-        
+
         /*----------  Behavior props  ----------*/
                 
 
@@ -117,6 +119,13 @@
     =============================================*/
 
         /**
+         * Disables the autoplay interval
+         */
+        const disableAutoplay = () => {
+            autoplay = false;
+        }
+        
+        /**
          * Handles the change of the slide
          * @param {number} step The amount of steps to move the slide. Default is 1
          */
@@ -133,6 +142,27 @@
             console.log('current_slide_index:', $current_slide_index);
         }
 
+        /**
+         * @typedef {Object} SwipeEventDetails
+         * @property {"left"|"right"|"bottom"|"top"} direction
+         * @property {HTMLElement} target
+         */
+
+        const handleSwipe = e => {
+            if (!$layout_properties.IS_MOBILE || is_marquee) {
+                return;
+            }
+
+            disableAutoplay();
+
+            /** @type {SwipeEventDetails} */
+            const swipe_details = e.detail;
+
+            let step = swipe_details.direction === "left" ? 1 : -1;
+
+            changeSlide(step);
+        }
+
         const handleAutoplay = () => {
             // Check if the autoplay is not enabled. if it is not, clear the interval(if we are in the browser)
             if (!autoplay) {
@@ -144,6 +174,11 @@
             }
 
             changeSlide();
+        }
+
+        const handleSlideChangeBtnClick = go_to_next => {
+            disableAutoplay();
+            changeSlide(go_to_next ? 1 : -1);
         }
     
     /*=====  End of Methods  ======*/
@@ -160,13 +195,15 @@
         style:padding={carousel_padding}
     >
         {#if $$slots.arrow_left}
-            <div class="carousel-arrow carousel-arrow-left" on:click={() => changeSlide(-1)}>
+            <div class="carousel-arrow carousel-arrow-left" on:click={() => handleSlideChangeBtnClick(false)}>
                 <slot name="arrow_left" />
             </div>
         {/if}
         <div class="lcc-carousel-mask"
             class:gradient-mask={use_mask}
-             class:dtwo={false}
+            on:swipe={handleSwipe}
+            use:swipe={{ timeframe: 500, minSwipeDistance: 70, touchAction: "pan-y"}}
+            class:dtwo={false}
         >
             <ol class="lcc-carousel-slide-stack"
                 style:translate="calc({-1 * $current_slide_index} * calc(var(--slide-width) + var(--carousel-gap)))"
@@ -197,7 +234,7 @@
             </ol>
         </div>
         {#if $$slots.arrow_right}
-            <div class="carousel-arrow carousel-arrow-right" on:click={() => changeSlide()}>
+            <div class="carousel-arrow carousel-arrow-right" on:click={() => handleSlideChangeBtnClick(true)}>
                 <slot name="arrow_right" />
             </div>
         {/if}
