@@ -1,10 +1,82 @@
 <script>
+    import { tick } from "svelte";
+    import { onMount } from "svelte";
+    import { 
+        chat_room, 
+        is_available, 
+        chat_messages,
+        awaiting_chat_response
+    } from "../stores/chat";
+
     
     /*=============================================
     =            Properties            =
     =============================================*/
+
+        /**
+         * The message been currently written.
+         * @type {import('@models/Chat').ChatRoomMessage}
+        */
+        let current_message;
+
+        /**
+         * Raw message content.
+         * @type {string}
+        */
+       let new_message_content = "";
     
     /*=====  End of Properties  ======*/
+
+    onMount(() => {
+        current_message = $chat_room.createBlankMessage(true);        
+    });
+
+    
+    /*=============================================
+    =            Methods            =
+    =============================================*/
+    
+        /**
+         * Filters keypress events and adds content to the message.
+         * @param {KeyboardEvent} event
+         * @returns {void}
+        */
+        const handleMessageWriting = event => {
+            console.log(`key: ${event.key}\nShift: ${event.shiftKey}`);
+            const is_enter = event.key === "Enter";
+            if ( is_enter && event.shiftKey) {
+                sendMessage();
+            } else if (is_enter) {
+                return;
+            }
+        }
+
+        /**
+         * Sends the message to the chat room.
+         * @returns {void}
+        */
+        const sendMessage = async () => {
+            if (new_message_content === "" || !$is_available) return;
+
+            current_message.Content = new_message_content;
+            new_message_content = "";
+            chat_messages.set([...$chat_messages, current_message])
+
+            
+            awaiting_chat_response.set(true);
+            // return; // stop here
+            let response_message = await $chat_room.addMessage(current_message);
+            awaiting_chat_response.set(false);
+
+            await tick();
+
+            chat_messages.set([...$chat_messages, response_message]);
+        }
+            
+    
+    /*=====  End of Methods  ======*/
+    
+    
     
     
 </script>
@@ -13,7 +85,7 @@
 >
     <div id="scm-messenger-controllers">
         <div id="scm-mc-message-wrapper">
-            <input type="text" id="message-container">
+            <input type="text" id="message-container" on:keydown={handleMessageWriting} bind:value={new_message_content}>
             <svg id="message-box-tail" viewBox="0 0 50 100">
                 <path d="M0 0L0 101H50Q0 101 0 0Z"/>
             </svg>

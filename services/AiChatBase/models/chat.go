@@ -1,12 +1,32 @@
 package models
 
-import "time"
+import (
+	"fmt"
+	app_config "libery_llm_chat_base_service/Config"
+	"time"
+)
 
 type ChatMessage struct {
 	Order    int    `json:"order"`
 	Author   string `json:"author"`
 	Content  string `json:"content"`
 	SendDate string `json:"send_date"`
+}
+
+func CreateChatMessage(order int, author string, content string) *ChatMessage {
+	var new_message *ChatMessage = new(ChatMessage)
+
+	new_message.Order = order
+	new_message.Author = author
+	new_message.Content = content
+	new_message.SendDate = time.Now().Format("2006-01-02 15:04:05")
+
+	return new_message
+}
+
+func (chat_message *ChatMessage) Write(data []byte) (n int, err error) {
+	chat_message.Content += string(data)
+	return len(data), nil
 }
 
 type ChatRoom struct {
@@ -22,10 +42,10 @@ func (chat *ChatRoom) AddMessage(message string, from_user bool) *ChatMessage {
 	var new_message *ChatMessage = new(ChatMessage)
 	new_message.Order = len(chat.Messages)
 	new_message.Content = message
-	new_message.Author = "user"
+	new_message.Author = app_config.CHAT_USER_ROLE
 
 	if !from_user {
-		new_message.Author = "assistant"
+		new_message.Author = app_config.CHAT_BOT_ROLE
 	}
 
 	new_message.SendDate = time.Now().Format("2006-01-02 15:04:05")
@@ -33,6 +53,25 @@ func (chat *ChatRoom) AddMessage(message string, from_user bool) *ChatMessage {
 	chat.LastMessageDate = new_message.SendDate
 
 	return new_message
+}
+
+func (chat *ChatRoom) AppendMessage(message *ChatMessage) error {
+	if len(chat.Messages) == app_config.MAX_CHAT_SIZE {
+		return fmt.Errorf("Chat room is full")
+	}
+
+	chat.Messages = append(chat.Messages, message)
+	chat.LastMessageDate = message.SendDate
+
+	return nil
+}
+
+func (chat ChatRoom) GetLastMessage() *ChatMessage {
+	if len(chat.Messages) == 0 {
+		return nil
+	}
+
+	return chat.Messages[len(chat.Messages)-1]
 }
 
 type ChatRoomPublicResponse struct {

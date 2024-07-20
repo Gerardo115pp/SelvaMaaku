@@ -13,12 +13,19 @@ const fullReloadAlways = {
 export default defineConfig(async  ({ command, mode, isSsrBuild, isPreview }) => {
 	const is_production = command === 'build';
 
+	let build_config = {
+		"AI_CHAT_SERVICE": JSON.stringify(process.env.AI_CHAT_SERVICE),
+	}
+
 	/** @type {import('vite').UserConfig} */
 	let config = {
 		server: {
 			open: false,
 			host: "0.0.0.0",
 			port: 1366
+		},
+		define: {
+			...build_config,
 		},
 		resolve: {
 			alias: {

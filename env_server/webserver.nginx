@@ -19,6 +19,26 @@ server {
         # proxy_pass http://dev-selvamaaku.com:1366;
     }
 
+    location /sales-chat-api/ {
+        proxy_redirect off;
+        proxy_set_header Host $host;
+
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, PATCH, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization';
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            return 200;
+        }
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_method $request_method;
+
+        if ($request_method != 'OPTIONS') {
+            rewrite ^/sales-chat-api/(.*)$ /$1 break;
+            proxy_pass http://localhost:7523;
+        }
+    }
+
     location /resources {
         root /var/www/selvamaaku/resources;
         rewrite ^/resources/(.*)$ /$1 break;

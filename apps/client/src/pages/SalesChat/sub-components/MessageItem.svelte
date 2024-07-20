@@ -1,13 +1,15 @@
 <script>
+    import { ChatRoomMessage } from '@models/Chat';
     
     /*=============================================
     =            Properties            =
     =============================================*/
     
         /**
-         * @type {import('@models/Chat').ChatMessage}
+         * @type {import('@models/Chat').ChatRoomMessage}
         */
         export let the_message;
+        console.log("the_message:", the_message);
 
         /**
          * Whether the sender is currently typing the message
@@ -31,12 +33,12 @@
     
 </script>
 
-<li class="scc-message-item" class:recieved-message={is_typing || the_message.sender !== "user"}>
+<li class="scc-message-item" class:recieved-message={is_typing || the_message.Author !== ChatRoomMessage.AUTHOR_USER}>
     <h6 class="sender-name">
-        {#if the_message.sender === "user"}
+        {#if the_message.Author === ChatRoomMessage.AUTHOR_USER}
             You
         {:else}
-            {the_message.sender}
+            {the_message.Author}
         {/if}
     </h6>
     <p class="message-content" class:typing-animation={is_typing}>
@@ -46,7 +48,7 @@
             <span style:animation-delay=".4s" class="dot"></span>
             <span style:animation-delay=".8s" class="dot"></span>
         {:else}
-            {the_message.content}
+            {the_message.Content}
         {/if}
     </p>
     <span class="message-metadata">
@@ -54,7 +56,7 @@
             {#if is_typing}
                 ---
             {:else}
-                {time_formatter.format(new Date(the_message.send_date))}
+                {time_formatter.format(new Date())}
             {/if}
         </span>
     </span>
@@ -81,6 +83,43 @@
 
     .recieved-message .sender-name {
         color: var(--accent-orange);
+    }
+
+    @keyframes DotLoading {
+        20% {
+            transform: translateY(-20%);
+        }
+        50% {
+            transform: translateY(0%);
+        }
+        100% {
+            transform: translateY(60%);
+        }
+    }
+
+    .typing-animation {
+        display: flex;
+        align-items: flex-end;
+        column-gap: calc(var(--spacing-1) * 0.4);
+
+        & > :first-child {
+            line-height: 1;
+        }
+
+        & > * {
+            display: block;
+        }
+    }
+
+    .message-content .dot {
+        width: .4ch;
+        height: .4ch;
+        border-radius: 50%;
+        background: currentColor;
+        animation-name: DotLoading;
+        animation-duration: 1100ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(0.55, 0.09, 0.68, 0.53);
     }
 
     .sender-name {

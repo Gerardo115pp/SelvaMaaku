@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	app_config "libery_llm_chat_base_service/Config"
+	"libery_llm_chat_base_service/helpers"
 	"libery_llm_chat_base_service/models"
 	"libery_llm_chat_base_service/server"
 	"net/http"
@@ -18,6 +19,7 @@ func ChatClaimsHandler(portfolio_server server.Server) http.HandlerFunc {
 		echo.Echo(echo.GreenFG, "Request from origin: "+current_origin)
 
 		if current_origin != app_config.PRODUCTION_DOMAIN && current_origin != app_config.DEVELOPMENT_DOMAIN {
+			echo.Echo(echo.RedBG, fmt.Sprintf("Request from invalid origin: %s, wanted %s or %s", current_origin, app_config.PRODUCTION_DOMAIN, app_config.DEVELOPMENT_DOMAIN))
 			response.WriteHeader(http.StatusForbidden)
 			return
 		}
@@ -57,8 +59,8 @@ func verifyChatClaims(response http.ResponseWriter, request *http.Request) {
 	claims_token, err := request.Cookie(app_config.CHAT_CLAIM_COOKIE_NAME)
 
 	if err != nil || claims_token.Value == "" {
-		echo.Echo(echo.RedBG, fmt.Sprintf("In verifyChatClaims: Error with decoding cookie or empty value: %s", err.Error()))
-		response.WriteHeader(http.StatusBadRequest)
+		echo.Echo(echo.RedBG, "No chat claims cookie found")
+		helpers.WriteBooleanResponse(response, false)
 		return
 	}
 
@@ -72,13 +74,12 @@ func verifyChatClaims(response http.ResponseWriter, request *http.Request) {
 	err, _ = models.VerifyChatClaims(claims_token.Value, client_ip)
 	if err != nil {
 		echo.Echo(echo.RedBG, fmt.Sprintf("In verifyChatClaims: Error while calling models.VerifyChatClaims: %s", err.Error()))
-		response.WriteHeader(http.StatusBadRequest)
+		helpers.WriteBooleanResponse(response, false)
 		return
 	}
 
-	response.Header().Set("Content-Type", "application/json")
-	response.Header().Set("X-Chat-Token", claims_token.Value)
-	response.WriteHeader(200)
+	helpers.WriteBooleanResponse(response, true)
+	return
 }
 
 func createChatClaims(response http.ResponseWriter, request *http.Request) {
@@ -105,9 +106,7 @@ func createChatClaims(response http.ResponseWriter, request *http.Request) {
 
 	http.SetCookie(response, &cookie)
 
-	response.Header().Set("Content-Type", "application/json")
-	response.Header().Set("X-Chat-Token", token)
-	response.WriteHeader(http.StatusOK)
+	helpers.WriteBooleanResponse(response, true)
 
 	return
 }
