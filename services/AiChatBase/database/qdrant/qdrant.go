@@ -31,7 +31,7 @@ func NewChatKnowledgeRepository(qdrant_api string) (*ChatKnowledgeRepository, er
 	// Verify the state of Qdrant's db
 
 	if !new_knowledge_db.qdrantReachable() {
-		return nil, fmt.Errorf("Qdrant API is unreachable")
+		return nil, fmt.Errorf(fmt.Sprintf("Qdrant API not reachable at <%s>", qdrant_api))
 	}
 
 	if exists, err := new_knowledge_db.collectionExists(app_config.KNOWLEDGE_QDRANT_COLLECTION); !exists {

@@ -11,5 +11,5 @@ COPY --from=builder /go/bin/llm_chat_base_service /llm_chat_base_service
 RUN mkdir /operation_data
 ENTRYPOINT /llm_chat_base_service
 LABEL Name=llm_chat_base_service Version=1.0
-EXPOSE 6970
+EXPOSE 7523
 CMD ["llm_chat_base_service"]

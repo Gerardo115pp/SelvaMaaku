@@ -51,6 +51,12 @@
                 es_name: 'Amenidades',
                 href: '/amenities',
                 options: []
+            },
+            {
+                name: 'Ask us',
+                es_name: 'Pregúntanos',
+                href: '/chat-with-us',
+                options: []
             }
         ]
 
