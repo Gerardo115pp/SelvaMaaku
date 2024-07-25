@@ -1,5 +1,6 @@
 <script>
     import { ChatRoomMessage } from '@models/Chat';
+    import { onMount } from 'svelte';
     
     /*=============================================
     =            Properties            =
@@ -18,6 +19,18 @@
         export let is_typing = false;
 
         /**
+         * The Li element that wraps the message item.
+         * @type {HTMLLIElement}
+        */
+        let message_dom_element;
+
+        /**
+         * If is set to true, when the element is mounted it will be scrolled into view.
+         * @type {boolean}
+        */
+        export let scroll_into_view = false;
+
+        /**
          * Time formatter for the message send time
          * @type {Intl.DateTimeFormat}
          */
@@ -29,11 +42,23 @@
             
     
     /*=====  End of Properties  ======*/
+
+    onMount(() => {
+        if (scroll_into_view && message_dom_element != null) {
+            message_dom_element.scrollIntoView({
+                block: 'end',
+                inline: 'center',
+                behavior: 'instant'
+            });
+        } else if (message_dom_element == null) {
+            console.warn(`message '${the_message.Order}' wrapper element was null or undefined.`);
+        }
+    })
     
     
 </script>
 
-<li class="scc-message-item" class:recieved-message={is_typing || the_message.Author !== ChatRoomMessage.AUTHOR_USER}>
+<li bind:this={message_dom_element} class="scc-message-item" class:recieved-message={is_typing || the_message.Author !== ChatRoomMessage.AUTHOR_USER}>
     <h6 class="sender-name">
         {#if the_message.Author === ChatRoomMessage.AUTHOR_USER}
             You

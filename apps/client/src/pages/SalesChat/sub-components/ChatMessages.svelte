@@ -65,9 +65,10 @@
 <ul id="sales-chat-messanges-list"
     style:height="{messages_box_pixel_height}px"
 >
-    {#each $chat_messages as message}
+    {#each $chat_messages as message, h}
         <MessageItem 
             the_message={message}
+            scroll_into_view={h === ($chat_messages.length - 1) && (writtenth_message == null)}
         />
     {/each}
     {#if writtenth_message !== null} 
@@ -90,5 +91,11 @@
         padding: 0 20cqw;
         scrollbar-width: thin;
         scrollbar-color: var(--theme-color) var(--theme-hero-background);
+    }
+
+    @container sales-chat-component (width < 600px) {
+        #sales-chat-messanges-list {
+            padding: 0 var(--spacing-2);
+        }
     }
 </style>

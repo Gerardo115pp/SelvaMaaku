@@ -100,9 +100,20 @@
     
 </script>
 
+<svelte:window 
+    on:resize|passive={setSubcomponentsHeights}
+/>
 <article id="smk-sales-chat">
     {#if chat_box_height != null && status_bar_height != null && $chat_room != null}
         <ChatStatusBar component_pixel_height={status_bar_height} />
         <Chatbox chat_box_pixel_height={chat_box_height} />
     {/if}
 </article>
+
+<style>
+    #smk-sales-chat {
+        container-type: size;
+        container-name: sales-chat-component;
+        height: calc(100vh - var(--navbar-height));
+    }
+</style>

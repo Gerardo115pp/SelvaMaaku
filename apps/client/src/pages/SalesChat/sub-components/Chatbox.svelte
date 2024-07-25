@@ -63,6 +63,16 @@
     }
 
     #chat-messenger-wrapper {
-        width: min(690px, 40cqw);
+        width: min(690px, 90cqw);
+    }
+
+    @container sales-chat-component (width < 600px) {
+        #sales-chat-chatbox {
+            padding: var(--spacing-3) 0;
+        }        
+
+        #scc-chatbox-underlay img {
+            width: 70%;
+        }
     }
 </style>
