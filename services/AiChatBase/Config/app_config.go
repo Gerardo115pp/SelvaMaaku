@@ -39,6 +39,7 @@ var MAX_REMEMBRANCES_IN_CONTEXT int = 2
 var CHAT_CLAIM_COOKIE_NAME string = "portfolio_libery_chat_token"
 var OPEN_AI_API_KEY string = os.Getenv("OPEN_AI_API_KEY")
 var CHATS_DATA_PATH string = fmt.Sprintf("%s/chats", OPERATION_DATA_PATH)
+var CHAT_GREET_MESSAGE string = "Good day, how can I help you? feel free to ask me anything."
 var CHAT_INSTRUCTION string
 var CHAT_ENABLED bool
 var CHAT_TEMPERATURE float64 = 1.2
@@ -140,6 +141,12 @@ func loadSettings() error {
 
 	if embeddings == nil || chat_settings == nil || knowledge_settings == nil {
 		return fmt.Errorf("Settings file is missing required sections: 'chat_settings', 'knowledge' or 'embeddings'")
+	}
+
+	if chat_greet_message, setting_exists := chat_settings["greet_message"].(string); setting_exists && chat_greet_message != "" {
+		CHAT_GREET_MESSAGE = chat_greet_message
+	} else {
+		fmt.Printf("Warning: Chat greet message not found, defaulting to '%s'\n", CHAT_GREET_MESSAGE)
 	}
 
 	var chat_instruction_filename string

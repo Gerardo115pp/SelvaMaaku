@@ -51,7 +51,7 @@ func getChatHandler(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if len(chat_room.Messages) == 0 {
-		chat_room.AddMessage("Good day Sir, how can I help you?", false)
+		chat_room.AddMessage(app_config.CHAT_GREET_MESSAGE, false)
 	}
 	fmt.Printf("Chat ID: %s\n", chat_room.ID)
 
